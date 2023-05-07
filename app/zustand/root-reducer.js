@@ -1,6 +1,6 @@
 import {create} from 'zustand';
-import {createFishSlice} from './testSlice';
+import {createUserSlice} from './userSlice';
 
 export const useStore = create((...a) => ({
-  ...createFishSlice(...a),
+  ...createUserSlice(...a),
 }));

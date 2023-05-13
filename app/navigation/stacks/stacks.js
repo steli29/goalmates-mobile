@@ -1,6 +1,6 @@
 import React from 'react';
-import { Text } from 'react-native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
 import HomeScreen from '../../screens/HomeScreen/HomeScreen';
 import ProfileScreen from '../../screens/ProfileScreen/ProfileScreen';
 import SettingsScreen from '../../screens/SettingsScreen/SettingsScreen';

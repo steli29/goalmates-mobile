@@ -1,12 +1,14 @@
 import { StyleSheet } from 'react-native';
 
+import { bp } from '../../project/utils/relativeUnitUtils';
+
 export default StyleSheet.create({
     mainContainer: {
-        width: 335,
+        width: bp(335),
         
-        paddingHorizontal: 19,
+        paddingHorizontal: bp(19),
 
-        borderRadius: 10,
+        borderRadius: bp(10),
 
         backgroundColor: 'rgba(196, 196, 196, 0.2)',
     },
@@ -14,25 +16,25 @@ export default StyleSheet.create({
         flexDirection: 'row',
     },
     nameAndDateContainer: {
-        marginLeft: 7,
+        marginLeft: bp(7),
     },
     cardHeaderContainer: {
-        marginTop: 10,
-        marginBottom: 11,
+        marginTop: bp(10),
+        marginBottom: bp(11),
     },
     nameText: {
         fontFamily: 'Poppins',
-        fontSize: 15,
+        fontSize: bp(15),
         fontWeight: '600',
-        lineHeight: 22.5,
+        lineHeight: bp(22.5),
         color: '#000000',
         fontStyle: 'normal',
     },
     datePostedText: {
         fontFamily: 'Poppins',
-        fontSize: 12,
+        fontSize: bp(12),
         fontWeight: '500',
-        lineHeight: 18,
+        lineHeight: bp(18),
         color: '#000000',
         fontStyle: 'normal',
     },
@@ -40,23 +42,23 @@ export default StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
 
-        marginVertical: 10,
+        marginVertical: bp(10),
     },
     commentIconContainer: {
         alignItems: 'center',
     },
     commentsLengthText: {
-        marginLeft: 3,
+        marginLeft: bp(3),
 
         fontFamily: 'Poppins',
-        fontSize: 14,
+        fontSize: bp(14),
         fontWeight: '700',
         color: '#000000',
         fontStyle: 'normal',
     },
     viewCommentsButtonText: {
         fontFamily: 'Poppins',
-        fontSize: 14,
+        fontSize: bp(14),
         fontWeight: '400',
         color: 'rgba(0, 0, 0, 0.5)',
         fontStyle: 'normal',  

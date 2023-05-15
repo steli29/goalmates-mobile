@@ -2,6 +2,8 @@ import React from 'react';
 import { Image } from 'react-native';
 import PropTypes from 'prop-types';
 
+import { bp } from '../../project/utils/relativeUnitUtils';
+
 const AvatarImage = ({ imageUrl, size }) => {
     const defaultImageUrl = require('../../assets/avatar-default/avatar-default.jpg');
 
@@ -9,9 +11,9 @@ const AvatarImage = ({ imageUrl, size }) => {
         <Image
             source={imageUrl ? { uri: imageUrl } : defaultImageUrl}
             style={{
-                width: size,
-                height: size,
-                borderRadius: size / 2,
+                width: bp(size),
+                height: bp(size),
+                borderRadius: bp(size / 2),
             }}
         />
     );

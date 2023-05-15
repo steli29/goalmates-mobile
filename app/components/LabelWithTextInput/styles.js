@@ -1,23 +1,31 @@
 import { StyleSheet } from "react-native";
 
+import { bp } from '../../project/utils/relativeUnitUtils';
+
 export default StyleSheet.create({
 	mainContainer: {
-		flexDirection: "column",
 		alignItems: "flex-start",
 
-		marginBottom: 8,
+		marginBottom: bp(10),
 	},
 	textInputStyle: {
-		width: 250,
+		width: '100%',
+		height: bp(43),
 
-		paddingHorizontal: 4,
+		paddingVertical: bp(6),
+		paddingHorizontal: bp(12),
+		gap: bp(17),
 
-		borderWidth: 1,
-		borderColor: '#000',
-		borderRadius: 5
+		borderWidth: bp(1),
+		borderColor: '#A2A2A6',
+		borderRadius: bp(4)
 	},
 	labelTextStyle: {
-		fontSize: 16,
-		fontWeight: '400',
+		marginBottom: bp(2),
+
+		fontFamily: 'Nunito',
+		fontSize: bp(14),
+		fontWeight: '600',
+		color: "#312E49",
 	}
 });

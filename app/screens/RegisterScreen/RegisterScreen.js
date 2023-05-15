@@ -1,11 +1,17 @@
 import React, { useState } from 'react';
-import { Text } from 'react-native';
+import { Text, View } from 'react-native';
 import PropTypes from 'prop-types';
 import { SafeAreaView } from 'react-native-safe-area-context';
+
+import { useStore } from '../../zustand/root-reducer';
+import { Screens } from '../../project/constants';
+
 import LabelWithTextInput from '../../components/LabelWithTextInput/LabelWithTextInput';
 import Button from '../../components/Button/Button';
+import BottomLink from '../../components/BottomLink/BottomLink';
+import AuthHeadLine from '../../components/AuthHeadLine/AuthHeadLine';
+
 import styles from './styles';
-import { useStore } from '../../zustand/root-reducer';
 
 const RegisterScreen = ({ navigation }) => {
     const register = useStore((state) => state.register);
@@ -16,10 +22,10 @@ const RegisterScreen = ({ navigation }) => {
     const [password, setPassword] = useState('');
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
-    const [userName, setUserName] = useState('');
 
     const onSignInPress = () => {
-        navigation.navigate('Login');
+        // navigation.navigate(Screens.LOGIN);
+        navigation.navigate(Screens.VERIFY)
     };
 
     const onRegisterPress = async () => {
@@ -28,48 +34,53 @@ const RegisterScreen = ({ navigation }) => {
             password,
             firstName,
             lastName,
-            userName,
         });
     };
 
     return (
         <SafeAreaView style={styles.mainContainer}>
-            <LabelWithTextInput
-                label="Email"
-                inputField={email}
-                onChangeInputField={setEmail}
-                onFocus={clearError}
+            <View>
+                <AuthHeadLine 
+                    headline="Register"
+                    additionalStyle={styles.registerTextHeader}
+                />
+                <LabelWithTextInput
+                    label='First Name'
+                    inputField={firstName}
+                    onChangeInputField={setFirstName}
+                    onFocus={clearError}
+                />
+                <LabelWithTextInput
+                    label='Last Name'
+                    inputField={lastName}
+                    onChangeInputField={setLastName}
+                    onFocus={clearError}
+                />
+                <LabelWithTextInput
+                    label='E-mail'
+                    inputField={email}
+                    onChangeInputField={setEmail}
+                    onFocus={clearError}
+                />
+                <LabelWithTextInput
+                    label='Password'
+                    inputField={password}
+                    onChangeInputField={setPassword}
+                    onFocus={clearError}
+                    isPassword
+                />
+                <Button 
+                label='Register' 
+                onButtonPress={onRegisterPress} 
+                buttonContainerStyle={styles.buttonContainerStyle}
+                />
+                {error && <Text style={styles.errorMessage}>{error}</Text>}
+            </View>
+            <BottomLink
+                headline='Already signed up?'
+                buttonLabel='Login'
+                onLabelPress={onSignInPress}
             />
-            <LabelWithTextInput
-                label="Password"
-                inputField={password}
-                onChangeInputField={setPassword}
-                onFocus={clearError}
-                isPassword
-            />
-            <LabelWithTextInput
-                label="First Name"
-                inputField={firstName}
-                onChangeInputField={setFirstName}
-                onFocus={clearError}
-            />
-            <LabelWithTextInput
-                label="Last Name"
-                inputField={lastName}
-                onChangeInputField={setLastName}
-                onFocus={clearError}
-            />
-            <LabelWithTextInput
-                label="User Name"
-                inputField={userName}
-                onChangeInputField={setUserName}
-                onFocus={clearError}
-            />
-            <Text style={styles.signUpLinkText} onPress={onSignInPress}>
-                Have and account? Sign In.
-            </Text>
-            <Button label="Register" onButtonPress={onRegisterPress} />
-            {error && <Text style={styles.errorMessage}>{error}</Text>}
         </SafeAreaView>
     );
 };

@@ -3,7 +3,7 @@ import { HOSTNAME, clearSession, setSession } from '../project/api/helpers';
 export const createUserSlice = (set, get) => ({
     user: {},
     error: '',
-    register: async ({ email, password, firstName, lastName, userName }) => {
+    register: async ({ email, password, firstName, lastName }) => {
         try {
             const response = await fetch(`${HOSTNAME}/auth/register`, {
                 method: 'POST',
@@ -12,7 +12,6 @@ export const createUserSlice = (set, get) => ({
                     password,
                     firstName,
                     lastName,
-                    userName,
                 }),
                 headers: {
                     'Content-Type': 'application/json',

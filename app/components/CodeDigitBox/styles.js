@@ -7,17 +7,18 @@ export default StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
 
-        width: '100%',
-        height: bp(43),
+        width: bp(47),
+        height: bp(65),
 
+        borderColor: '#CDCED1',
+        borderWidth: bp(1),
         borderRadius: bp(6),
 
-        backgroundColor: '#B4AAF2',
+        backgroundColor: '#F5F6F7',
     },
-    labelTextStyle: {
+    symbolTextStyle: {
         fontFamily: 'Nunito',
-		fontSize: bp(14),
-		fontWeight: '600',
-		color: "#FFFFFF",
+        fontSize: bp(36),
+        fontWeight: '300',
     }
 });

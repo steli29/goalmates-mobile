@@ -1,22 +1,28 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet } from 'react-native';
+
+import { bp } from '../../project/utils/relativeUnitUtils';
 
 export default StyleSheet.create({
     mainContainer: {
         flex: 1,
-        flexDirection: "column",
-        justifyContent: 'center',
-        alignItems: "center",
+        justifyContent: 'space-between',
+
+        paddingLeft: bp(24),
+        paddingRight: bp(24),
+
+        backgroundColor: '#FFFFFF',
     },
-    signUpLinkText: {
-        color: '#5579C6',
-        textDecorationLine: 'underline',
-        textDecorationStyle: 'solid',
-        textDecorationColor: '#5579C6',
+    loginTextHeader: {
+        marginTop: bp(65),
+        marginBottom: bp(36),
+    },
+    buttonContainerStyle: {
+        marginTop: bp(64),
     },
     errorMessage: {
-        marginTop: 10,
-        fontSize: 15,
+        marginTop: bp(10),
+        fontSize: bp(15),
         fontWeight: '600',
         color: '#C30010',
-    }
+    },
 });

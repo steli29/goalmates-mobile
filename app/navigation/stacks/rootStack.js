@@ -8,6 +8,7 @@ import { useStore } from '../../zustand/root-reducer';
 import TabNavigation from '../tabs/tabs';
 import LoginScreen from '../../screens/LoginScreen/LoginScreen';
 import RegisterScreen from '../../screens/RegisterScreen/RegisterScreen';
+import VerifyScreen from '../../screens/VerifyScreen/VerifyScreen';
 
 const RootStackNavigator = createNativeStackNavigator();
 
@@ -44,6 +45,14 @@ const RootStack = () => {
                     <RootStackNavigator.Screen
                         name={Screens.REGISTER}
                         component={RegisterScreen}
+                        options={() => ({
+                            animationEnabled: false,
+                            headerShown: false,
+                        })}
+                    />
+                    <RootStackNavigator.Screen
+                        name={Screens.VERIFY}
+                        component={VerifyScreen}
                         options={() => ({
                             animationEnabled: false,
                             headerShown: false,

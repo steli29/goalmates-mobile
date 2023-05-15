@@ -5,6 +5,7 @@ export const Screens = {
     HOME: 'Home',
     PROFILE: 'Profile',
     SETTINGS: 'Settings',
+    VERIFY: 'Verify',
 };
 
 export const TabNames = {

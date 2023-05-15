@@ -12,17 +12,25 @@ export default StyleSheet.create({
 
         backgroundColor: '#FFFFFF',
     },
-    registerTextHeader: {
+    confirmationMessageContainer: {
+        marginBottom: bp(48),
+    },
+    checkMailHeaderTextStyle: {
         marginTop: bp(65),
-        marginBottom: bp(36),
+        marginBottom: bp(8),
+    },
+    mainTextStyle: {
+        fontFamily: 'Nunito',
+		fontSize: bp(14),
+		color: "#312E49",
+    },
+    confirmationMessageTextStyle: {
+		fontWeight: '500',
+    },
+    emailTextStyle: {
+		fontWeight: '700',
     },
     buttonContainerStyle: {
-        marginTop: bp(51),
-    },
-    errorMessage: {
-        marginTop: bp(10),
-        fontSize: bp(15),
-        fontWeight: '600',
-        color: '#C30010',
-    },
-});
+        marginTop: bp(74),
+    }
+})

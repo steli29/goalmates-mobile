@@ -1,12 +1,17 @@
 import React, { useState } from 'react';
-import { Text } from 'react-native';
+import { Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import PropTypes from 'prop-types';
 
-import LabelWithTextInput from '../../components/LabelWithTextInput/LabelWithTextInput';
-import styles from './styles';
-import Button from '../../components/Button/Button';
 import { useStore } from '../../zustand/root-reducer';
+import { Screens } from '../../project/constants';
+
+import LabelWithTextInput from '../../components/LabelWithTextInput/LabelWithTextInput';
+import Button from '../../components/Button/Button';
+import BottomLink from '../../components/BottomLink/BottomLink';
+import AuthHeadLine from '../../components/AuthHeadLine/AuthHeadLine';
+
+import styles from './styles';
 
 const LoginScreen = ({ navigation }) => {
     const login = useStore((state) => state.login);
@@ -17,7 +22,7 @@ const LoginScreen = ({ navigation }) => {
     const [password, setPassword] = useState('');
 
     const onSignUpPress = () => {
-        navigation.navigate('Register');
+        navigation.navigate(Screens.REGISTER);
     };
 
     const onLoginPress = async () => {
@@ -29,24 +34,34 @@ const LoginScreen = ({ navigation }) => {
 
     return (
         <SafeAreaView style={styles.mainContainer}>
-            <LabelWithTextInput
-                label="Email"
-                inputField={email}
-                onChangeInputField={setEmail}
-                onFocus={clearError}
+            <View>
+                <AuthHeadLine headline='Login' additionalStyle={styles.loginTextHeader} />
+                <LabelWithTextInput
+                    label='E-mail'
+                    inputField={email}
+                    onChangeInputField={setEmail}
+                    onFocus={clearError}
+                />
+                <LabelWithTextInput
+                    label='Password'
+                    inputField={password}
+                    onChangeInputField={setPassword}
+                    isPassword
+                    onFocus={clearError}
+                />
+
+                <Button
+                    label='Login'
+                    onButtonPress={onLoginPress}
+                    buttonContainerStyle={styles.buttonContainerStyle}
+                />
+                {error && <Text style={styles.errorMessage}>{error}</Text>}
+            </View>
+            <BottomLink
+                buttonLabel='Signup'
+                headline="Don't have an account?"
+                onLabelPress={onSignUpPress}
             />
-            <LabelWithTextInput
-                label="Password"
-                inputField={password}
-                onChangeInputField={setPassword}
-                isPassword
-                onFocus={clearError}
-            />
-            <Text style={styles.signUpLinkText} onPress={onSignUpPress}>
-                Don't have and account? Sign Up.
-            </Text>
-            <Button label="Login" onButtonPress={onLoginPress} />
-            {error && <Text style={styles.errorMessage}>{error}</Text>}
         </SafeAreaView>
     );
 };

@@ -1,0 +1,51 @@
+import React from 'react';
+import { View, Text, TouchableOpacity } from 'react-native';
+import PropTypes from 'prop-types';
+
+import GoalPreview from '../GoalPreview/GoalPreview';
+import AvatarImage from '../AvatarImage/AvatarImage';
+import ChatSvg from '../../assets/svgs/ChatSvg';
+
+import styles from './styles';
+
+const GoalCard = ({ avatarUrl, name, datePosted, commentsLength, title, description, deadline }) => {
+    return (
+        <View style={styles.mainContainer}>
+            <View style={[styles.rowContainer, styles.cardHeaderContainer]}>
+                <AvatarImage size={46} imageUrl={avatarUrl} />
+                <View style={styles.nameAndDateContainer}>
+                    <Text style={styles.nameText}>{name}</Text>
+                    <Text style={styles.datePostedText}>{datePosted}</Text>
+                </View>
+            </View>
+            <GoalPreview
+                title={title}
+                description={description}
+                deadline={deadline}
+            />
+            <View style={styles.goalCardFooter}>
+                <TouchableOpacity>
+                    <Text style={styles.viewCommentsButtonText}>
+                        View all {commentsLength} comments
+                    </Text>
+                </TouchableOpacity>
+                <View style={[styles.rowContainer, styles.commentIconContainer]}>
+                    <ChatSvg />
+                    <Text style={styles.commentsLengthText}>{commentsLength}</Text>
+                </View>
+            </View>
+        </View>
+    );
+};
+
+GoalCard.propTypes = {
+    avatarUrl: PropTypes.string,
+    name: PropTypes.string,
+    datePosted: PropTypes.string,
+    commentsLength: PropTypes.number,
+    title: PropTypes.string,
+    description: PropTypes.string,
+    deadline: PropTypes.string,
+};
+
+export default GoalCard;

@@ -31,6 +31,9 @@
         "react/forbid-prop-types": 0,
         "react-hooks/exhaustive-deps": 0,
         "import/prefer-default-export": 0,
-        "react/no-unescaped-entities": 0
+        "react/no-unescaped-entities": 0,
+        "no-unused-vars": ["error", { "vars": "all" }],
+        "import/no-extraneous-dependencies": 0,
+        "global-require": 0
     }
 }

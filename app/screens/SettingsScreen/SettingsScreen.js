@@ -1,9 +1,8 @@
 import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
-import PropTypes from 'prop-types';
 import { useStore } from '../../zustand/root-reducer';
 
-const SettingsScreen = ({ navigation }) => {
+const SettingsScreen = () => {
     const logout = useStore((state) => state.logout);
 
     const onLogoutPress = () => {
@@ -17,10 +16,6 @@ const SettingsScreen = ({ navigation }) => {
             </TouchableOpacity>
         </View>
     );
-};
-
-SettingsScreen.propTypes = {
-    navigation: PropTypes.object,
 };
 
 export default SettingsScreen;

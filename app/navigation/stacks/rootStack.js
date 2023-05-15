@@ -26,7 +26,7 @@ const RootStack = () => {
                 <RootStackNavigator.Screen
                     name={Screens.TABS}
                     component={TabNavigation}
-                    options={({ route }) => ({
+                    options={() => ({
                         animationEnabled: false,
                         headerShown: false,
                     })}
@@ -36,7 +36,7 @@ const RootStack = () => {
                     <RootStackNavigator.Screen
                         name={Screens.LOGIN}
                         component={LoginScreen}
-                        options={({ route }) => ({
+                        options={() => ({
                             animationEnabled: false,
                             headerShown: false,
                         })}
@@ -44,7 +44,7 @@ const RootStack = () => {
                     <RootStackNavigator.Screen
                         name={Screens.REGISTER}
                         component={RegisterScreen}
-                        options={({ route }) => ({
+                        options={() => ({
                             animationEnabled: false,
                             headerShown: false,
                         })}

@@ -12,6 +12,9 @@ export const HomeStack = () => {
       <HomeScreenStack.Screen
         name='Home'
         component={HomeScreen}
+        options={{
+          headerShown: false,
+        }}
         // options={({ navigation, route }) => {
         //   return {
         //     header: () => (<Text>Test</Text>)

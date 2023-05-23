@@ -28,7 +28,7 @@ export const createUserSlice = (set, get) => ({
             set({ error: err.message });
         }
     },
-    login: async ({ email, password }) => {
+    login: async ({ email, password, isCheckBoxPressed }) => {
         try {
             const response = await fetch(`${HOSTNAME}/auth/login`, {
                 method: 'POST',
@@ -42,8 +42,10 @@ export const createUserSlice = (set, get) => ({
             });
             const data = await response.json();
             if (response.status === 200) {
-                await setSession(data);
                 set({ user: data });
+                if (isCheckBoxPressed) {
+                    await setSession(data);
+                }
             } else {
                 throw new Error(data.message);
             }

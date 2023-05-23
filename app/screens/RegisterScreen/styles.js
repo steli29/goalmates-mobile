@@ -19,10 +19,4 @@ export default StyleSheet.create({
     buttonContainerStyle: {
         marginTop: bp(51),
     },
-    errorMessage: {
-        marginTop: bp(10),
-        fontSize: bp(15),
-        fontWeight: '600',
-        color: '#C30010',
-    },
 });

@@ -1,16 +1,18 @@
 import React from 'react';
 import { Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import PropTypes from 'prop-types';
 
 import Button from '../../components/Button/Button';
 import BottomLink from '../../components/BottomLink/BottomLink';
-
-import styles from './styles';
 import AuthHeadLine from '../../components/AuthHeadLine/AuthHeadLine';
 import CodeVerification from '../../components/CodeVerification/CodeVerification';
 
-const VerifyScreen = () => {
-    const email = 'test@gmail.com';
+import styles from './styles';
+
+const VerifyScreen = ({ route }) => {
+    const { registerUser, email } = route.params;
+
     return (
         <SafeAreaView style={styles.mainContainer}>
             <View>
@@ -28,7 +30,7 @@ const VerifyScreen = () => {
                 <CodeVerification />
                 <Button
                     label='Verify'
-                    onButtonPress={() => undefined}
+                    onButtonPress={registerUser}
                     buttonContainerStyle={styles.buttonContainerStyle}
                 />
             </View>
@@ -40,5 +42,9 @@ const VerifyScreen = () => {
         </SafeAreaView>
     );
 };
+
+VerifyScreen.propTypes = {
+    route: PropTypes.object,
+}
 
 export default VerifyScreen;

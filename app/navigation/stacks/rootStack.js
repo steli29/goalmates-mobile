@@ -9,6 +9,7 @@ import TabNavigation from '../tabs/tabs';
 import LoginScreen from '../../screens/LoginScreen/LoginScreen';
 import RegisterScreen from '../../screens/RegisterScreen/RegisterScreen';
 import VerifyScreen from '../../screens/VerifyScreen/VerifyScreen';
+import ForgottenPasswordScreen from '../../screens/ForgottenPasswordScreen/ForgottenPasswordScreen';
 
 const RootStackNavigator = createNativeStackNavigator();
 
@@ -53,6 +54,14 @@ const RootStack = () => {
                     <RootStackNavigator.Screen
                         name={Screens.VERIFY}
                         component={VerifyScreen}
+                        options={() => ({
+                            animationEnabled: false,
+                            headerShown: false,
+                        })}
+                    />
+                    <RootStackNavigator.Screen
+                        name={Screens.FORGOTTEN_PASSWORD}
+                        component={ForgottenPasswordScreen}
                         options={() => ({
                             animationEnabled: false,
                             headerShown: false,

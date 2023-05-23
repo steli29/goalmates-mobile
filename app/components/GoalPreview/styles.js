@@ -4,6 +4,7 @@ import { bp } from '../../project/utils/relativeUnitUtils';
 
 export default StyleSheet.create({
     mainContainer: {
+        flexDirection: 'row',
         alignItems: 'center',
 
         width: bp(298),
@@ -14,9 +15,6 @@ export default StyleSheet.create({
         borderRadius: bp(12),
 
         backgroundColor: '#F5F8FF',
-    },
-    row: {
-        flexDirection: 'row',
     },
     shadowEffect: {
         ...Platform.select({

@@ -6,6 +6,7 @@ export const Screens = {
     PROFILE: 'Profile',
     SETTINGS: 'Settings',
     VERIFY: 'Verify',
+    FORGOTTEN_PASSWORD: "Forgotten_Password"
 };
 
 export const TabNames = {

@@ -6,7 +6,10 @@ import styles from './styles';
 
 const Button = ({ onButtonPress, label, buttonContainerStyle }) => {
     return (
-        <TouchableOpacity style={[styles.mainContainer, buttonContainerStyle]} onPress={onButtonPress}>
+        <TouchableOpacity
+            style={[styles.mainContainer, buttonContainerStyle]}
+            onPress={onButtonPress}
+        >
             <Text style={styles.labelTextStyle}>{label}</Text>
         </TouchableOpacity>
     );
@@ -15,7 +18,7 @@ const Button = ({ onButtonPress, label, buttonContainerStyle }) => {
 Button.propTypes = {
     onButtonPress: PropTypes.func,
     label: PropTypes.string,
-    buttonContainerStyle: PropTypes.object,
+    buttonContainerStyle: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
 };
 
 export default Button;

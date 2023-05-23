@@ -3,7 +3,7 @@ import { View, Text, TextInput } from 'react-native';
 import PropTypes from 'prop-types';
 import styles from './styles';
 
-const LabelWithTextInput = ({ label, inputField, isPassword, onChangeInputField, onFocus }) => {
+const LabelWithTextInput = ({ label, inputField, isPassword, onChangeInputField }) => {
     return (
         <View style={styles.mainContainer}>
             <Text style={styles.labelTextStyle}>{label}</Text>
@@ -12,8 +12,7 @@ const LabelWithTextInput = ({ label, inputField, isPassword, onChangeInputField,
                 autoCorrect={false}
                 value={inputField}
                 onChangeText={onChangeInputField}
-                onFocus={onFocus}
-                placeholder={label}
+                placeholder={`Your ${label}`}
                 secureTextEntry={isPassword}
                 style={[styles.textInputStyle, styles.labelTextStyle]}
             />
@@ -26,7 +25,6 @@ LabelWithTextInput.propTypes = {
     inputField: PropTypes.string,
     isPassword: PropTypes.bool,
     onChangeInputField: PropTypes.func,
-    onFocus: PropTypes.func,
 };
 
 export default LabelWithTextInput;

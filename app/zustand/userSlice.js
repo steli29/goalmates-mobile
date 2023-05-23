@@ -1,8 +1,10 @@
 import { HOSTNAME, clearSession, setSession } from '../project/api/helpers';
 
 export const createUserSlice = (set, get) => ({
-    user: {},
-    error: '',
+    user: {
+        data: null,
+        error: '',
+    },
     register: async ({ email, password, firstName, lastName }) => {
         try {
             const response = await fetch(`${HOSTNAME}/auth/register`, {
@@ -20,15 +22,15 @@ export const createUserSlice = (set, get) => ({
             const data = await response.json();
             if (response.status === 200) {
                 await setSession(data);
-                set({ user: data });
+                set({ user: { data } });
             } else {
                 throw new Error(data.message);
             }
         } catch (err) {
-            set({ error: err.message });
+            set({ user: { error: err.message } });
         }
     },
-    login: async ({ email, password, isCheckBoxPressed }) => {
+    login: async ({ email, password }) => {
         try {
             const response = await fetch(`${HOSTNAME}/auth/login`, {
                 method: 'POST',
@@ -42,24 +44,22 @@ export const createUserSlice = (set, get) => ({
             });
             const data = await response.json();
             if (response.status === 200) {
-                set({ user: data });
-                if (isCheckBoxPressed) {
-                    await setSession(data);
-                }
+                await setSession(data);
+                set({ user: { data } });
             } else {
                 throw new Error(data.message);
             }
         } catch (err) {
-            set({ error: err.message });
+            set({ user: { error: err.message } });
         }
     },
     logout: async () => {
         await clearSession();
-        set({ user: {} });
+        set({ user: { data: null } });
     },
     clearError: () => {
         if (get().error) {
-            set({ error: '' });
+            set({ user: { error: '' } });
         }
     },
 });

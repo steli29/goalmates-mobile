@@ -28,6 +28,7 @@
 		61FC4F0D884E424D8276175D /* Nunito-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5670094E2790422CBDFBFFCD /* Nunito-BlackItalic.ttf */; };
 		65CD38183A9B43A89137CD06 /* Nunito-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 719FD96960D44754A4BBC196 /* Nunito-MediumItalic.ttf */; };
 		6AAF8C64E9E441ACB803FCE5 /* Poppins-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6DABA8AC19A540248000B15A /* Poppins-LightItalic.ttf */; };
+		743F75754E88BA7A376B23A3 /* libPods-goalmates-goalmatesTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D808854AF714DCC4B906AFE /* libPods-goalmates-goalmatesTests.a */; };
 		75A84F461AC44237985BFFEF /* Nunito-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CD6F0547E4ED4C03B899A28C /* Nunito-SemiBold.ttf */; };
 		8052A513999B469C8D427BF8 /* Poppins-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F357AA87306F47689ABA38E7 /* Poppins-SemiBoldItalic.ttf */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
@@ -43,10 +44,9 @@
 		B0FF2D779D7E481C8D90C253 /* Poppins-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 508CEA7F0FFB4740A8AD7E7F /* Poppins-BoldItalic.ttf */; };
 		BFF73A8679FF47E98CCE2B52 /* Poppins-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1793B2D158CB45A9B6D1682E /* Poppins-MediumItalic.ttf */; };
 		C29D49A39C0A4C61BE37F7DE /* Nunito-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FAABE08C0FFD41D4AE0699B8 /* Nunito-Regular.ttf */; };
-		E61ABC7874F7239D9388F9B3 /* libPods-goalmates-goalmatesTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 42031CE5B83993772930D969 /* libPods-goalmates-goalmatesTests.a */; };
 		E69DBBD1913B45A48ADB89BF /* Nunito-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4CE8FADEA41948E4A066A764 /* Nunito-SemiBoldItalic.ttf */; };
 		F2553420F78345FD8F8608AF /* Poppins-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AE36BAB12E584D40BDD74093 /* Poppins-Italic.ttf */; };
-		F5AEBFFD68F76E4FDC5D3981 /* libPods-goalmates.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1454B328021101A2C7BF5EDD /* libPods-goalmates.a */; };
+		F8B972E31B09E33775C188E8 /* libPods-goalmates.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B8435581BAB47BE14366C7F8 /* libPods-goalmates.a */; };
 		FD2A369E8B874553B6B4234A /* Poppins-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4C2D5ECE27C9461BA5F425BE /* Poppins-BlackItalic.ttf */; };
 /* End PBXBuildFile section */
 
@@ -65,42 +65,42 @@
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* goalmatesTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = goalmatesTests.m; sourceTree = "<group>"; };
 		03A950B9476F4495812ADD5E /* Poppins-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-Bold.ttf"; path = "../app/assets/fonts/Poppins-Bold.ttf"; sourceTree = "<group>"; };
+		0AC364A79E8232C12F85FFB7 /* Pods-goalmates.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-goalmates.release.xcconfig"; path = "Target Support Files/Pods-goalmates/Pods-goalmates.release.xcconfig"; sourceTree = "<group>"; };
 		0C17B9CE5FFA4D10A1E3BE76 /* Poppins-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-Light.ttf"; path = "../app/assets/fonts/Poppins-Light.ttf"; sourceTree = "<group>"; };
-		0C39AF2AE292B38853B0A3BC /* Pods-goalmates.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-goalmates.debug.xcconfig"; path = "Target Support Files/Pods-goalmates/Pods-goalmates.debug.xcconfig"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* goalmates.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = goalmates.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = goalmates/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = AppDelegate.mm; path = goalmates/AppDelegate.mm; sourceTree = "<group>"; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = goalmates/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = goalmates/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = goalmates/main.m; sourceTree = "<group>"; };
-		1454B328021101A2C7BF5EDD /* libPods-goalmates.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-goalmates.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1793B2D158CB45A9B6D1682E /* Poppins-MediumItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-MediumItalic.ttf"; path = "../app/assets/fonts/Poppins-MediumItalic.ttf"; sourceTree = "<group>"; };
-		17E8B3FC144B0F853EF4C85D /* Pods-goalmates.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-goalmates.release.xcconfig"; path = "Target Support Files/Pods-goalmates/Pods-goalmates.release.xcconfig"; sourceTree = "<group>"; };
 		18A2F84317D14B61999FEED6 /* Poppins-ThinItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-ThinItalic.ttf"; path = "../app/assets/fonts/Poppins-ThinItalic.ttf"; sourceTree = "<group>"; };
 		220F45A2A1984058AADB58E6 /* Poppins-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-SemiBold.ttf"; path = "../app/assets/fonts/Poppins-SemiBold.ttf"; sourceTree = "<group>"; };
 		2519A88F08244254A7841A50 /* Nunito-ExtraLight.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Nunito-ExtraLight.ttf"; path = "../app/assets/fonts/Nunito-ExtraLight.ttf"; sourceTree = "<group>"; };
 		2BA3E90AD4014C89B7E59A63 /* Poppins-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-ExtraBoldItalic.ttf"; path = "../app/assets/fonts/Poppins-ExtraBoldItalic.ttf"; sourceTree = "<group>"; };
 		2F2F1D47F5F949A1A9272679 /* Poppins-ExtraLightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-ExtraLightItalic.ttf"; path = "../app/assets/fonts/Poppins-ExtraLightItalic.ttf"; sourceTree = "<group>"; };
 		4160A5DA7F794EB2B6F4FFBE /* Poppins-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-Medium.ttf"; path = "../app/assets/fonts/Poppins-Medium.ttf"; sourceTree = "<group>"; };
-		42031CE5B83993772930D969 /* libPods-goalmates-goalmatesTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-goalmates-goalmatesTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		494A40AB2E884DAFAAC1D0D2 /* Nunito-Black.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Nunito-Black.ttf"; path = "../app/assets/fonts/Nunito-Black.ttf"; sourceTree = "<group>"; };
 		4C2D5ECE27C9461BA5F425BE /* Poppins-BlackItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-BlackItalic.ttf"; path = "../app/assets/fonts/Poppins-BlackItalic.ttf"; sourceTree = "<group>"; };
 		4CE8FADEA41948E4A066A764 /* Nunito-SemiBoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Nunito-SemiBoldItalic.ttf"; path = "../app/assets/fonts/Nunito-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
 		508CEA7F0FFB4740A8AD7E7F /* Poppins-BoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-BoldItalic.ttf"; path = "../app/assets/fonts/Poppins-BoldItalic.ttf"; sourceTree = "<group>"; };
+		50A44F83B129430F3106B167 /* Pods-goalmates-goalmatesTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-goalmates-goalmatesTests.release.xcconfig"; path = "Target Support Files/Pods-goalmates-goalmatesTests/Pods-goalmates-goalmatesTests.release.xcconfig"; sourceTree = "<group>"; };
 		535943B75273429FBA8C73A8 /* Nunito-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Nunito-Medium.ttf"; path = "../app/assets/fonts/Nunito-Medium.ttf"; sourceTree = "<group>"; };
 		5670094E2790422CBDFBFFCD /* Nunito-BlackItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Nunito-BlackItalic.ttf"; path = "../app/assets/fonts/Nunito-BlackItalic.ttf"; sourceTree = "<group>"; };
 		5F93F3B0AC2F4274A00E04B1 /* Nunito-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Nunito-Light.ttf"; path = "../app/assets/fonts/Nunito-Light.ttf"; sourceTree = "<group>"; };
-		611A19B40726F5A851A9C3F9 /* Pods-goalmates-goalmatesTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-goalmates-goalmatesTests.release.xcconfig"; path = "Target Support Files/Pods-goalmates-goalmatesTests/Pods-goalmates-goalmatesTests.release.xcconfig"; sourceTree = "<group>"; };
 		616D38C328B244209A68700C /* Nunito-ExtraLightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Nunito-ExtraLightItalic.ttf"; path = "../app/assets/fonts/Nunito-ExtraLightItalic.ttf"; sourceTree = "<group>"; };
 		6DABA8AC19A540248000B15A /* Poppins-LightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-LightItalic.ttf"; path = "../app/assets/fonts/Poppins-LightItalic.ttf"; sourceTree = "<group>"; };
 		719FD96960D44754A4BBC196 /* Nunito-MediumItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Nunito-MediumItalic.ttf"; path = "../app/assets/fonts/Nunito-MediumItalic.ttf"; sourceTree = "<group>"; };
+		7D808854AF714DCC4B906AFE /* libPods-goalmates-goalmatesTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-goalmates-goalmatesTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7EF59D70DC7B4BFC865DB7BF /* Poppins-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-Regular.ttf"; path = "../app/assets/fonts/Poppins-Regular.ttf"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = goalmates/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A9D85D1A78584C7480EE071A /* Nunito-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Nunito-ExtraBoldItalic.ttf"; path = "../app/assets/fonts/Nunito-ExtraBoldItalic.ttf"; sourceTree = "<group>"; };
 		AE36BAB12E584D40BDD74093 /* Poppins-Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-Italic.ttf"; path = "../app/assets/fonts/Poppins-Italic.ttf"; sourceTree = "<group>"; };
+		B8435581BAB47BE14366C7F8 /* libPods-goalmates.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-goalmates.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BE280A0CCECEC88205224855 /* Pods-goalmates-goalmatesTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-goalmates-goalmatesTests.debug.xcconfig"; path = "Target Support Files/Pods-goalmates-goalmatesTests/Pods-goalmates-goalmatesTests.debug.xcconfig"; sourceTree = "<group>"; };
 		C29440F2E31244D48E232B94 /* Nunito-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Nunito-Bold.ttf"; path = "../app/assets/fonts/Nunito-Bold.ttf"; sourceTree = "<group>"; };
 		C5610A8240E04B1DB2B5B765 /* Poppins-ExtraLight.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-ExtraLight.ttf"; path = "../app/assets/fonts/Poppins-ExtraLight.ttf"; sourceTree = "<group>"; };
-		CC2599D59995CDC463A875DA /* Pods-goalmates-goalmatesTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-goalmates-goalmatesTests.debug.xcconfig"; path = "Target Support Files/Pods-goalmates-goalmatesTests/Pods-goalmates-goalmatesTests.debug.xcconfig"; sourceTree = "<group>"; };
+		CAAA10B8F38BF0B9370B1D4B /* Pods-goalmates.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-goalmates.debug.xcconfig"; path = "Target Support Files/Pods-goalmates/Pods-goalmates.debug.xcconfig"; sourceTree = "<group>"; };
 		CD6F0547E4ED4C03B899A28C /* Nunito-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Nunito-SemiBold.ttf"; path = "../app/assets/fonts/Nunito-SemiBold.ttf"; sourceTree = "<group>"; };
 		D063161655444C4EB97F0C6D /* Nunito-ExtraBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Nunito-ExtraBold.ttf"; path = "../app/assets/fonts/Nunito-ExtraBold.ttf"; sourceTree = "<group>"; };
 		D93EA6AB11054EB99BEFB979 /* Poppins-Black.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-Black.ttf"; path = "../app/assets/fonts/Poppins-Black.ttf"; sourceTree = "<group>"; };
@@ -119,7 +119,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E61ABC7874F7239D9388F9B3 /* libPods-goalmates-goalmatesTests.a in Frameworks */,
+				743F75754E88BA7A376B23A3 /* libPods-goalmates-goalmatesTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -127,7 +127,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F5AEBFFD68F76E4FDC5D3981 /* libPods-goalmates.a in Frameworks */,
+				F8B972E31B09E33775C188E8 /* libPods-goalmates.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -168,8 +168,8 @@
 			isa = PBXGroup;
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				1454B328021101A2C7BF5EDD /* libPods-goalmates.a */,
-				42031CE5B83993772930D969 /* libPods-goalmates-goalmatesTests.a */,
+				B8435581BAB47BE14366C7F8 /* libPods-goalmates.a */,
+				7D808854AF714DCC4B906AFE /* libPods-goalmates-goalmatesTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -209,10 +209,10 @@
 		BBD78D7AC51CEA395F1C20DB /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				0C39AF2AE292B38853B0A3BC /* Pods-goalmates.debug.xcconfig */,
-				17E8B3FC144B0F853EF4C85D /* Pods-goalmates.release.xcconfig */,
-				CC2599D59995CDC463A875DA /* Pods-goalmates-goalmatesTests.debug.xcconfig */,
-				611A19B40726F5A851A9C3F9 /* Pods-goalmates-goalmatesTests.release.xcconfig */,
+				CAAA10B8F38BF0B9370B1D4B /* Pods-goalmates.debug.xcconfig */,
+				0AC364A79E8232C12F85FFB7 /* Pods-goalmates.release.xcconfig */,
+				BE280A0CCECEC88205224855 /* Pods-goalmates-goalmatesTests.debug.xcconfig */,
+				50A44F83B129430F3106B167 /* Pods-goalmates-goalmatesTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -266,12 +266,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "goalmatesTests" */;
 			buildPhases = (
-				EA4ED6913E4236E6548F06AC /* [CP] Check Pods Manifest.lock */,
+				98BCECBD24AD7DF8BB9975EF /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
-				CCD15F059CF65145FA8AE072 /* [CP] Embed Pods Frameworks */,
-				978D324EF61851CA44EDC5C6 /* [CP] Copy Pods Resources */,
+				99B92988FD624443F2CCC89D /* [CP] Embed Pods Frameworks */,
+				273ADD50FC271002666C5AC7 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -287,14 +287,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "goalmates" */;
 			buildPhases = (
-				C9F0DC90759C20B7A0F78637 /* [CP] Check Pods Manifest.lock */,
+				93EA76A7542191485C013DA1 /* [CP] Check Pods Manifest.lock */,
 				FD10A7F022414F080027D42C /* Start Packager */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
-				5B75EE7AE908C28F97A2070A /* [CP] Embed Pods Frameworks */,
-				F4E83FDC0BA6D36881AA9840 /* [CP] Copy Pods Resources */,
+				270C1A5E8513D91EEB86A0EC /* [CP] Embed Pods Frameworks */,
+				BB861EF35234395C0DA45502 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -411,7 +411,7 @@
 			shellPath = /bin/sh;
 			shellScript = "set -e\n\nWITH_ENVIRONMENT=\"../node_modules/react-native/scripts/xcode/with-environment.sh\"\nREACT_NATIVE_XCODE=\"../node_modules/react-native/scripts/react-native-xcode.sh\"\n\n/bin/sh -c \"$WITH_ENVIRONMENT $REACT_NATIVE_XCODE\"\n";
 		};
-		5B75EE7AE908C28F97A2070A /* [CP] Embed Pods Frameworks */ = {
+		270C1A5E8513D91EEB86A0EC /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -428,7 +428,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-goalmates/Pods-goalmates-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		978D324EF61851CA44EDC5C6 /* [CP] Copy Pods Resources */ = {
+		273ADD50FC271002666C5AC7 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -445,7 +445,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-goalmates-goalmatesTests/Pods-goalmates-goalmatesTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		C9F0DC90759C20B7A0F78637 /* [CP] Check Pods Manifest.lock */ = {
+		93EA76A7542191485C013DA1 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -467,24 +467,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		CCD15F059CF65145FA8AE072 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-goalmates-goalmatesTests/Pods-goalmates-goalmatesTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-goalmates-goalmatesTests/Pods-goalmates-goalmatesTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-goalmates-goalmatesTests/Pods-goalmates-goalmatesTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		EA4ED6913E4236E6548F06AC /* [CP] Check Pods Manifest.lock */ = {
+		98BCECBD24AD7DF8BB9975EF /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -506,7 +489,24 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		F4E83FDC0BA6D36881AA9840 /* [CP] Copy Pods Resources */ = {
+		99B92988FD624443F2CCC89D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-goalmates-goalmatesTests/Pods-goalmates-goalmatesTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-goalmates-goalmatesTests/Pods-goalmates-goalmatesTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-goalmates-goalmatesTests/Pods-goalmates-goalmatesTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BB861EF35234395C0DA45502 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -575,7 +575,7 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CC2599D59995CDC463A875DA /* Pods-goalmates-goalmatesTests.debug.xcconfig */;
+			baseConfigurationReference = BE280A0CCECEC88205224855 /* Pods-goalmates-goalmatesTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -602,7 +602,7 @@
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 611A19B40726F5A851A9C3F9 /* Pods-goalmates-goalmatesTests.release.xcconfig */;
+			baseConfigurationReference = 50A44F83B129430F3106B167 /* Pods-goalmates-goalmatesTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
@@ -626,7 +626,7 @@
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0C39AF2AE292B38853B0A3BC /* Pods-goalmates.debug.xcconfig */;
+			baseConfigurationReference = CAAA10B8F38BF0B9370B1D4B /* Pods-goalmates.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -653,7 +653,7 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 17E8B3FC144B0F853EF4C85D /* Pods-goalmates.release.xcconfig */;
+			baseConfigurationReference = 0AC364A79E8232C12F85FFB7 /* Pods-goalmates.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;

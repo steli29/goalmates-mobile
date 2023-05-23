@@ -35,9 +35,9 @@ const RegisterScreen = ({ navigation }) => {
         });
     };
 
-    const onContinuePress = () => {
+    const onContinuePress = async () => {
         navigation.navigate(Screens.VERIFY, {
-            registerUser,
+            registerUser: () => undefined,
             email
         })
     }
@@ -73,7 +73,7 @@ const RegisterScreen = ({ navigation }) => {
                 />
                 <Button 
                     label='Continue' 
-                    onButtonPress={onContinuePress} 
+                    onButtonPress={registerUser} 
                     buttonContainerStyle={styles.buttonContainerStyle}
                 />
             </View>

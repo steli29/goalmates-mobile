@@ -24,24 +24,22 @@ const RegisterScreen = ({ navigation }) => {
     const [lastName, setLastName] = useState('');
 
     const onSignInPress = () => {
-        console.log('+++user', user);
         navigation.navigate(Screens.LOGIN);
     };
 
-    const registerUser = async () => {
+    const onContinuePress = async () => {
         await register({
             email,
             password,
             firstName,
             lastName,
         });
-    };
-
-    const onContinuePress = async () => {
-        navigation.navigate(Screens.VERIFY, {
-            registerUser: () => undefined,
-            email
-        })
+        if(user.error !== null) {
+            navigation.navigate(Screens.VERIFY, {
+                registerUser: () => undefined,
+                email
+            })
+        }
     }
 
     return (
@@ -75,7 +73,7 @@ const RegisterScreen = ({ navigation }) => {
                 />
                 <Button 
                     label='Continue' 
-                    onButtonPress={registerUser} 
+                    onButtonPress={onContinuePress} 
                     buttonContainerStyle={styles.buttonContainerStyle}
                 />
             </View>

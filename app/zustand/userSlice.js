@@ -1,9 +1,9 @@
 import { HOSTNAME, clearSession, setSession } from '../project/api/helpers';
 
-export const createUserSlice = (set, get) => ({
+export const createUserSlice = (set) => ({
     user: {
         data: null,
-        error: '',
+        error: null,
     },
     register: async ({ email, password, firstName, lastName }) => {
         try {
@@ -22,12 +22,18 @@ export const createUserSlice = (set, get) => ({
             const data = await response.json();
             if (response.status === 200) {
                 await setSession(data);
-                set({ user: { data } });
+                set((state) => ({ user: {
+                    ...state.user,
+                    data,
+                } }));
             } else {
                 throw new Error(data.message);
             }
         } catch (err) {
-            set({ user: { error: err.message } });
+            set((state) => ({ user: {
+                ...state.user,
+                error: err.message,
+            }}));
         }
     },
     login: async ({ email, password }) => {
@@ -45,21 +51,28 @@ export const createUserSlice = (set, get) => ({
             const data = await response.json();
             if (response.status === 200) {
                 await setSession(data);
-                set({ user: { data } });
+                set((state) => ({ ...state, data }));
             } else {
                 throw new Error(data.message);
             }
         } catch (err) {
-            set({ user: { error: err.message } });
+            set((state) => ({ user: {
+                ...state.user,
+                error: err.message,
+            }}));
         }
     },
     logout: async () => {
         await clearSession();
-        set({ user: { data: null } });
+        set((state) => ({ user: {
+            ...state.user,
+            data: null,
+        }}));
     },
     clearError: () => {
-        if (get().error) {
-            set({ user: { error: '' } });
-        }
+        set((state) => ({ user: {
+            ...state.user,
+            error: null,
+        }}));
     },
 });

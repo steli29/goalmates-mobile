@@ -15,13 +15,13 @@ const RootStackNavigator = createNativeStackNavigator();
 
 const RootStack = () => {
     const [isSignedIn, setIsSignedIn] = useState(null);
-    const { data } = useStore((state) => state.user);
+    const user = useStore((state) => state.user);
 
     useEffect(() => {
         getSession().then((response) => {
             setIsSignedIn(response);
         });
-    }, [data]);
+    }, [user.data]);
     return (
         <RootStackNavigator.Navigator>
             {isSignedIn ? (

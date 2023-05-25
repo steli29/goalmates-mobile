@@ -16,6 +16,7 @@ import styles from './styles';
 
 const RegisterScreen = ({ navigation }) => {
     const register = useStore((state) => state.register);
+    const user = useStore((state) => state.user);
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -23,6 +24,7 @@ const RegisterScreen = ({ navigation }) => {
     const [lastName, setLastName] = useState('');
 
     const onSignInPress = () => {
+        console.log('+++user', user);
         navigation.navigate(Screens.LOGIN);
     };
 

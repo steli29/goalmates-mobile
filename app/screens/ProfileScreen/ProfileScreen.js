@@ -1,12 +1,18 @@
 import React from 'react';
-import {View, Text} from 'react-native';
+import { Text, TouchableOpacity, View } from 'react-native';
+
+import AvatarImage from '../../components/AvatarImage/AvatarImage';
+
+import styles from './styles';
 
 const ProfileScreen = () => {
     return (
-        <View>
-            <Text>Profile</Text>
+        <View style={styles.mainContainer}>
+            <AvatarImage 
+                size={100}
+            />
         </View>
-    )
+    );
 };
 
 export default ProfileScreen;

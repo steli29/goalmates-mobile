@@ -6,7 +6,7 @@ import styles from './styles';
 
 const ErrorModal = () => {
     const [isModalVisible, setIsModalVisible] = useState(false);
-    const user = useStore((state) => state.user);
+    const { error } = useStore((state) => state.user);
     const clearError = useStore((state) => state.clearError);
 
     const onClose = () => {
@@ -16,10 +16,10 @@ const ErrorModal = () => {
 
     useEffect(() => {
         setIsModalVisible(false);
-        if (user.error !== null) {
+        if (error !== null) {
             setIsModalVisible(true);
         }
-    }, [user.error]);
+    }, [error]);
 
     return (
         <Modal 
@@ -29,7 +29,7 @@ const ErrorModal = () => {
             >
             <View style={styles.mainContainer}>
                 <Text style={styles.errorHeaderText}>Error</Text>
-                <Text style={styles.errorDetailsText}>{user.error}</Text>
+                <Text style={styles.errorDetailsText}>{error}</Text>
                 <View style={styles.errorFooterContainer}>
                     <View style={styles.divider} />
                     <TouchableOpacity style={styles.closeButton} onPress={onClose}>

@@ -40,7 +40,7 @@ const ForgottenPasswordScreen = ({ navigation }) => {
                     style={styles.backButtonContainer}
                     onPress={goBack}
                 >
-                    <BackArrowSvg />
+                    <BackArrowSvg color='#667085'/>
                 </TouchableOpacity>
                 <AuthHeadLine
                     headline='Forgotten Password'

@@ -27,7 +27,10 @@ export const createUserSlice = (set) => ({
                     data,
                 } }));
             } else {
-                throw new Error(data.message);
+                set((state) => ({ user: {
+                    ...state.user,
+                    error: data.message,
+                }}));
             }
         } catch (err) {
             set((state) => ({ user: {
@@ -51,9 +54,15 @@ export const createUserSlice = (set) => ({
             const data = await response.json();
             if (response.status === 200) {
                 await setSession(data);
-                set((state) => ({ ...state, data }));
+                set((state) => ({ user: {
+                    ...state.user,
+                    data,
+                } }));
             } else {
-                throw new Error(data.message);
+                set((state) => ({ user: {
+                    ...state.user,
+                    error: data.message,
+                }}));
             }
         } catch (err) {
             set((state) => ({ user: {
@@ -75,4 +84,10 @@ export const createUserSlice = (set) => ({
             error: null,
         }}));
     },
+    setUser: (user) => {
+        set((state) => ({ user: {
+            ...state.user,
+            data: user,
+        }}));
+    }
 });

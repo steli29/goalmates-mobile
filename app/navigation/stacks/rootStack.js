@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import _ from 'lodash';
 
 import { Screens } from '../../project/constants';
 import { getSession } from '../../project/api/helpers';
@@ -15,13 +16,22 @@ const RootStackNavigator = createNativeStackNavigator();
 
 const RootStack = () => {
     const [isSignedIn, setIsSignedIn] = useState(null);
-    const user = useStore((state) => state.user);
+    const { data } = useStore((state) => state.user);
+    const setUser = useStore((state) => state.setUser);
+
+    useEffect(() => {
+        getSession().then((response) => {
+            if(!_.isEqual(response, data)) {
+                setUser(response);
+            }
+        });
+    }, [])
 
     useEffect(() => {
         getSession().then((response) => {
             setIsSignedIn(response);
         });
-    }, [user.data]);
+    }, [data]);
     return (
         <RootStackNavigator.Navigator>
             {isSignedIn ? (

@@ -16,7 +16,7 @@ const HomeScreen = () => {
                 title='Learn new skill'
                 description='Complete prototyping course'
             />
-            {/* <GoalCard 
+            <GoalCard 
                 avatarUrl={null}
                 datePosted="1hr ago"
                 name="Oyin Dolapo"
@@ -33,7 +33,7 @@ const HomeScreen = () => {
                 title='Learn new skill'
                 description='Complete  prototyping course'
                 deadline='06 Januray 2022'
-            /> */}
+            />
         </SafeAreaView>
     );
 };

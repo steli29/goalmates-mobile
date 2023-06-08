@@ -4,7 +4,6 @@ import { bp } from '../../project/utils/relativeUnitUtils';
 
 export default StyleSheet.create({
     mainContainer: {
-        flexDirection: 'row',
         alignItems: 'center',
 
         width: bp(298),
@@ -31,6 +30,9 @@ export default StyleSheet.create({
             },
         }),
         zIndex: 999999,
+    },
+    row: {
+        flexDirection: 'row',
     },
     textContainer: {
         flex: 1,

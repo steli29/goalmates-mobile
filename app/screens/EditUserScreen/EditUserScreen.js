@@ -14,6 +14,7 @@ const EditUserScreen = ({ user }) => {
     const [firstName, setFirstName] = useState(user?.firstName || '');
     const [lastName, setLastName] = useState(user?.lastName || '');
     const [email, setEmail] = useState(user?.email || '');
+    const [password, setPassword] = useState(user?.password || '');
     const [imageUrl, setImageUrl] = useState(user?.imageUrl || '');
 
     const openImagesGallery = async () => {
@@ -45,7 +46,17 @@ const EditUserScreen = ({ user }) => {
                 inputField={lastName}
                 onChangeInputField={setLastName}
             />
-            <LabelWithTextInput label='E-mail' inputField={email} onChangeInputField={setEmail} />
+            <LabelWithTextInput 
+                label='E-mail' 
+                inputField={email} 
+                onChangeInputField={setEmail} 
+            />
+            <LabelWithTextInput 
+                label='Password' 
+                inputField={password} 
+                onChangeInputField={setPassword} 
+                isPassword
+            />
             <Button
                 label='Save changes'
                 onButtonPress={() => undefined}

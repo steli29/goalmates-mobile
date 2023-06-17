@@ -4,6 +4,7 @@ export const Screens = {
     TABS: 'Tabs',
     HOME: 'Home',
     PROFILE: 'Profile',
+    EDIT_USER: 'Edit_User',
     SETTINGS: 'Settings',
     VERIFY: 'Verify',
     FORGOTTEN_PASSWORD: "Forgotten_Password"

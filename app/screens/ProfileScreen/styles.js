@@ -54,6 +54,8 @@ export default StyleSheet.create({
     },
     goalCardStyle: {
         alignItems: 'center',
-        marginVertical: bp(20),
     },
+    separatorStyle: {
+        height: bp(25),
+    }
 })

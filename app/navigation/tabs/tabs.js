@@ -1,20 +1,26 @@
 import React from 'react';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
-import { Screens, TabNames } from '../../project/constants';
+import {Screens, TabNames} from '../../project/constants';
 
-import { HomeStack, ProfileStack, SettingsStack } from '../stacks/stacks';
+import {
+    CreateGoalStack,
+    HomeStack,
+    NotificationStack,
+    ProfileStack,
+    SearchStack,
+} from '../stacks/stacks';
+import CustomTabBar from "./CustomTabBar/CustomTabBar";
 
 const Tab = createBottomTabNavigator();
 const TabNavigation = () => {
     return (
         <Tab.Navigator
-            screenOptions={{ headerShown: false }}
-            // tabBar={(props) => (
-            //   <>
-            //     <CustomTabBar {...props} />
-            //   </>
-            // )}
+            screenOptions={{headerShown: false}}
+            // eslint-disable-next-line react/no-unstable-nested-components
+            tabBar={(props) => (
+                <CustomTabBar {...props} />
+            )}
             initialRouteName={TabNames.HOME}
         >
             <Tab.Screen
@@ -27,21 +33,39 @@ const TabNavigation = () => {
                 }}
             />
             <Tab.Screen
+                name={TabNames.SEARCH}
+                component={SearchStack}
+                options={{
+                    tabBarTestID: Screens.SEARCH,
+                    tabBarAccessibilityLabel: Screens.SEARCH,
+                    tabBarLabel: Screens.SEARCH,
+                }}
+            />
+            <Tab.Screen
+                name={TabNames.CREATE}
+                component={CreateGoalStack}
+                options={{
+                    tabBarTestID: Screens.CREATE_GOAL,
+                    tabBarAccessibilityLabel: Screens.CREATE_GOAL,
+                    tabBarLabel: Screens.CREATE_GOAL,
+                }}
+            />
+            <Tab.Screen
+                name={TabNames.NOTIFICATIONS}
+                component={NotificationStack}
+                options={{
+                    tabBarTestID: Screens.NOTIFICATIONS,
+                    tabBarAccessibilityLabel: Screens.NOTIFICATIONS,
+                    tabBarLabel: Screens.NOTIFICATIONS,
+                }}
+            />
+            <Tab.Screen
                 name={TabNames.PROFILE}
                 component={ProfileStack}
                 options={{
                     tabBarTestID: Screens.PROFILE,
                     tabBarAccessibilityLabel: Screens.PROFILE,
                     tabBarLabel: Screens.PROFILE,
-                }}
-            />
-            <Tab.Screen
-                name={TabNames.SETTINGS}
-                component={SettingsStack}
-                options={{
-                    tabBarTestID: Screens.SETTINGS,
-                    tabBarAccessibilityLabel: Screens.SETTINGS,
-                    tabBarLabel: Screens.SETTINGS,
                 }}
             />
         </Tab.Navigator>

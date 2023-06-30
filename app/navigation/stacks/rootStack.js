@@ -32,50 +32,51 @@ const RootStack = () => {
             setIsSignedIn(response);
         });
     }, [data]);
+
     return (
         <RootStackNavigator.Navigator>
-            {isSignedIn ? (
+            {!isSignedIn ? (
                 <RootStackNavigator.Screen
                     name={Screens.TABS}
                     component={TabNavigation}
-                    options={() => ({
+                    options={{
                         animationEnabled: false,
                         headerShown: false,
-                    })}
+                    }}
                 />
             ) : (
                 <>
                     <RootStackNavigator.Screen
                         name={Screens.LOGIN}
                         component={LoginScreen}
-                        options={() => ({
+                        options={{
                             animationEnabled: false,
                             headerShown: false,
-                        })}
+                        }}
                     />
                     <RootStackNavigator.Screen
                         name={Screens.REGISTER}
                         component={RegisterScreen}
-                        options={() => ({
+                        options={{
                             animationEnabled: false,
                             headerShown: false,
-                        })}
+                        }}
                     />
                     <RootStackNavigator.Screen
                         name={Screens.VERIFY}
                         component={VerifyScreen}
-                        options={() => ({
+                        options={{
                             animationEnabled: false,
                             headerShown: false,
-                        })}
+                        }}
                     />
                     <RootStackNavigator.Screen
                         name={Screens.FORGOTTEN_PASSWORD}
                         component={ForgottenPasswordScreen}
-                        options={() => ({
+                        options={{
                             animationEnabled: false,
                             headerShown: false,
-                        })}
+                        }}
                     />
                 </>
             )}

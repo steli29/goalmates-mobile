@@ -6,14 +6,14 @@ import BackArrowSvg from '../../assets/svgs/BackArrowSvg';
 
 import styles from './styles';
 
-const AppHeader = ({ title, navigation, route }) => {
+const AppHeader = ({ title, navigation, isBackButtonHidden }) => {
     const onBackButtonPress = () => {
         navigation.goBack();
     };
-
+    console.log()
     return (
         <View style={styles.headerContainer}>
-            {!route.params.isBackButtonHidden ? (
+            {!isBackButtonHidden ? (
                 <TouchableOpacity onPress={onBackButtonPress}>
                     <BackArrowSvg color='#292D32' />
                 </TouchableOpacity>
@@ -26,7 +26,7 @@ const AppHeader = ({ title, navigation, route }) => {
 AppHeader.propTypes = {
     title: PropTypes.string,
     navigation: PropTypes.object,
-    route: PropTypes.object,
+    isBackButtonHidden: PropTypes.bool,
 };
 
 export default AppHeader;

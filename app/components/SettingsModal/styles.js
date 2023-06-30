@@ -8,4 +8,4 @@ export default StyleSheet.create({
       backgroundColor: '#fff',
       borderRadius: bp(6),
     },
-  });
+});

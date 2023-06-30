@@ -58,7 +58,7 @@ const ProfileScreen = ({navigation, route}) => {
             <>
                 <View style={styles.topRowWithNamedContainer}>
                     <AvatarImage size={67}/>
-                    <Text style={styles.nameLabel}>Katherine Mils</Text>
+                    <Text style={styles.nameLabel}>{user.firstName} {user.lastName}</Text>
                     {
                         isMyUser &&
                         (
@@ -103,7 +103,6 @@ const ProfileScreen = ({navigation, route}) => {
         );
     };
 
-    // eslint-disable-next-line react/no-unstable-nested-components
     const ItemSeparator = () => (
         <View style={styles.separatorStyle}/>
     )

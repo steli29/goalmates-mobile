@@ -42,6 +42,7 @@ const CustomTabBar = ({state, descriptors, navigation}) => {
                                 screen: Screens.PROFILE,
                                 params: {
                                     user: data,
+                                    isFromTabs: true,
                                 }
                             })
                         } else {

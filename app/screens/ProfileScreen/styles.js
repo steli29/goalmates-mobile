@@ -7,6 +7,8 @@ export default StyleSheet.create({
         marginTop: bp(20),
         paddingBottom: bp(50),
         paddingHorizontal: bp(28),
+
+        backgroundColor: '#FFFFFF',
     },
     topRowWithNamedContainer: {
         flexDirection: 'row',

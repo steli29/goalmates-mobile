@@ -22,6 +22,24 @@ export const HomeStack = () => {
                     headerShown: false,
                 }}
             />
+            <HomeScreenStack.Screen
+                name={Screens.PROFILE}
+                component={ProfileScreen}
+                options={({navigation, route}) => {
+                    const { isFromTabs = false, user: { firstName, lastName}} = route.params;
+                    const title = isFromTabs ? 'My Profile' : `${firstName} ${lastName}`
+                    return {
+                        header: () =>
+                            CustomAppHeader({
+                                title,
+                                navigation,
+                                isBackButtonHidden: isFromTabs,
+                            }),
+                        headerMode: 'screen',
+                        animation: 'none',
+                    };
+                }}
+            />
         </HomeScreenStack.Navigator>
     );
 };
@@ -34,15 +52,14 @@ export const ProfileStack = () => {
                 name={Screens.PROFILE}
                 component={ProfileScreen}
                 options={({navigation, route}) => {
-                    if (!route.params) route.params = {};
-                    route.params.isBackButtonHidden = false;
+                    const { isFromTabs = false, user: { firstName, lastName}} = route.params;
+                    const title = isFromTabs ? 'My Profile' : `${firstName} ${lastName}`
                     return {
                         header: () =>
                             CustomAppHeader({
-                                title: 'My Profile',
+                                title,
                                 navigation,
-                                route,
-                                isBackButtonHidden: true,
+                                isBackButtonHidden: isFromTabs,
                             }),
                         headerMode: 'screen',
                         animation: 'none',
@@ -60,7 +77,6 @@ export const ProfileStack = () => {
                             CustomAppHeader({
                                 title: 'Edit Profile',
                                 navigation,
-                                route,
                                 isBackButtonHidden: true,
                             }),
                         headerMode: 'screen',

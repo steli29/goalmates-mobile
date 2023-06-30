@@ -1,13 +1,15 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
-import {FlatList, Image, Text, TouchableOpacity, View} from "react-native";
+import {FlatList, Image, TouchableOpacity, View} from "react-native";
 
 import GoalCard from '../../components/GoalCard/GoalCard';
 
 import styles from './styles';
 import CategorySvg from "../../assets/svgs/CategorySvg";
+import HomeFilterModal from "../../components/HomeFilterModal/HomeFilterModal";
 
 const HomeScreen = () => {
+    const [isModalVisible, setIsModalVisible] = useState(false);
     const data = [
         {
             avatarUrl: null,
@@ -28,6 +30,14 @@ const HomeScreen = () => {
             deadline: '06 January 2022',
         },
     ];
+
+    const showModal = () => {
+        setIsModalVisible(true);
+    };
+
+    const hideModal = () => {
+        setIsModalVisible(false);
+    }
 
     const renderItem = ({item, index}) => {
         return (
@@ -50,7 +60,9 @@ const HomeScreen = () => {
                 <Image
                     source={require('../../assets/goalmates-logo/GOALMATESlogo.png')}
                 />
-                <TouchableOpacity>
+                <TouchableOpacity
+                    onPress={showModal}
+                >
                     <CategorySvg/>
                 </TouchableOpacity>
             </View>
@@ -63,11 +75,16 @@ const HomeScreen = () => {
 
     return (
         <SafeAreaView style={styles.mainContainer}>
+            <HomeFilterModal
+                isVisible={isModalVisible}
+                onClose={hideModal}
+            />
             <FlatList
                 data={data}
                 renderItem={renderItem}
                 ListHeaderComponent={HomeHeader}
                 ItemSeparatorComponent={ItemSeparator}
+                showsVerticalScrollIndicator={false}
             />
         </SafeAreaView>
     );

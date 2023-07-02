@@ -92,7 +92,31 @@ const SearchScreenStack = createNativeStackNavigator();
 export const SearchStack = () => {
     return (
         <SearchScreenStack.Navigator screenOptions={{headerTopInsetEnabled: false}}>
-            <SearchScreenStack.Screen name={Screens.SEARCH} component={SearchScreen}/>
+            <SearchScreenStack.Screen 
+                name={Screens.SEARCH} 
+                component={SearchScreen}
+                options={{
+                    headerShown: false,
+                }}
+            />
+            <SearchScreenStack.Screen
+                name={Screens.PROFILE}
+                component={ProfileScreen}
+                options={({navigation, route}) => {
+                    const { isFromTabs = false, user: { firstName, lastName}} = route.params;
+                    const title = isFromTabs ? 'My Profile' : `${firstName} ${lastName}`
+                    return {
+                        header: () =>
+                            CustomAppHeader({
+                                title,
+                                navigation,
+                                isBackButtonHidden: isFromTabs,
+                            }),
+                        headerMode: 'screen',
+                        animation: 'none',
+                    };
+                }}
+            />
         </SearchScreenStack.Navigator>
     );
 };

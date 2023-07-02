@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Text, TouchableOpacity, View } from 'react-native';
+import { Text, TouchableOpacity } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 import BackArrowSvg from '../../assets/svgs/BackArrowSvg';
 
@@ -10,16 +11,15 @@ const AppHeader = ({ title, navigation, isBackButtonHidden }) => {
     const onBackButtonPress = () => {
         navigation.goBack();
     };
-    console.log()
     return (
-        <View style={styles.headerContainer}>
+        <SafeAreaView style={[styles.headerContainer, styles.shadowEffect]}>
             {!isBackButtonHidden ? (
                 <TouchableOpacity onPress={onBackButtonPress}>
                     <BackArrowSvg color='#292D32' />
                 </TouchableOpacity>
             ) : null}
             <Text style={styles.headerText}>{title}</Text>
-        </View>
+        </SafeAreaView>
     );
 };
 

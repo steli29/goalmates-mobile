@@ -35,7 +35,7 @@ const RootStack = () => {
 
     return (
         <RootStackNavigator.Navigator>
-            {!isSignedIn ? (
+            {isSignedIn ? (
                 <RootStackNavigator.Screen
                     name={Screens.TABS}
                     component={TabNavigation}

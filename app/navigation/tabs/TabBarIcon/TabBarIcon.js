@@ -20,7 +20,7 @@ const TabBarIcon = ({ label, isFocused }) => {
             <SearchSvg color={iconColour}/>
         );
         case "Create_Goal": return (
-            <CreateGoalSvg/>
+            <CreateGoalSvg color={iconColour}/>
         );
         case "Notifications": return (
             <NotificationsSvg color={iconColour}/>

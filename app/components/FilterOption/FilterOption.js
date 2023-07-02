@@ -2,13 +2,15 @@ import React from 'react';
 import { TouchableOpacity, Text } from 'react-native';
 import PropTypes from 'prop-types';
 import styles from './styles';
+import TickSvg from '../../assets/svgs/TickSvg';
 
 const FilterOption = ({ label, isSelected, onOptionPress}) => {
     const labelStyleSelected = isSelected ? styles.buttonLabelSelectedStyle : null;
+    const containerStyleSelected = isSelected ? styles.mainContainerSelected : null;
 
     return (
         <TouchableOpacity
-            style={styles.mainContainer}
+            style={[styles.mainContainer, containerStyleSelected]}
             onPress={onOptionPress}
         >
             <Text
@@ -16,6 +18,11 @@ const FilterOption = ({ label, isSelected, onOptionPress}) => {
             >
                 {label}
             </Text>
+            {
+                isSelected ? (
+                    <TickSvg />
+                ) : null
+            }
         </TouchableOpacity>
     )
 };

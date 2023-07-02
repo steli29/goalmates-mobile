@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import { Platform, StyleSheet } from 'react-native';
 
 import { bp } from '../../project/utils/relativeUnitUtils';
 
@@ -8,8 +8,6 @@ export default StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
 
-        paddingTop: bp(40),
-        paddingBottom: bp(10),
         paddingHorizontal: bp(25),
     },
     headerText: {
@@ -24,4 +22,23 @@ export default StyleSheet.create({
         
         color: '#000000',
     },
+    shadowEffect: {
+        zIndex: 9999,
+
+        ...Platform.select({
+            ios: {
+                shadowOffset: {
+                    width: -bp(1),
+                    height: bp(3),
+                },
+                shadowOpacity: 0.3,
+                shadowColor: 'rgba(0,0,0,0.3)',
+            },
+            android: {
+                elevation: 6,
+            },
+        }),
+
+        backgroundColor: '#fff',
+    }
 })

@@ -4,7 +4,7 @@ import { bp } from '../../project/utils/relativeUnitUtils';
 
 export default StyleSheet.create({
     mainContainer: {
-        marginTop: bp(20),
+        paddingTop: bp(20),
         paddingBottom: bp(50),
         paddingHorizontal: bp(28),
 

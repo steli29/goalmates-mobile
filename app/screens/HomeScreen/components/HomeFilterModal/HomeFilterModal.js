@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 
 import styles from "./styles";
 import FilterOption from '../FilterOption/FilterOption';
-import CloseSvg from '../../assets/svgs/CloseSvg';
+import CloseSvg from '../../../../assets/svgs/CloseSvg';
 
 const HomeFilterModal = ({ isVisible, onClose }) => {
     const [selectedOption, setSelectedOption] = useState('Most Recent');

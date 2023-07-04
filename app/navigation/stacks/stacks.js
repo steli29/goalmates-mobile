@@ -77,7 +77,6 @@ export const ProfileStack = () => {
                             CustomAppHeader({
                                 title: 'Edit Profile',
                                 navigation,
-                                isBackButtonHidden: true,
                             }),
                         headerMode: 'screen',
                         animation: 'none',

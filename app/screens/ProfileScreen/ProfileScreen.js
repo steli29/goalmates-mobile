@@ -6,11 +6,11 @@ import { Screens } from '../../project/constants';
 import { useStore } from '../../zustand/root-reducer';
 
 import AvatarImage from '../../components/AvatarImage/AvatarImage';
-import LabelWithNumberBox from '../../components/LabelWithNumberBox/LabelWithNumberBox';
+import LabelWithNumberBox from './components/LabelWithNumberBox/LabelWithNumberBox';
 import GoalCard from '../../components/GoalCard/GoalCard';
 import Button from '../../components/Button/Button';
 import SettingsSvg from '../../assets/svgs/SettingsSvg';
-import SettingsModal from '../../components/SettingsModal/SettingsModal';
+import SettingsModal from './components/SettingsModal/SettingsModal';
 
 import styles from './styles';
 

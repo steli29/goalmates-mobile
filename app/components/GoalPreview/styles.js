@@ -6,7 +6,6 @@ export default StyleSheet.create({
     mainContainer: {
         alignItems: 'center',
 
-        width: bp(298),
         minHeight: bp(75),
 
         padding: bp(11),
@@ -29,7 +28,6 @@ export default StyleSheet.create({
                 elevation: 6,
             },
         }),
-        zIndex: 999999,
     },
     row: {
         flexDirection: 'row',

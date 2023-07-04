@@ -3,7 +3,12 @@ import { bp } from '../../project/utils/relativeUnitUtils';
 
 export default StyleSheet.create({
     mainContainer: {
+        flex: 1,
+        
+        paddingTop: bp(20),
         paddingHorizontal: bp(27),
+
+        backgroundColor: '#fff',
     },
     avatarAndEditButtonContainerStyle: {
         width: bp(67),

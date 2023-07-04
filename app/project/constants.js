@@ -19,4 +19,10 @@ export const TabNames = {
     SEARCH: 'Search-Tab',
     NOTIFICATIONS: 'Notifications-Tab',
     CREATE: 'Create-Tab',
-}
+};
+
+export const ReminderData = {
+    EVERY_DAY: 'Every Day',
+    EVERY_WEEK: 'Every Week',
+    EVERY_MONTH: 'Every Month',
+};

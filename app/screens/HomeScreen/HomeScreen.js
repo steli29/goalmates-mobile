@@ -6,7 +6,7 @@ import GoalCard from '../../components/GoalCard/GoalCard';
 
 import styles from './styles';
 import CategorySvg from "../../assets/svgs/CategorySvg";
-import HomeFilterModal from "../../components/HomeFilterModal/HomeFilterModal";
+import HomeFilterModal from "./components/HomeFilterModal/HomeFilterModal";
 
 const HomeScreen = () => {
     const [isModalVisible, setIsModalVisible] = useState(false);

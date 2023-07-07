@@ -52,8 +52,8 @@ export const ProfileStack = () => {
                 name={Screens.PROFILE}
                 component={ProfileScreen}
                 options={({navigation, route}) => {
-                    const { isFromTabs = false, user: { firstName, lastName}} = route.params;
-                    const title = isFromTabs ? 'My Profile' : `${firstName} ${lastName}`
+                    const { isFromTabs = false, user } = route.params;
+                    const title = isFromTabs ? 'My Profile' : `${user.firstName} ${user.lastName}`
                     return {
                         header: () =>
                             CustomAppHeader({
@@ -77,7 +77,6 @@ export const ProfileStack = () => {
                             CustomAppHeader({
                                 title: 'Edit Profile',
                                 navigation,
-                                isBackButtonHidden: true,
                             }),
                         headerMode: 'screen',
                         animation: 'none',

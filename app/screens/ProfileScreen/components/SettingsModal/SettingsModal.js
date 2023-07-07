@@ -4,7 +4,7 @@ import Modal from 'react-native-modal';
 
 import PropTypes from 'prop-types';
 import styles from './styles';
-import {useStore} from '../../zustand/root-reducer';
+import {useStore} from '../../../../zustand/root-reducer';
 
 const SettingsModal = ({isVisible, onClose}) => {
     const logout = useStore((state) => state.logout);

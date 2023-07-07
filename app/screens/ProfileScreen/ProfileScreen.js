@@ -6,18 +6,20 @@ import { Screens } from '../../project/constants';
 import { useStore } from '../../zustand/root-reducer';
 
 import AvatarImage from '../../components/AvatarImage/AvatarImage';
-import LabelWithNumberBox from '../../components/LabelWithNumberBox/LabelWithNumberBox';
+import LabelWithNumberBox from './components/LabelWithNumberBox/LabelWithNumberBox';
 import GoalCard from '../../components/GoalCard/GoalCard';
 import Button from '../../components/Button/Button';
 import SettingsSvg from '../../assets/svgs/SettingsSvg';
-import SettingsModal from '../../components/SettingsModal/SettingsModal';
+import SettingsModal from './components/SettingsModal/SettingsModal';
 
 import styles from './styles';
 
 const ProfileScreen = ({ navigation, route }) => {
-    const userFromStore = useStore((state) => state.user.data);
-    const { user = {} } = route.params || {};
-    const isMyUser = user.id === userFromStore.id;
+    const myUser = useStore((state) => state.myUser.data);
+    let isMyUser = true;
+    if(route.params.user) {
+        isMyUser = route.params.user?.id === myUser?.id;
+    }
     const buttonLabelText = isMyUser ? 'Edit Profile' : 'Follow';
 
     const data = [
@@ -63,7 +65,7 @@ const ProfileScreen = ({ navigation, route }) => {
                 <View style={styles.topRowWithNamedContainer}>
                     <AvatarImage size={67} />
                     <Text style={styles.nameLabel}>
-                        {user.firstName} {user.lastName}
+                        {myUser.firstName} {myUser.lastName}
                     </Text>
                     {isMyUser && (
                         <TouchableOpacity style={styles.settingsButtonStyle} onPress={openModal}>

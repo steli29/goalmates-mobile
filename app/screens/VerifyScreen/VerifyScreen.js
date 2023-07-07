@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import Button from '../../components/Button/Button';
 import BottomLink from '../../components/BottomLink/BottomLink';
 import AuthHeadLine from '../../components/AuthHeadLine/AuthHeadLine';
-import CodeVerification from '../../components/CodeVerification/CodeVerification';
+import CodeVerification from './components/CodeVerification/CodeVerification';
 
 import styles from './styles';
 

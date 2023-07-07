@@ -1,32 +1,26 @@
 import React, { useEffect, useState } from 'react';
 import { ScrollView, TextInput, TouchableOpacity, View, Text, FlatList } from 'react-native';
 
+import { useStore } from '../../zustand/root-reducer';
+import { Screens } from '../../project/constants';
+
 import CloseSvg from '../../assets/svgs/CloseSvg';
+import SearchIconSvg from '../../assets/svgs/SearchIconSvg';
+import AvatarImage from '../../components/AvatarImage/AvatarImage';
 
 import styles from './styles';
-import AvatarImage from '../../components/AvatarImage/AvatarImage';
-import { Screens } from '../../project/constants';
-import SearchIconSvg from '../../assets/svgs/SearchIconSvg';
+import useDebounce from '../../project/hooks/useDebounce';
 
 const SearchScreen = ({ navigation }) => {
-    const data = [
-        {
-            firstName: 'Ivan',
-            lastName: 'Ivanov',
-            avatarImage: null,
-        },
-        {
-            firstName: 'Peter',
-            lastName: 'Petrov',
-            avatarImage: null,
-        },
-    ];
+    const searchUsers = useStore((state) => state.searchUsers);
+    const searchResults = useStore((state) => state.searchResults);
+    const clearResults = useStore((state) => state.clearResults);
 
     const [userProfileName, setUserProfileName] = useState('');
-    // const [showErrorMessage, setShowErrorMessage] = useState(true);
-
+    const [showErrorMessage, setShowErrorMessage] = useState(false);
+    const debouncedUsername = useDebounce(userProfileName);
     const onPressClear = () => {
-        // dispatch(Actions.searchHorseProfile(''));
+        clearResults();
         setUserProfileName('');
     };
 
@@ -56,11 +50,28 @@ const SearchScreen = ({ navigation }) => {
     };
 
     useEffect(() => {
-        onPressClear();
+        if (debouncedUsername.length > 2) {
+            searchUsers(debouncedUsername);
+        } else {
+            clearResults();
+        }
+    }, [debouncedUsername]);
+
+    useEffect(() => {
+        const timeout = setTimeout(() => {
+            // eslint-disable-next-line no-unused-expressions
+            debouncedUsername.length > 2 && (searchResults.error || !searchResults.data?.length)
+                ? setShowErrorMessage(true)
+                : setShowErrorMessage(false);
+        }, 650);
 
         return () => {
-            onPressClear();
-        }
+            clearTimeout(timeout);
+        };
+    }, [searchResults, debouncedUsername]);
+
+    useEffect(() => {
+        onPressClear();
     }, []);
 
     return (
@@ -87,10 +98,13 @@ const SearchScreen = ({ navigation }) => {
                     </TouchableOpacity>
                 ) : null}
             </View>
-            <Text style={[styles.profileContainer, styles.errorMessage]}>
-                We couldn't find any matches
-            </Text>
-            <FlatList data={data} renderItem={renderItem} keyExtractor={keyExtractor} />
+            {showErrorMessage ? (
+                <Text style={[styles.profileContainer, styles.errorMessage]}>
+                    We couldn't find any matches
+                </Text>
+            ) : null}
+
+            <FlatList data={searchResults.data} renderItem={renderItem} keyExtractor={keyExtractor} />
         </ScrollView>
     );
 };

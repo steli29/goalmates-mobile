@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text, View } from 'react-native';
 
-import { Screens } from '../../project/constants';
+import { Screens } from '../../../../project/constants';
 
 import styles from './styles';
 

@@ -11,7 +11,7 @@ import Button from '../../components/Button/Button';
 import BottomLink from '../../components/BottomLink/BottomLink';
 import AuthHeadLine from '../../components/AuthHeadLine/AuthHeadLine';
 import ErrorModal from '../../components/ErrorModal/ErrorModal';
-import LoginFormFooter from '../../components/LoginFormFooter/LoginFormFooter';
+import LoginFormFooter from './components/LoginFormFooter/LoginFormFooter';
 
 import styles from './styles';
 

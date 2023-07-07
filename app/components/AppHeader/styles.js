@@ -12,14 +12,13 @@ export default StyleSheet.create({
     },
     headerText: {
         flex: 1,
-        textAlign: 'center',
-
+        
         right: bp(10),
-
+        
+        textAlign: 'center',
         fontFamily: 'Nunito',
         fontWeight: '700',
         fontSize: bp(23),
-        
         color: '#000000',
     },
     shadowEffect: {

@@ -3,7 +3,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import _ from 'lodash';
 
 import { Screens } from '../../project/constants';
-import { getSession } from '../../project/api/helpers';
+import { getSession } from '../../project/api/sessionUtils';
 import { useStore } from '../../zustand/root-reducer';
 
 import TabNavigation from '../tabs/tabs';
@@ -16,7 +16,7 @@ const RootStackNavigator = createNativeStackNavigator();
 
 const RootStack = () => {
     const [isSignedIn, setIsSignedIn] = useState(null);
-    const { data } = useStore((state) => state.user);
+    const { data } = useStore((state) => state.myUser);
     const setUser = useStore((state) => state.setUser);
 
     useEffect(() => {

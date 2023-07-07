@@ -1,8 +1,10 @@
 import React from 'react';
 import { TouchableOpacity, Text } from 'react-native';
 import PropTypes from 'prop-types';
+
+import TickSvg from '../../../../assets/svgs/TickSvg';
+
 import styles from './styles';
-import TickSvg from '../../assets/svgs/TickSvg';
 
 const FilterOption = ({ label, isSelected, onOptionPress}) => {
     const labelStyleSelected = isSelected ? styles.buttonLabelSelectedStyle : null;

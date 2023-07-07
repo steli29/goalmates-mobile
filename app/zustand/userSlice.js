@@ -1,31 +1,32 @@
-import { HOSTNAME, clearSession, setSession } from '../project/api/helpers';
+import { protectedFetch } from '../project/api/helpers';
+import { setSession } from '../project/api/sessionUtils';
+
+import { createAuthenticationSlice } from './authenticationSlice';
 
 export const createUserSlice = (set) => ({
     user: {
         data: null,
         error: null,
     },
-    register: async ({ email, password, firstName, lastName }) => {
+    editUser: async ({ email, password, firstName, lastName, image }) => {
         try {
-            const response = await fetch(`${HOSTNAME}/auth/register`, {
-                method: 'POST',
-                body: JSON.stringify({
-                    email,
-                    password,
-                    firstName,
+            const response = await protectedFetch('/user/edit', 
+                'POST',
+                {
+                    'Content-Type': 'application/json',
+                },
+                { 
+                    email, 
+                    password, 
+                    firstName, 
                     lastName,
-                }),
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-            });
+                    image, 
+                }
+            );
             const data = await response.json();
             if (response.status === 200) {
                 await setSession(data);
-                set((state) => ({ user: {
-                    ...state.user,
-                    data,
-                } }));
+                createAuthenticationSlice(set).setUser(data);
             } else {
                 set((state) => ({ user: {
                     ...state.user,
@@ -36,58 +37,13 @@ export const createUserSlice = (set) => ({
             set((state) => ({ user: {
                 ...state.user,
                 error: err.message,
-            }}));
+            }}))
         }
     },
-    login: async ({ email, password }) => {
-        try {
-            const response = await fetch(`${HOSTNAME}/auth/login`, {
-                method: 'POST',
-                body: JSON.stringify({
-                    email,
-                    password,
-                }),
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-            });
-            const data = await response.json();
-            if (response.status === 200) {
-                await setSession(data);
-                set((state) => ({ user: {
-                    ...state.user,
-                    data,
-                } }));
-            } else {
-                set((state) => ({ user: {
-                    ...state.user,
-                    error: data.message,
-                }}));
-            }
-        } catch (err) {
-            set((state) => ({ user: {
-                ...state.user,
-                error: err.message,
-            }}));
-        }
-    },
-    logout: async () => {
-        await clearSession();
-        set((state) => ({ user: {
-            ...state.user,
-            data: null,
-        }}));
-    },
-    clearError: () => {
+    clearUserError: () => {
         set((state) => ({ user: {
             ...state.user,
             error: null,
         }}));
     },
-    setUser: (user) => {
-        set((state) => ({ user: {
-            ...state.user,
-            data: user,
-        }}));
-    }
 });

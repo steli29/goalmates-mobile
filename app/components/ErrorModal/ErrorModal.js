@@ -6,7 +6,7 @@ import styles from './styles';
 
 const ErrorModal = () => {
     const [isModalVisible, setIsModalVisible] = useState(false);
-    const { error } = useStore((state) => state.user);
+    const { error } = useStore((state) => state.myUser);
     const clearError = useStore((state) => state.clearError);
 
     const onClose = () => {

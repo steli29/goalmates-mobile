@@ -18,7 +18,7 @@ const HomeScreen = () => {
             commentsLength: 57,
             title: 'Learn new skill',
             description: 'Complete  prototyping course',
-            deadline: '06 January 2022',
+            progress: 0.4,
         },
         {
             avatarUrl: null,
@@ -27,7 +27,8 @@ const HomeScreen = () => {
             commentsLength: 57,
             title: 'Learn new skill',
             description: 'Complete  prototyping course',
-            deadline: '06 January 2022',
+            progress: 0.9,
+
         },
     ];
 
@@ -49,7 +50,7 @@ const HomeScreen = () => {
                     commentsLength={item.commentsLength}
                     title={item.title}
                     description={item.description}
-                    deadline={item.deadline}
+                    progress={item.progress}
                 />
             </View>
         );

@@ -1,17 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import Modal from 'react-native-modal';
 import { Text, View, TouchableOpacity } from 'react-native';
-import { useStore } from '../../zustand/root-reducer';
+import PropTypes from 'prop-types';
+
 import styles from './styles';
 
-const ErrorModal = () => {
+const ErrorModal = ({ error, onErrorClear }) => {
     const [isModalVisible, setIsModalVisible] = useState(false);
-    const { error } = useStore((state) => state.myUser);
-    const clearError = useStore((state) => state.clearError);
-
     const onClose = () => {
         setIsModalVisible(false);
-        clearError();
+        setTimeout(() => onErrorClear(), 600);
     };
 
     useEffect(() => {
@@ -40,5 +38,10 @@ const ErrorModal = () => {
         </Modal>
     );
 };
+
+ErrorModal.propTypes = {
+    error: PropTypes.string,
+    onErrorClear: PropTypes.func,
+}
 
 export default ErrorModal;

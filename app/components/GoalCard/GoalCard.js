@@ -10,14 +10,14 @@ import ChatSvg from '../../assets/svgs/ChatSvg';
 import styles from './styles';
 import {Screens} from "../../project/constants";
 
-const GoalCard = ({ avatarUrl, name, datePosted, commentsLength, title, description, deadline }) => {
+const GoalCard = ({ avatarUrl, name, datePosted, commentsLength, title, description, progress }) => {
     const navigation = useNavigation()
     const firstName = name.split(' ')[0]
     const lastName = name.split(' ')[1];
     const onNameItemPress = () => {
         const params = {
             user: {
-                id: 2,
+                id: 3,
                 firstName,
                 lastName,
             }
@@ -41,7 +41,7 @@ const GoalCard = ({ avatarUrl, name, datePosted, commentsLength, title, descript
             <GoalPreview
                 title={title}
                 description={description}
-                deadline={deadline}
+                progress={progress}
             />
             <View style={styles.goalCardFooter}>
                 <TouchableOpacity>
@@ -65,7 +65,7 @@ GoalCard.propTypes = {
     commentsLength: PropTypes.number,
     title: PropTypes.string,
     description: PropTypes.string,
-    deadline: PropTypes.string,
+    progress: PropTypes.number,
 };
 
 export default GoalCard;

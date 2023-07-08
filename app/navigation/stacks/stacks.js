@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useLayoutEffect } from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 import {Screens} from '../../project/constants';
@@ -35,8 +35,21 @@ export const HomeStack = () => {
                                 navigation,
                                 isBackButtonHidden: isFromTabs,
                             }),
-                        headerMode: 'screen',
-                        animation: 'none',
+                    };
+                }}
+            />
+            <HomeScreenStack.Screen
+                name={Screens.EDIT_USER}
+                component={EditUserScreen}
+                options={({navigation, route}) => {
+                    if (!route.params) route.params = {};
+                    route.params.isBackButtonHidden = false;
+                    return {
+                        header: () =>
+                            CustomAppHeader({
+                                title: 'Edit Profile',
+                                navigation,
+                            }),
                     };
                 }}
             />
@@ -61,8 +74,6 @@ export const ProfileStack = () => {
                                 navigation,
                                 isBackButtonHidden: isFromTabs,
                             }),
-                        headerMode: 'screen',
-                        animation: 'none',
                     };
                 }}
             />
@@ -78,8 +89,6 @@ export const ProfileStack = () => {
                                 title: 'Edit Profile',
                                 navigation,
                             }),
-                        headerMode: 'screen',
-                        animation: 'none',
                     };
                 }}
             />
@@ -111,8 +120,21 @@ export const SearchStack = () => {
                                 navigation,
                                 isBackButtonHidden: isFromTabs,
                             }),
-                        headerMode: 'screen',
-                        animation: 'none',
+                    };
+                }}
+            />
+            <SearchScreenStack.Screen
+                name={Screens.EDIT_USER}
+                component={EditUserScreen}
+                options={({navigation, route}) => {
+                    if (!route.params) route.params = {};
+                    route.params.isBackButtonHidden = false;
+                    return {
+                        header: () =>
+                            CustomAppHeader({
+                                title: 'Edit Profile',
+                                navigation,
+                            }),
                     };
                 }}
             />
@@ -121,10 +143,22 @@ export const SearchStack = () => {
 };
 
 const CreateGoalScreenStack = createNativeStackNavigator();
-export const CreateGoalStack = () => {
+export const CreateGoalStack = (props) => {
+    useLayoutEffect(() => {
+		// eslint-disable-next-line react/destructuring-assignment
+		props.navigation.setOptions({
+			tabBarVisible: false,
+		});
+	}, []);
     return (
         <CreateGoalScreenStack.Navigator screenOptions={{headerTopInsetEnabled: false}}>
-            <CreateGoalScreenStack.Screen name={Screens.CREATE_GOAL} component={CreateGoalScreen}/>
+            <CreateGoalScreenStack.Screen 
+                name={Screens.CREATE_GOAL} 
+                component={CreateGoalScreen}
+                options={{
+                    headerShown: false,
+                }}
+            />
         </CreateGoalScreenStack.Navigator>
     )
 };

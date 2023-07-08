@@ -3,13 +3,13 @@ import { ScrollView, TextInput, TouchableOpacity, View, Text, FlatList } from 'r
 
 import { useStore } from '../../zustand/root-reducer';
 import { Screens } from '../../project/constants';
+import useDebounce from '../../project/hooks/useDebounce';
 
 import CloseSvg from '../../assets/svgs/CloseSvg';
 import SearchIconSvg from '../../assets/svgs/SearchIconSvg';
 import AvatarImage from '../../components/AvatarImage/AvatarImage';
 
 import styles from './styles';
-import useDebounce from '../../project/hooks/useDebounce';
 
 const SearchScreen = ({ navigation }) => {
     const searchUsers = useStore((state) => state.searchUsers);
@@ -24,13 +24,9 @@ const SearchScreen = ({ navigation }) => {
         setUserProfileName('');
     };
 
-    const onUserPress = () => {
+    const onUserPress = (user) => {
         navigation.navigate(Screens.PROFILE, {
-            user: {
-                id: 3,
-                firstName: 'From',
-                lastName: 'Search Screen',
-            },
+            user,
         });
     };
 
@@ -40,7 +36,7 @@ const SearchScreen = ({ navigation }) => {
 
     const renderItem = ({ item }) => {
         return (
-            <TouchableOpacity style={styles.profileContainer} onPress={onUserPress}>
+            <TouchableOpacity style={styles.profileContainer} onPress={() => onUserPress(item)}>
                 <AvatarImage size={50} />
                 <Text style={styles.nameLabel}>
                     {item.firstName} {item.lastName}
@@ -100,7 +96,9 @@ const SearchScreen = ({ navigation }) => {
             </View>
             {showErrorMessage ? (
                 <Text style={[styles.profileContainer, styles.errorMessage]}>
-                    We couldn't find any matches
+                    {searchResults.error 
+                    ? searchResults.error 
+                    : "We couldn't find any matches"}
                 </Text>
             ) : null}
 

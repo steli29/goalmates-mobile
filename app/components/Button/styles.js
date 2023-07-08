@@ -12,7 +12,7 @@ export default StyleSheet.create({
 
         borderRadius: bp(6),
 
-        backgroundColor: '#B4AAF2',
+        backgroundColor: "#7B61FF",
     },
     labelTextStyle: {
         fontFamily: 'Nunito',

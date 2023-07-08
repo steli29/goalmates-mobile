@@ -23,7 +23,5 @@ export default StyleSheet.create({
     },
     buttonContainerStyle: {
         marginTop: bp(38),
-
-        backgroundColor: '#006175',
     }
 });

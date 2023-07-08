@@ -30,9 +30,6 @@ export default StyleSheet.create({
         position: 'absolute',
         right: 0,
     },
-    buttonStyle: {
-        backgroundColor: '#006175',
-    },
     labelBoxContainer: {
         flexDirection: 'row',
         justifyContent: 'space-evenly',

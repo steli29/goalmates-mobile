@@ -1,13 +1,13 @@
 import React from 'react';
 import { View, Text } from 'react-native';
 import PropTypes from 'prop-types';
+import * as Progress from 'react-native-progress';
 
 import GoalIcon from '../GoalIcon/GoalIcon';
 
 import styles from './styles';
-import ClockSvg from '../../assets/svgs/ClockSvg';
 
-const GoalPreview = ({ title, description, deadline }) => {
+const GoalPreview = ({ title, description, progress }) => {
     return (
         <View style={[styles.mainContainer, styles.shadowEffect]}>
             <View style={styles.row}>
@@ -17,16 +17,9 @@ const GoalPreview = ({ title, description, deadline }) => {
                     <Text style={styles.descriptionTextStyle}>{description}</Text>
                 </View>
             </View>
-            {deadline ? (
-                <View style={styles.deadlineContainer}>
-                    <View style={styles.divider} />
-                    <View style={styles.row}>
-                        <ClockSvg />
-                        <Text style={[styles.descriptionTextStyle, styles.deadlineText]} >Deadline</Text>
-                        <Text style={styles.descriptionTextStyle} >{deadline}</Text>
-                    </View>
-                </View>
-            ) : null}
+            <View style={styles.progressBarContainer}>
+                <Progress.Bar progress={progress} width={300} />
+            </View>
         </View>
     );
 };
@@ -34,7 +27,7 @@ const GoalPreview = ({ title, description, deadline }) => {
 GoalPreview.propTypes = {
     title: PropTypes.string,
     description: PropTypes.string,
-    deadline: PropTypes.string,
+    progress: PropTypes.number
 };
 
 export default GoalPreview;

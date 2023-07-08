@@ -1,37 +1,25 @@
 import React, { useEffect, useState } from 'react';
 import { View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
-import { ReminderData } from '../../project/constants';
-import { formatDate, getDateAfterMonths } from '../../project/helpers/helper-functions';
-
-import GoalTextField from './components/GoalTextField/GoalTextField';
-import AuthHeadLine from '../../components/AuthHeadLine/AuthHeadLine';
-import GoalPreview from '../../components/GoalPreview/GoalPreview';
+import LabelWithTextInput from '../../components/LabelWithTextInput/LabelWithTextInput';
+import Label from '../../components/Label/Label';
+import ReminderDropDown from './components/ReminderDropDown/ReminderDropDown';
+import EmailChipTextInput from './components/EmailChipTextInput/EmailChipTextInput';
+import Button from '../../components/Button/Button';
 
 import styles from './styles';
 
-const CreateGoalScreen = () => {
+const CreateGoalScreen = ({ navigation }) => {
     const [goalTitle, setGoalTitle] = useState('');
     const [goalDescription, setGoalDescription] = useState('');
     const [reminder, setReminder] = useState(null);
-    const [dueDate, setDueDate] = useState(null);
+    const [emails, setEmails] = useState([]);
 
-    const reminderData = [
-        { label: ReminderData.EVERY_DAY, value: ReminderData.EVERY_DAY },
-        { label: ReminderData.EVERY_WEEK, value: ReminderData.EVERY_WEEK },
-        { label: ReminderData.EVERY_MONTH, value: ReminderData.EVERY_MONTH },
-    ];
+    const onClosePress = () => {
+        navigation.goBack();
+    };
 
-    const dueDateData = new Array(12).fill(1).map((_, index) => {
-        const number = index + 1;
-        return {
-            label: `${number} Months`,
-            value: `${number}`,
-        };
-    });
-
-    const dueDateAsDate = getDateAfterMonths(Number(dueDate));
-    const dueDateAsString = formatDate(dueDateAsDate);
     const SeparatorItem = () => {
         return (
             <View
@@ -46,47 +34,38 @@ const CreateGoalScreen = () => {
         setGoalTitle('');
         setGoalDescription('');
         setReminder(null);
-        setDueDate(null);
-    }, [])
+        setEmails([]);
+    }, []);
 
     return (
-        <View style={styles.mainContainer}>
-            <GoalTextField label='Goal Title' value={goalTitle} onChangeValue={setGoalTitle} />
-            <SeparatorItem />
-            <GoalTextField
+        <SafeAreaView style={styles.mainContainer}>
+            <LabelWithTextInput
+                label='Goal Title'
+                inputField={goalTitle}
+                onChangeInputField={setGoalTitle}
+            />
+            <LabelWithTextInput
                 label='Goal Description'
-                value={goalDescription}
-                onChangeValue={setGoalDescription}
+                inputField={goalDescription}
+                isMultiLine
+                onChangeInputField={setGoalDescription}
+            />
+            <Label label='Reminder' />
+            <ReminderDropDown
+                reminder={reminder}
+                setReminder={setReminder}
+                labelTextStyle={styles.labelTextStyle}
+                borderStyle={styles.dropDownBorderStyle}
+                containerStyle={styles.dropDownPickerStyle}
             />
             <SeparatorItem />
-            <GoalTextField
-                label='Reminder'
-                value={reminder}
-                onChangeValue={setReminder}
-                dropdownData={reminderData}
-                zIndex={3000}
-                zIndexInverse={1000}
-                isDropDown
+            <Label label='Share with' />
+            <EmailChipTextInput emails={emails} setEmails={setEmails} />
+            <Button 
+                label="Upload"
+                buttonContainerStyle={styles.uploadButtonContainerStyle}
             />
-            <SeparatorItem />
-            <GoalTextField
-                label='Due Date'
-                value={dueDate}
-                onChangeValue={setDueDate}
-                dropdownData={dueDateData}
-                zIndex={1000}
-                zIndexInverse={3000}
-                isDropDown
-            />
-            <SeparatorItem />
-            <AuthHeadLine headline='Goal Preview' />
-            <SeparatorItem />
-            <GoalPreview
-                title={goalTitle}
-                description={goalDescription}
-                deadline={dueDateAsString}
-            />
-        </View>
+        </SafeAreaView>
     );
 };
 

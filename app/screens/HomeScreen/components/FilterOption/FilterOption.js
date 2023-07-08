@@ -8,11 +8,10 @@ import styles from './styles';
 
 const FilterOption = ({ label, isSelected, onOptionPress}) => {
     const labelStyleSelected = isSelected ? styles.buttonLabelSelectedStyle : null;
-    const containerStyleSelected = isSelected ? styles.mainContainerSelected : null;
 
     return (
         <TouchableOpacity
-            style={[styles.mainContainer, containerStyleSelected]}
+            style={styles.mainContainer}
             onPress={onOptionPress}
         >
             <Text

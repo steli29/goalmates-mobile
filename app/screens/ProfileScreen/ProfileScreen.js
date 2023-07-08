@@ -17,9 +17,11 @@ import styles from './styles';
 const ProfileScreen = ({ navigation, route }) => {
     const myUser = useStore((state) => state.myUser.data);
     let isMyUser = true;
+    let user = null;
     if(route.params.user) {
         isMyUser = route.params.user?.id === myUser?.id;
     }
+    user = isMyUser ? myUser : route.params.user;
     const buttonLabelText = isMyUser ? 'Edit Profile' : 'Follow';
 
     const data = [
@@ -30,7 +32,7 @@ const ProfileScreen = ({ navigation, route }) => {
             commentsLength: 57,
             title: 'Learn new skill',
             description: 'Complete  prototyping course',
-            deadline: '06 January 2022',
+            progress: 0.4,
         },
         {
             avatarUrl: null,
@@ -39,7 +41,7 @@ const ProfileScreen = ({ navigation, route }) => {
             commentsLength: 57,
             title: 'Learn new skill',
             description: 'Complete  prototyping course',
-            deadline: '06 January 2022',
+            progress: 0.9,
         },
     ];
 
@@ -65,7 +67,7 @@ const ProfileScreen = ({ navigation, route }) => {
                 <View style={styles.topRowWithNamedContainer}>
                     <AvatarImage size={67} />
                     <Text style={styles.nameLabel}>
-                        {myUser.firstName} {myUser.lastName}
+                        {user?.firstName} {user?.lastName}
                     </Text>
                     {isMyUser && (
                         <TouchableOpacity style={styles.settingsButtonStyle} onPress={openModal}>
@@ -75,7 +77,6 @@ const ProfileScreen = ({ navigation, route }) => {
                 </View>
                 <Button
                     label={buttonLabelText}
-                    buttonContainerStyle={styles.buttonStyle}
                     onButtonPress={navigateToEditUser}
                 />
                 <View style={styles.labelBoxContainer}>
@@ -100,7 +101,7 @@ const ProfileScreen = ({ navigation, route }) => {
                     commentsLength={item.commentsLength}
                     title={item.title}
                     description={item.description}
-                    deadline={item.deadline}
+                    progress={item.progress}
                 />
             </View>
         );

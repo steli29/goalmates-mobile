@@ -11,13 +11,6 @@ export default StyleSheet.create({
 
 		marginBottom: bp(10),
 	},
-	mainContainerSelected: {
-		backgroundColor: 'rgba(123,97,255, 0.1)',
-		borderWidth: bp(1),
-		borderColor: '#7b61ff',
-
-		borderRadius: bp(20),
-	},
     buttonLabelStyle: {
 		fontFamily: "Nunito",
 		fontWeight: "400",

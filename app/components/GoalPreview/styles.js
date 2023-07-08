@@ -50,7 +50,7 @@ export default StyleSheet.create({
         fontWeight: '300',
         color: '#6C757D',
     },
-    deadlineContainer: {
+    progressBarContainer: {
         flexDirection: 'column',
 
         width: '100%',

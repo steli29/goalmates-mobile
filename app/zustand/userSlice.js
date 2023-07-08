@@ -15,13 +15,13 @@ export const createUserSlice = (set) => ({
                 {
                     'Content-Type': 'application/json',
                 },
-                { 
+                JSON.stringify({ 
                     email, 
                     password, 
                     firstName, 
                     lastName,
                     image, 
-                }
+                })
             );
             const data = await response.json();
             if (response.status === 200) {

@@ -17,6 +17,7 @@ import styles from './styles';
 const RegisterScreen = ({ navigation }) => {
     const register = useStore((state) => state.register);
     const { error } = useStore((state) => state.myUser);
+    const clearError = useStore((state) => state.clearError);
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -44,7 +45,10 @@ const RegisterScreen = ({ navigation }) => {
 
     return (
         <SafeAreaView style={styles.mainContainer}>
-            <ErrorModal />
+            <ErrorModal 
+                error={error}
+                onErrorClear={clearError}
+            />
             <View>
                 <AuthHeadLine 
                     headline="Register"

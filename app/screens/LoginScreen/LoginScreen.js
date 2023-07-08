@@ -17,6 +17,8 @@ import styles from './styles';
 
 const LoginScreen = ({ navigation }) => {
     const login = useStore((state) => state.login);
+    const { error } = useStore((state) => state.myUser);
+    const clearError = useStore((state) => state.clearError);
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -40,7 +42,10 @@ const LoginScreen = ({ navigation }) => {
 
     return (
         <SafeAreaView style={styles.mainContainer}>
-            <ErrorModal />
+            <ErrorModal 
+                error={error}
+                onErrorClear={clearError}
+            />
             <View>
                 <AuthHeadLine headline='Login' additionalStyle={styles.loginTextHeader} />
                 <LabelWithTextInput

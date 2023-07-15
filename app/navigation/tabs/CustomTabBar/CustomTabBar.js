@@ -11,7 +11,7 @@ import styles from './styles';
 
 const CustomTabBar = ({ state, descriptors, navigation }) => {
     const focusedOptions = descriptors[state.routes[state.index].key].options;
-    const { data } = useStore((store) => store.user);
+    const { data } = useStore((store) => store.myUser);
     if (focusedOptions.tabBarVisible === false) {
         return null;
     }

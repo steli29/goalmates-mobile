@@ -26,8 +26,8 @@ export const HomeStack = () => {
                 name={Screens.PROFILE}
                 component={ProfileScreen}
                 options={({navigation, route}) => {
-                    const { isFromTabs = false, user: { firstName, lastName}} = route.params;
-                    const title = isFromTabs ? 'My Profile' : `${firstName} ${lastName}`
+                    const { isFromTabs = false, user: { firstName, lastName }} = route.params;
+                    const title = `${firstName} ${lastName}'s Profile`;
                     return {
                         header: () =>
                             CustomAppHeader({

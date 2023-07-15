@@ -13,17 +13,18 @@ import EditPhotoSvg from '../../assets/svgs/EditPhotoSvg';
 import { useStore } from '../../zustand/root-reducer';
 import ErrorModal from '../../components/ErrorModal/ErrorModal';
 
-const EditUserScreen = ({ user }) => {
+const EditUserScreen = ({ route }) => {
+    const { user, onGoBack } = route.params;
     const navigation = useNavigation();
     const editUser = useStore((state) => state.editUser);
     const clearUserError = useStore((state) => state.clearUserError);
     const { error } = useStore((state) => state.user);
 
-    const [firstName, setFirstName] = useState(user?.firstName || null);
-    const [lastName, setLastName] = useState(user?.lastName || null);
-    const [email, setEmail] = useState(user?.email || null);
-    const [password, setPassword] = useState(user?.password || null);
-    const [imageUrl, setImageUrl] = useState(user?.imageUrl || null);
+    const [firstName, setFirstName] = useState(user.firstName || null);
+    const [lastName, setLastName] = useState(user.lastName || null);
+    const [email, setEmail] = useState(user.email || null);
+    const [password, setPassword] = useState(null);
+    const [imageUrl, setImageUrl] = useState(user.image || null);
 
     const openImagesGallery = async () => {
         const response = await launchImageLibrary();
@@ -41,6 +42,7 @@ const EditUserScreen = ({ user }) => {
             password,
             image: imageUrl,
         });
+        onGoBack(user.id);
         navigation.goBack();
     };
 
@@ -83,7 +85,7 @@ const EditUserScreen = ({ user }) => {
 };
 
 EditUserScreen.propTypes = {
-    user: PropTypes.object,
+    route: PropTypes.object,
 };
 
 export default EditUserScreen;

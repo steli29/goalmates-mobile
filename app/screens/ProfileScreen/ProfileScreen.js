@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Text, TouchableOpacity, View, FlatList } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { Text, TouchableOpacity, View, FlatList, ActivityIndicator } from 'react-native';
 import PropTypes from 'prop-types';
 
 import { Screens } from '../../project/constants';
@@ -15,16 +15,17 @@ import SettingsModal from './components/SettingsModal/SettingsModal';
 import styles from './styles';
 
 const ProfileScreen = ({ navigation, route }) => {
-    const myUser = useStore((state) => state.myUser.data);
-    let isMyUser = true;
-    let user = null;
-    if(route.params.user) {
-        isMyUser = route.params.user?.id === myUser?.id;
-    }
-    user = isMyUser ? myUser : route.params.user;
+    const { data, isUserLoading } = useStore((state) => state.user);
+    const getUserById = useStore((state) => state.getUserById);
+    const isMyUser = route.params?.isFromTabs ?? false;
+    useEffect(() => {
+        const { user } = route.params;
+        const { id } = user;
+        refreshParent(id);
+    }, []);
     const buttonLabelText = isMyUser ? 'Edit Profile' : 'Follow';
 
-    const data = [
+    const dataPosts = [
         {
             avatarUrl: null,
             datePosted: '1hr ago',
@@ -57,8 +58,15 @@ const ProfileScreen = ({ navigation, route }) => {
 
     const navigateToEditUser = () => {
         if (isMyUser) {
-            navigation.navigate(Screens.EDIT_USER);
+            navigation.navigate(Screens.EDIT_USER, {
+                user: data,
+                onGoBack: refreshParent,
+            });
         }
+    };
+
+    const refreshParent = (id) => {
+        getUserById(id);
     };
 
     const ProfileScreenHeader = () => {
@@ -67,7 +75,7 @@ const ProfileScreen = ({ navigation, route }) => {
                 <View style={styles.topRowWithNamedContainer}>
                     <AvatarImage size={67} />
                     <Text style={styles.nameLabel}>
-                        {user?.firstName} {user?.lastName}
+                        {data?.firstName} {data?.lastName}
                     </Text>
                     {isMyUser && (
                         <TouchableOpacity style={styles.settingsButtonStyle} onPress={openModal}>
@@ -75,10 +83,7 @@ const ProfileScreen = ({ navigation, route }) => {
                         </TouchableOpacity>
                     )}
                 </View>
-                <Button
-                    label={buttonLabelText}
-                    onButtonPress={navigateToEditUser}
-                />
+                <Button label={buttonLabelText} onButtonPress={navigateToEditUser} />
                 <View style={styles.labelBoxContainer}>
                     <LabelWithNumberBox label='Goals' number={20} />
                     <View style={styles.divider} />
@@ -109,15 +114,24 @@ const ProfileScreen = ({ navigation, route }) => {
 
     const ItemSeparator = () => <View style={styles.separatorStyle} />;
 
+    if(isUserLoading) {
+        return (
+            <View style={styles.loadingSpinnerContainer}>
+                <ActivityIndicator size='large' color='#B5B5B5' />
+            </View>
+        )
+    }
+
     return (
         <>
             <SettingsModal isVisible={isModalOpen} onClose={closeModal} />
             <FlatList
-                data={data}
+                data={dataPosts}
                 renderItem={renderItem}
                 ListHeaderComponent={ProfileScreenHeader}
                 contentContainerStyle={styles.mainContainer}
                 ItemSeparatorComponent={ItemSeparator}
+                activ
                 showsVerticalScrollIndicator={false}
             />
         </>

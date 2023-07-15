@@ -7,43 +7,107 @@ export const createUserSlice = (set) => ({
     user: {
         data: null,
         error: null,
+        isUserLoading: false,
     },
     editUser: async ({ email, password, firstName, lastName, image }) => {
         try {
-            const response = await protectedFetch('/user/edit', 
+            set((state) => ({
+                user: {
+                    ...state.user,
+                    isUserLoading: true,
+                },
+            }));
+            const response = await protectedFetch(
+                '/user/edit',
                 'POST',
                 {
                     'Content-Type': 'application/json',
                 },
-                JSON.stringify({ 
-                    email, 
-                    password, 
-                    firstName, 
+                JSON.stringify({
+                    email,
+                    password,
+                    firstName,
                     lastName,
-                    image, 
+                    image,
                 })
             );
             const data = await response.json();
             if (response.status === 200) {
                 await setSession(data);
                 createAuthenticationSlice(set).setUser(data);
+                set((state) => ({
+                    user: {
+                        ...state.user,
+                        isUserLoading: false,
+                    },
+                }));
             } else {
-                set((state) => ({ user: {
-                    ...state.user,
-                    error: data.message,
-                }}));
+                set((state) => ({
+                    user: {
+                        ...state.user,
+                        error: data.message,
+                        isUserLoading: false,
+                    },
+                }));
             }
         } catch (err) {
-            set((state) => ({ user: {
-                ...state.user,
-                error: err.message,
-            }}))
+            set((state) => ({
+                user: {
+                    ...state.user,
+                    error: err.message,
+                    isUserLoading: false,
+                },
+            }));
+        }
+    },
+    getUserById: async (id) => {
+        try {
+            set((state) => ({
+                user: {
+                    ...state.user,
+                    isUserLoading: true,
+                },
+            }));
+            const response = await protectedFetch(
+                `/user/?${new URLSearchParams({
+                    id,
+                })}`,
+                'GET'
+            );
+            const data = await response.json();
+            if(response.status === 200) {
+                set((state) => ({
+                    user: {
+                        ...state.user,
+                        isUserLoading: false,
+                        data,
+                    },
+                }));
+            } else {
+                set((state) => ({
+                    user: {
+                        ...state.user,
+                        isUserLoading: false,
+                        error: data.message,
+                    },
+                }));
+            }
+        } catch (err) {
+            set((state) => ({
+                user: {
+                    ...state.user,
+                    isUserLoading: false,
+                    error: err.message,
+                },
+            }));
         }
     },
     clearUserError: () => {
-        set((state) => ({ user: {
-            ...state.user,
-            error: null,
-        }}));
+        set((state) => ({
+            user: {
+                ...state.user,
+                error: null,
+            },
+        }));
     },
 });

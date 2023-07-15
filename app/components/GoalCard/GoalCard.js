@@ -16,11 +16,9 @@ const GoalCard = ({ avatarUrl, name, datePosted, commentsLength, title, descript
     const lastName = name.split(' ')[1];
     const onNameItemPress = () => {
         const params = {
-            user: {
-                id: 3,
-                firstName,
-                lastName,
-            }
+            userId: 3,
+            firstName,
+            lastName,
         }
         navigation.push(Screens.PROFILE, params);
     }

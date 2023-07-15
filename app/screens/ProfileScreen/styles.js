@@ -56,5 +56,10 @@ export default StyleSheet.create({
     },
     separatorStyle: {
         height: bp(25),
+    },
+    loadingSpinnerContainer: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
     }
 })

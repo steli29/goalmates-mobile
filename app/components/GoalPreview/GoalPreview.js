@@ -6,6 +6,7 @@ import * as Progress from 'react-native-progress';
 import GoalIcon from '../GoalIcon/GoalIcon';
 
 import styles from './styles';
+import { bp } from '../../project/utils/relativeUnitUtils';
 
 const GoalPreview = ({ title, description, progress }) => {
     return (
@@ -18,7 +19,7 @@ const GoalPreview = ({ title, description, progress }) => {
                 </View>
             </View>
             <View style={styles.progressBarContainer}>
-                <Progress.Bar progress={progress} width={300} />
+                <Progress.Bar progress={progress} width={bp(270)} />
             </View>
         </View>
     );

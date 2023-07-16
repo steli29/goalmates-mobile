@@ -48,3 +48,7 @@ export const FONT_FAMILY = {
 export const isAndroid = Platform.OS === 'android';
 
 export const isIOS = Platform.OS === 'ios';
+
+export const ASYNC_STORAGE_KEYS = {
+    CREATE_GOAL_DRAFT: 'create-goal-draft',
+};

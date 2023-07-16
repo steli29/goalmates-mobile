@@ -75,7 +75,7 @@ export const createUserSlice = (set) => ({
                 'GET'
             );
             const data = await response.json();
-            if(response.status === 200) {
+            if (response.status === 200) {
                 set((state) => ({
                     user: {
                         ...state.user,
@@ -92,12 +92,12 @@ export const createUserSlice = (set) => ({
                     },
                 }));
             }
-        } catch (err) {
+        } catch (error) {
             set((state) => ({
                 user: {
                     ...state.user,
                     isUserLoading: false,
-                    error: err.message,
+                    error: error.message,
                 },
             }));
         }

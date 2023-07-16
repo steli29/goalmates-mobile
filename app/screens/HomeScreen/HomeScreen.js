@@ -28,7 +28,15 @@ const HomeScreen = () => {
             title: 'Learn new skill',
             description: 'Complete  prototyping course',
             progress: 0.9,
-
+        },
+        {
+            avatarUrl: null,
+            datePosted: '1hr ago',
+            name: 'Oyin Dolapo',
+            commentsLength: 57,
+            title: 'Learn new skill',
+            description: 'Complete  prototyping course',
+            progress: 0.4,
         },
     ];
 

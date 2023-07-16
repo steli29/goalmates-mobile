@@ -11,8 +11,8 @@ export default StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
 
-        marginTop: bp(11),
-        marginBottom: bp(40),
+        marginTop: bp(20),
+        marginBottom: bp(25),
     },
     separatorStyle: {
         height: bp(25),

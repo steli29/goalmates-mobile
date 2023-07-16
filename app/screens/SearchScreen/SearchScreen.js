@@ -67,8 +67,14 @@ const SearchScreen = ({ navigation }) => {
     }, [searchResults, debouncedUsername]);
 
     useEffect(() => {
-        onPressClear();
-    }, []);
+        const unsubscribe = navigation.addListener('focus', () => {
+            onPressClear();
+        });
+
+        return () => {
+            unsubscribe();
+        }
+    }, [navigation]);
 
     return (
         <ScrollView style={styles.container}>

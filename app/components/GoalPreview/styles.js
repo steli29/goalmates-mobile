@@ -53,7 +53,7 @@ export default StyleSheet.create({
     progressBarContainer: {
         flexDirection: 'column',
 
-        width: '100%',
+        // width: '100%',
 
         marginTop: bp(12),
     },

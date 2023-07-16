@@ -16,13 +16,25 @@ import styles from './styles';
 
 const ProfileScreen = ({ navigation, route }) => {
     const { data, isUserLoading } = useStore((state) => state.user);
+    const { data: myUserData } = useStore((state) => state.myUser);
     const getUserById = useStore((state) => state.getUserById);
-    const isMyUser = route.params?.isFromTabs ?? false;
+
+    const isMyUser = 
+        (route.params?.isFromTabs 
+            || myUserData.id === route.params?.user?.id)
+        ?? false;
+
     useEffect(() => {
-        const { user } = route.params;
-        const { id } = user;
-        refreshParent(id);
-    }, []);
+        const unsubscribe =  navigation.addListener('focus', () => {
+            const { user } = route.params;
+            const { id } = user;
+            refreshParent(id);
+        })
+        
+        return () => {
+            unsubscribe();
+        }
+    }, [navigation]);
     const buttonLabelText = isMyUser ? 'Edit Profile' : 'Follow';
 
     const dataPosts = [
@@ -113,13 +125,12 @@ const ProfileScreen = ({ navigation, route }) => {
     };
 
     const ItemSeparator = () => <View style={styles.separatorStyle} />;
-
-    if(isUserLoading) {
+    if (isUserLoading) {
         return (
             <View style={styles.loadingSpinnerContainer}>
                 <ActivityIndicator size='large' color='#B5B5B5' />
             </View>
-        )
+        );
     }
 
     return (

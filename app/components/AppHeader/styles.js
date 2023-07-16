@@ -5,18 +5,23 @@ import { fontStylePicker } from '../../project/utils/styleUtils';
 import { FONT_FAMILY, FONT_WEIGHT } from '../../project/constants';
 
 export default StyleSheet.create({
-    headerContainer: {
+    safeAreaContainer: {
+        backgroundColor: '#fff',
+    },
+    internalContainer: {
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
 
+        height: bp(60),
+        
         paddingHorizontal: bp(25),
     },
     headerText: {
         flex: 1,
-        
+
         right: bp(10),
-        
+
         textAlign: 'center',
         ...fontStylePicker(FONT_FAMILY.NUNITO, FONT_WEIGHT.BOLD),
         fontSize: bp(23),
@@ -38,7 +43,5 @@ export default StyleSheet.create({
                 elevation: 6,
             },
         }),
-
-        backgroundColor: '#fff',
-    }
-})
+    },
+});

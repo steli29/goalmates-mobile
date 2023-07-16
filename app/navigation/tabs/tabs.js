@@ -16,7 +16,7 @@ const Tab = createBottomTabNavigator();
 const TabNavigation = () => {
     return (
         <Tab.Navigator
-            screenOptions={{headerShown: false}}
+            screenOptions={{headerShown: false, tabBarHideOnKeyboard: true}}
             // eslint-disable-next-line react/no-unstable-nested-components
             tabBar={(props) => (
                 <CustomTabBar {...props} />

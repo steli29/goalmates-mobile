@@ -1,3 +1,5 @@
+import { Platform } from 'react-native';
+
 export const Screens = {
     LOGIN: 'Login',
     REGISTER: 'Register',
@@ -26,3 +28,23 @@ export const ReminderData = {
     EVERY_WEEK: 'Every Week',
     EVERY_MONTH: 'Every Month',
 };
+
+export const FONT_WEIGHT = {
+    THIN: 'Thin',
+    EXTRA_LIGHT: 'Extra Light',
+    LIGHT: 'Light',
+    NORMAL: 'Normal',
+    MEDIUM: 'Medium',
+    SEMI_BOLD: 'Semi Bold',
+    BOLD: 'Bold',
+    EXTRA_BOLD: 'Extra Bold',
+};
+
+export const FONT_FAMILY = {
+    POPPINS: 'Poppins',
+    NUNITO: 'Nunito',
+};
+
+export const isAndroid = Platform.OS === 'android';
+
+export const isIOS = Platform.OS === 'ios';

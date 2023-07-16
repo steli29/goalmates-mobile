@@ -1,6 +1,8 @@
 import { StyleSheet } from 'react-native';
 
 import { bp } from '../../project/utils/relativeUnitUtils';
+import { fontStylePicker } from '../../project/utils/styleUtils';
+import { FONT_FAMILY, FONT_WEIGHT } from '../../project/constants';
 
 export default StyleSheet.create({
     mainContainer: {
@@ -22,7 +24,7 @@ export default StyleSheet.create({
     mainTextStyle: {
         marginBottom: bp(32),
 
-        fontFamily: 'Nunito',
+        ...fontStylePicker(FONT_FAMILY.NUNITO, FONT_WEIGHT.NORMAL),
 		fontSize: bp(14),
 		color: "#312E49",
     },

@@ -1,6 +1,8 @@
 import { StyleSheet } from 'react-native';
 
 import { bp } from '../../project/utils/relativeUnitUtils';
+import { fontStylePicker } from '../../project/utils/styleUtils';
+import { FONT_FAMILY, FONT_WEIGHT } from '../../project/constants';
 
 export default StyleSheet.create({
     mainContainer: {
@@ -23,20 +25,16 @@ export default StyleSheet.create({
         marginBottom: bp(11),
     },
     nameText: {
-        fontFamily: 'Poppins',
+        ...fontStylePicker(FONT_FAMILY.POPPINS, FONT_WEIGHT.SEMI_BOLD),
         fontSize: bp(15),
-        fontWeight: '600',
         lineHeight: bp(22.5),
         color: '#000000',
-        fontStyle: 'normal',
     },
     datePostedText: {
-        fontFamily: 'Poppins',
+        ...fontStylePicker(FONT_FAMILY.POPPINS, FONT_WEIGHT.MEDIUM),
         fontSize: bp(12),
-        fontWeight: '500',
         lineHeight: bp(18),
         color: '#000000',
-        fontStyle: 'normal',
     },
     goalCardFooter: {
         flexDirection: 'row',
@@ -50,17 +48,13 @@ export default StyleSheet.create({
     commentsLengthText: {
         marginLeft: bp(3),
 
-        fontFamily: 'Poppins',
+        ...fontStylePicker(FONT_FAMILY.POPPINS, FONT_WEIGHT.BOLD),
         fontSize: bp(14),
-        fontWeight: '700',
         color: '#000000',
-        fontStyle: 'normal',
     },
     viewCommentsButtonText: {
-        fontFamily: 'Poppins',
+        ...fontStylePicker(FONT_FAMILY.POPPINS, FONT_WEIGHT.NORMAL),
         fontSize: bp(14),
-        fontWeight: '400',
         color: 'rgba(0, 0, 0, 0.5)',
-        fontStyle: 'normal',  
     }
 });

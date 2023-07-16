@@ -1,6 +1,8 @@
 import { Platform, StyleSheet } from 'react-native';
 
 import { bp } from '../../project/utils/relativeUnitUtils';
+import { fontStylePicker } from '../../project/utils/styleUtils';
+import { FONT_FAMILY, FONT_WEIGHT } from '../../project/constants';
 
 export default StyleSheet.create({
     headerContainer: {
@@ -16,8 +18,7 @@ export default StyleSheet.create({
         right: bp(10),
         
         textAlign: 'center',
-        fontFamily: 'Nunito',
-        fontWeight: '700',
+        ...fontStylePicker(FONT_FAMILY.NUNITO, FONT_WEIGHT.BOLD),
         fontSize: bp(23),
         color: '#000000',
     },

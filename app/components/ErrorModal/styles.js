@@ -1,5 +1,7 @@
 import { StyleSheet } from 'react-native';
 import { bp } from '../../project/utils/relativeUnitUtils';
+import { fontStylePicker } from '../../project/utils/styleUtils';
+import { FONT_FAMILY, FONT_WEIGHT } from '../../project/constants';
 
 export default StyleSheet.create({
     mainContainer: {
@@ -20,15 +22,13 @@ export default StyleSheet.create({
     errorHeaderText: {
         marginBottom: bp(8),
 
-        fontFamily: 'Nunito',
+        ...fontStylePicker(FONT_FAMILY.NUNITO, FONT_WEIGHT.BOLD),
         fontSize: bp(16),
-        fontWeight: '700',
         color: '#000000',
     },
     errorDetailsText: {
-        fontFamily: 'Nunito',
+        ...fontStylePicker(FONT_FAMILY.NUNITO, FONT_WEIGHT.NORMAL),
         fontSize: bp(14),
-        fontWeight: '400',
         color: '#000000',
     },
     divider: {
@@ -44,9 +44,8 @@ export default StyleSheet.create({
         height: bp(43),
     },
     closeButtonText: {
-        fontFamily: 'Nunito',
+        ...fontStylePicker(FONT_FAMILY.NUNITO, FONT_WEIGHT.BOLD),
         fontSize: bp(16),
-        fontWeight: '700',
         color: '#232323',
     },
     errorFooterContainer: {

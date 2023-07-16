@@ -1,6 +1,8 @@
 import { Platform, StyleSheet } from 'react-native';
 
 import { bp } from '../../project/utils/relativeUnitUtils';
+import { fontStylePicker } from '../../project/utils/styleUtils';
+import { FONT_FAMILY, FONT_WEIGHT } from '../../project/constants';
 
 export default StyleSheet.create({
     mainContainer: {
@@ -37,17 +39,15 @@ export default StyleSheet.create({
         marginLeft: bp(8),
     },
     titleTextStyle: {
-        fontFamily: 'Nunito',
+        ...fontStylePicker(FONT_FAMILY.NUNITO, FONT_WEIGHT.NORMAL),
         fontSize: bp(16),
         lineHeight: bp(21.82),
-        fontWeight: '400',
         color: '#212529',
     },
     descriptionTextStyle: {
-        fontFamily: 'Poppins',
+        ...fontStylePicker(FONT_FAMILY.POPPINS, FONT_WEIGHT.LIGHT),
         fontSize: bp(12),
         lineHeight: bp(18),
-        fontWeight: '300',
         color: '#6C757D',
     },
     progressBarContainer: {

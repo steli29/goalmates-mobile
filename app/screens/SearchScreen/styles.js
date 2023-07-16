@@ -1,6 +1,8 @@
 import { NativeModules, Platform, StyleSheet } from 'react-native';
 
 import { bp } from '../../project/utils/relativeUnitUtils';
+import { fontStylePicker } from '../../project/utils/styleUtils';
+import { FONT_FAMILY, FONT_WEIGHT } from '../../project/constants';
 
 const { StatusBarManager } = NativeModules;
 const statusBarHeight = StatusBarManager.HEIGHT;
@@ -30,8 +32,7 @@ export default StyleSheet.create({
     textInputStyle: {
         width: bp(240),
 
-        fontFamily: 'Nunito',
-        fontWeight: '400',
+        ...fontStylePicker(FONT_FAMILY.NUNITO, FONT_WEIGHT.NORMAL),
 		fontSize: bp(14),
         color: '#171717',
     },
@@ -50,16 +51,14 @@ export default StyleSheet.create({
         alignItems: 'center',
     },
     errorMessage: {
-        fontFamily: 'Nunito',
-        fontWeight: '400',
+        ...fontStylePicker(FONT_FAMILY.NUNITO, FONT_WEIGHT.NORMAL),
 		fontSize: bp(16),
         color: '#171717',
     },
     nameLabel: {
         marginLeft: bp(15),
 
-        fontFamily: 'Poppins',
-        fontWeight: '400',
+        ...fontStylePicker(FONT_FAMILY.POPPINS, FONT_WEIGHT.NORMAL),
         fontSize: bp(14),
         lineHeight: bp(27),
 

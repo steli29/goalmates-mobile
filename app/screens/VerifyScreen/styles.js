@@ -1,6 +1,8 @@
 import { StyleSheet } from 'react-native';
 
 import { bp } from '../../project/utils/relativeUnitUtils';
+import { fontStylePicker } from '../../project/utils/styleUtils';
+import { FONT_FAMILY, FONT_WEIGHT } from '../../project/constants';
 
 export default StyleSheet.create({
     mainContainer: {
@@ -20,15 +22,12 @@ export default StyleSheet.create({
         marginBottom: bp(8),
     },
     mainTextStyle: {
-        fontFamily: 'Nunito',
+        ...fontStylePicker(FONT_FAMILY.NUNITO, FONT_WEIGHT.MEDIUM),
 		fontSize: bp(14),
 		color: "#312E49",
     },
-    confirmationMessageTextStyle: {
-		fontWeight: '500',
-    },
     emailTextStyle: {
-		fontWeight: '700',
+        ...fontStylePicker(FONT_FAMILY.NUNITO, FONT_WEIGHT.BOLD),
     },
     buttonContainerStyle: {
         marginTop: bp(74),

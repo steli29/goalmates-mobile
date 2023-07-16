@@ -1,6 +1,8 @@
 import { StyleSheet } from 'react-native';
 
 import { bp } from '../../project/utils/relativeUnitUtils';
+import { fontStylePicker } from '../../project/utils/styleUtils';
+import { FONT_FAMILY, FONT_WEIGHT } from '../../project/constants';
 
 export default StyleSheet.create({
     mainContainer: {
@@ -19,8 +21,7 @@ export default StyleSheet.create({
     nameLabel: {
         marginLeft: bp(15),
 
-        fontFamily: 'Poppins',
-        fontWeight: '600',
+        ...fontStylePicker(FONT_FAMILY.POPPINS, FONT_WEIGHT.SEMI_BOLD),
         fontSize: bp(18),
         lineHeight: bp(27),
 
@@ -44,8 +45,7 @@ export default StyleSheet.create({
     postsLabelText: {
         marginTop: bp(20),
 
-        fontFamily: 'Poppins',
-        fontWeight: '600',
+        ...fontStylePicker(FONT_FAMILY.POPPINS, FONT_WEIGHT.SEMI_BOLD),
         fontSize: bp(14),
         lineHeight: bp(21),
 

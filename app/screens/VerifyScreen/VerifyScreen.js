@@ -21,7 +21,7 @@ const VerifyScreen = ({ route }) => {
                     additionalStyle={styles.checkMailHeaderTextStyle}
                 />
                 <View style={styles.confirmationMessageContainer}>
-                    <Text style={[styles.mainTextStyle, styles.confirmationMessageTextStyle]}>
+                    <Text style={styles.mainTextStyle}>
                         <Text>We've sent a 6-digit confirmation code to </Text>
                         <Text style={styles.emailTextStyle}>{email}</Text>
                         <Text>. Make sure you enter correct code.</Text>

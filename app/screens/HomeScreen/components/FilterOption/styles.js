@@ -1,5 +1,7 @@
 import { StyleSheet } from 'react-native';
 import { bp } from '../../../../project/utils/relativeUnitUtils';
+import { fontStylePicker } from '../../../../project/utils/styleUtils';
+import { FONT_FAMILY, FONT_WEIGHT } from '../../../../project/constants';
 
 export default StyleSheet.create({
 	mainContainer: {
@@ -12,13 +14,12 @@ export default StyleSheet.create({
 		marginBottom: bp(10),
 	},
     buttonLabelStyle: {
-		fontFamily: "Nunito",
-		fontWeight: "400",
+		...fontStylePicker(FONT_FAMILY.NUNITO, FONT_WEIGHT.NORMAL),
 		fontSize: bp(14),
 		lineHeight: bp(20),
 	},
 	buttonLabelSelectedStyle: {
-		fontWeight: "700",
+		...fontStylePicker(FONT_FAMILY.NUNITO, FONT_WEIGHT.BOLD),
 		fontSize: bp(16),
 	},
 })

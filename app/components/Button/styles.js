@@ -1,6 +1,8 @@
 import { StyleSheet } from 'react-native';
 
 import { bp } from '../../project/utils/relativeUnitUtils';
+import { fontStylePicker } from '../../project/utils/styleUtils';
+import { FONT_FAMILY, FONT_WEIGHT } from '../../project/constants';
 
 export default StyleSheet.create({
     mainContainer: {
@@ -12,12 +14,11 @@ export default StyleSheet.create({
 
         borderRadius: bp(6),
 
-        backgroundColor: "#7B61FF",
+        backgroundColor: '#7B61FF',
     },
     labelTextStyle: {
-        fontFamily: 'Nunito',
-		fontSize: bp(14),
-		fontWeight: '600',
-		color: "#FFFFFF",
-    }
+        ...fontStylePicker(FONT_FAMILY.NUNITO, FONT_WEIGHT.SEMI_BOLD),
+        fontSize: bp(14),
+        color: '#FFFFFF',
+    },
 });

@@ -1,12 +1,12 @@
-import React, {useState} from 'react';
-import {SafeAreaView} from 'react-native-safe-area-context';
-import {FlatList, Image, TouchableOpacity, View} from "react-native";
+import React, { useState } from 'react';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { FlatList, Image, TouchableOpacity, View } from 'react-native';
 
 import GoalCard from '../../components/GoalCard/GoalCard';
 
 import styles from './styles';
-import CategorySvg from "../../assets/svgs/CategorySvg";
-import HomeFilterModal from "./components/HomeFilterModal/HomeFilterModal";
+import CategorySvg from '../../assets/svgs/CategorySvg';
+import HomeFilterModal from './components/HomeFilterModal/HomeFilterModal';
 
 const HomeScreen = () => {
     const [isModalVisible, setIsModalVisible] = useState(false);
@@ -46,9 +46,9 @@ const HomeScreen = () => {
 
     const hideModal = () => {
         setIsModalVisible(false);
-    }
+    };
 
-    const renderItem = ({item, index}) => {
+    const renderItem = ({ item, index }) => {
         return (
             <View key={index} style={styles.goalCardStyle}>
                 <GoalCard
@@ -66,28 +66,19 @@ const HomeScreen = () => {
     const HomeHeader = () => {
         return (
             <View style={styles.headerContainer}>
-                <Image
-                    source={require('../../assets/goalmates-logo/GOALMATESlogo.png')}
-                />
-                <TouchableOpacity
-                    onPress={showModal}
-                >
-                    <CategorySvg/>
+                <Image source={require('../../assets/goalmates-logo/GOALMATESlogo.png')} />
+                <TouchableOpacity onPress={showModal}>
+                    <CategorySvg />
                 </TouchableOpacity>
             </View>
-        )
-    }
+        );
+    };
 
-    const ItemSeparator = () => (
-        <View style={styles.separatorStyle}/>
-    );
+    const ItemSeparator = () => <View style={styles.separatorStyle} />;
 
     return (
-        <SafeAreaView style={styles.mainContainer}>
-            <HomeFilterModal
-                isVisible={isModalVisible}
-                onClose={hideModal}
-            />
+        <SafeAreaView style={styles.mainContainer} edges={['top']}>
+            <HomeFilterModal isVisible={isModalVisible} onClose={hideModal} />
             <FlatList
                 data={data}
                 renderItem={renderItem}

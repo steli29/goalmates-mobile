@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { View, TouchableOpacity } from 'react-native';
 import { launchImageLibrary } from 'react-native-image-picker';
@@ -25,6 +25,7 @@ const EditUserScreen = ({ route }) => {
     const [email, setEmail] = useState(user.email || null);
     const [password, setPassword] = useState(null);
     const [imageUrl, setImageUrl] = useState(user.image || null);
+    const [isEditPressed, setIsEditPressed] = useState(false);
 
     const openImagesGallery = async () => {
         const response = await launchImageLibrary();
@@ -42,9 +43,18 @@ const EditUserScreen = ({ route }) => {
             password,
             image: imageUrl,
         });
-        onGoBack(user.id);
-        navigation.goBack();
+        setIsEditPressed(true);
     };
+
+    useEffect(() => {
+        if (isEditPressed) {
+            setIsEditPressed(false);
+            if (!error) {
+                onGoBack(user.id);
+                navigation.goBack();
+            }
+        }
+    }, [error, isEditPressed]);
 
     return (
         <View style={styles.mainContainer}>

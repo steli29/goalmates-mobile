@@ -5,9 +5,9 @@ import { useStore } from '../../zustand/root-reducer';
 import { Screens } from '../../project/constants';
 import useDebounce from '../../project/hooks/useDebounce';
 
+import SearchItem from './components/SearchItem/SearchItem';
 import CloseSvg from '../../assets/svgs/CloseSvg';
 import SearchIconSvg from '../../assets/svgs/SearchIconSvg';
-import AvatarImage from '../../components/AvatarImage/AvatarImage';
 
 import styles from './styles';
 
@@ -35,13 +35,15 @@ const SearchScreen = ({ navigation }) => {
     };
 
     const renderItem = ({ item }) => {
+        const onPress = () => {
+            onUserPress(item);
+        }
         return (
-            <TouchableOpacity style={styles.profileContainer} onPress={() => onUserPress(item)}>
-                <AvatarImage size={50} />
-                <Text style={styles.nameLabel}>
-                    {item.firstName} {item.lastName}
-                </Text>
-            </TouchableOpacity>
+            <SearchItem 
+                firstName={item.firstName}
+                lastName={item.lastName}
+                onUserPress={onPress}
+            />
         );
     };
 

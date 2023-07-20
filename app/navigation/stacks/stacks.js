@@ -187,6 +187,17 @@ export const NotificationStack = () => {
             <NotificationsScreenStack.Screen
                 name={Screens.NOTIFICATIONS}
                 component={NotificationsScreen}
+                options={({ navigation, route }) => {
+                    return {
+                        header: () =>
+                            CustomAppHeader({
+                                title: 'Notifications',
+                                navigation,
+                                route,
+                                isBackButtonHidden: true,
+                            }),
+                    };
+                }}
             />
         </NotificationsScreenStack.Navigator>
     );

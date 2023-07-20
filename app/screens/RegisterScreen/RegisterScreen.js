@@ -29,17 +29,17 @@ const RegisterScreen = ({ navigation }) => {
     };
 
     const onContinuePress = async () => {
-        
-        if(error !== null) {
+        registerUser();
+        // if(error !== null) {
             navigation.navigate(Screens.VERIFY, {
-                registerUser,
-                email
+                // registerUser,
+                // email
             })
-        }
+        // }
     }
     
-    const registerUser = () => {
-        register({
+    const registerUser = async () => {
+        await register({
             email,
             password,
             firstName,

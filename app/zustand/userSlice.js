@@ -2,6 +2,7 @@ import { protectedFetch } from '../project/api/helpers';
 import { setSession } from '../project/api/sessionUtils';
 
 import { createAuthenticationSlice } from './authenticationSlice';
+import { createFollowersSlice } from './followersSlice';
 
 export const createUserSlice = (set) => ({
     user: {
@@ -76,6 +77,8 @@ export const createUserSlice = (set) => ({
             );
             const data = await response.json();
             if (response.status === 200) {
+                await createFollowersSlice(set).getAllFollowers(id);
+                await createFollowersSlice(set).getAllFollowing(id);
                 set((state) => ({
                     user: {
                         ...state.user,

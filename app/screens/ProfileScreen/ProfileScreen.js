@@ -19,24 +19,38 @@ const ProfileScreen = ({ navigation, route }) => {
     const { data: myUserData } = useStore((state) => state.myUser);
     const getUserById = useStore((state) => state.getUserById);
 
-    const isMyUser = 
-        (route.params?.isFromTabs 
-            || myUserData.id === route.params?.user?.id)
-        ?? false;
+    const followUser = useStore((state) => state.followUser);
+    const unfollowUser = useStore((state) => state.unfollowUser);
+    const connections = useStore((state) => state.connections);
+
+    const [buttonLabelText, setButtonLabelText] = useState('');
+
+    const isMyUser =
+        (route.params?.isFromTabs || myUserData.id === route.params?.user?.id) ?? false;
 
     useEffect(() => {
-        const unsubscribe =  navigation.addListener('focus', () => {
+        const unsubscribe = navigation.addListener('focus', () => {
             const { user } = route.params;
             const { id } = user;
             refreshParent(id);
-        })
-        
+        });
+
         return () => {
             unsubscribe();
-        }
+        };
     }, [navigation]);
-    const buttonLabelText = isMyUser ? 'Edit Profile' : 'Follow';
 
+    useEffect(() => {
+        if (data) {
+            if (isMyUser) {
+                setButtonLabelText('Edit Profile');
+            } else if (data.isFollowing) {
+                setButtonLabelText('Unfollow');
+            } else {
+                setButtonLabelText('Follow');
+            }
+        }
+    }, [data]);
     const dataPosts = [
         {
             avatarUrl: null,
@@ -68,11 +82,19 @@ const ProfileScreen = ({ navigation, route }) => {
         setIsModalOpen(true);
     };
 
-    const navigateToEditUser = () => {
+    const buttonPressHandler = () => {
         if (isMyUser) {
             navigation.navigate(Screens.EDIT_USER, {
                 user: data,
                 onGoBack: refreshParent,
+            });
+        } else if (data?.isFollowing) {
+            unfollowUser(myUserData.id, data.id).then(() => {
+                refreshParent(data.id);
+            });
+        } else {
+            followUser(myUserData.id, data.id).then(() => {
+                refreshParent(data.id);
             });
         }
     };
@@ -95,13 +117,13 @@ const ProfileScreen = ({ navigation, route }) => {
                         </TouchableOpacity>
                     )}
                 </View>
-                <Button label={buttonLabelText} onButtonPress={navigateToEditUser} />
+                <Button label={buttonLabelText} onButtonPress={buttonPressHandler} />
                 <View style={styles.labelBoxContainer}>
                     <LabelWithNumberBox label='Goals' number={20} />
                     <View style={styles.divider} />
-                    <LabelWithNumberBox label='Following' number={25} />
+                    <LabelWithNumberBox label='Following' number={connections.following.length} />
                     <View style={styles.divider} />
-                    <LabelWithNumberBox label='Followers' number={25} />
+                    <LabelWithNumberBox label='Followers' number={connections.followers.length} />
                 </View>
                 <Text style={styles.postsLabelText}>Goals</Text>
             </>

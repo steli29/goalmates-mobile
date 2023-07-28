@@ -10,7 +10,7 @@ export const createUserSlice = (set) => ({
         error: null,
         isUserLoading: false,
     },
-    editUser: async ({ email, password, firstName, lastName, image }) => {
+    editUser: async ({ email, password, firstName, lastName }) => {
         try {
             set((state) => ({
                 user: {
@@ -29,7 +29,6 @@ export const createUserSlice = (set) => ({
                     password,
                     firstName,
                     lastName,
-                    image,
                 })
             );
             const data = await response.json();

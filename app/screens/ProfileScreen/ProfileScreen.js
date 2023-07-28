@@ -51,6 +51,7 @@ const ProfileScreen = ({ navigation, route }) => {
             }
         }
     }, [data]);
+
     const dataPosts = [
         {
             avatarUrl: null,

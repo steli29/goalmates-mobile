@@ -329,7 +329,7 @@ PODS:
   - React-jsinspector (0.71.7)
   - React-logger (0.71.7):
     - glog
-  - react-native-image-picker (5.4.2):
+  - react-native-image-picker (5.6.0):
     - React-Core
   - react-native-safe-area-context (4.5.3):
     - RCT-Folly
@@ -676,7 +676,7 @@ SPEC CHECKSUMS:
   React-jsiexecutor: eaa5f71eb8f6861cf0e57f1a0f52aeb020d9e18e
   React-jsinspector: 9885f6f94d231b95a739ef7bb50536fb87ce7539
   React-logger: 3f8ebad1be1bf3299d1ab6d7f971802d7395c7ef
-  react-native-image-picker: cee5d91232561721577af297e879cd68feb9c1ad
+  react-native-image-picker: 3250bb87252d2e7b2236a57bc3e6e227ce1826bf
   react-native-safe-area-context: 2f4cee1dc8828f67fcc33cc865a9093dfedab446
   React-perflogger: 2d505bbe298e3b7bacdd9e542b15535be07220f6
   React-RCTActionSheet: 0e96e4560bd733c9b37efbf68f5b1a47615892fb

@@ -61,5 +61,8 @@ export default StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
+    },
+    unfollowButtonStyle: {
+        opacity: bp(0.4),
     }
 })

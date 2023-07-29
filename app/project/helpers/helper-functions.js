@@ -35,3 +35,13 @@ export const formatDate = (date) => {
 export const isEmptyObj = (obj) => {
     return Object.keys(obj).length === 0;
 };
+
+export const convertJavaByteArrayToJS = (javaByteArray) => {
+    const hexValues = javaByteArray.substring(3).split('');
+    const byteArray = new Uint8Array(
+        hexValues
+            .map((value, index) => parseInt(value + hexValues[index + 1], 16))
+            .filter((value) => !Number.isNaN(value))
+    );
+    return byteArray;
+};

@@ -11,10 +11,10 @@ import styles from './styles';
 import AppContext from '../../contexts/AppContext';
 
 const AppHeader = ({ title, navigation, isBackButtonHidden, route }) => {
-    const { onSaveDraftModalOpen } = useContext(AppContext);
+    const { onSaveDraftModalOpen, isDataForDraftAvailable } = useContext(AppContext);
 
     const onBackButtonPress = () => {
-        if (route.name === Screens.CREATE_GOAL) {
+        if (route.name === Screens.CREATE_GOAL && isDataForDraftAvailable) {
             onSaveDraftModalOpen();
         } else {
             navigation.goBack();

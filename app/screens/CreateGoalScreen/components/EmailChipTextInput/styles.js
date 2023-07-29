@@ -25,6 +25,7 @@ export default StyleSheet.create({
     },
     textInputContainer: {
         marginVertical: Platform.OS === 'ios' ? 10 : -2,
+        marginHorizontal: Platform.OS === 'android' ? -2 : 0,
     },
     tagContainerStyle: {
         paddingVertical: 0,

@@ -3,9 +3,9 @@ import { bp } from '../../project/utils/relativeUnitUtils';
 
 export default StyleSheet.create({
     mainContainer: {
-        flex: 1,
+        // flex: 1,
         
-        paddingTop: bp(20),
+        paddingVertical: bp(20),
         paddingHorizontal: bp(27),
 
         backgroundColor: '#fff',
@@ -22,6 +22,6 @@ export default StyleSheet.create({
         right: 0,
     },
     buttonContainerStyle: {
-        marginTop: bp(38),
+        marginVertical: bp(38),
     }
 });

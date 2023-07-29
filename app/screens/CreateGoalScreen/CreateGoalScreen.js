@@ -1,10 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import LabelWithTextInput from '../../components/LabelWithTextInput/LabelWithTextInput';
 import Label from '../../components/Label/Label';
-import ReminderDropDown from './components/ReminderDropDown/ReminderDropDown';
+// import ReminderDropDown from './components/ReminderDropDown/ReminderDropDown';
 import EmailChipTextInput from './components/EmailChipTextInput/EmailChipTextInput';
 import Button from '../../components/Button/Button';
 
@@ -17,20 +16,20 @@ import { isEmptyObj } from '../../project/helpers/helper-functions';
 const CreateGoalScreen = ({ navigation }) => {
     const [goalTitle, setGoalTitle] = useState('');
     const [goalDescription, setGoalDescription] = useState('');
-    const [reminder, setReminder] = useState(null);
     const [emails, setEmails] = useState([]);
+    // const [reminder, setReminder] = useState(null);
 
-    const { isSaveDraftModalOpen, onSaveDraftModalClose } = useContext(AppContext);
+    const { isSaveDraftModalOpen, onSaveDraftModalClose, onSetDraftDataAvailable } = useContext(AppContext);
 
-    const SeparatorItem = () => {
-        return (
-            <View
-                style={{
-                    height: 16,
-                }}
-            />
-        );
-    };
+    // const SeparatorItem = () => {
+    //     return (
+    //         <View
+    //             style={{
+    //                 height: 16,
+    //             }}
+    //         />
+    //     );
+    // };
 
     const onFocus = async () => {
         const result = await getDraft();
@@ -38,10 +37,10 @@ const CreateGoalScreen = ({ navigation }) => {
         if (!isEmptyObj(result)) {
             setGoalTitle(result.goalTitle);
             setGoalDescription(result.goalDescription);
-            setReminder(result.reminder);
             setEmails(result.emails);
 
             saveDraft({});
+            onSetDraftDataAvailable(true);
         }
     };
 
@@ -49,7 +48,6 @@ const CreateGoalScreen = ({ navigation }) => {
         saveDraft({
             goalTitle,
             goalDescription,
-            reminder,
             emails,
         });
     };
@@ -57,12 +55,12 @@ const CreateGoalScreen = ({ navigation }) => {
     const onDiscardDraft = () => {
         setGoalTitle('');
         setGoalDescription('');
-        setReminder(null);
         setEmails([]);
     }
 
     useEffect(() => {
         const unsubscribe = navigation.addListener('focus', () => {
+            onSetDraftDataAvailable(false);
             onFocus();
         });
 
@@ -70,6 +68,14 @@ const CreateGoalScreen = ({ navigation }) => {
             unsubscribe();
         };
     }, [navigation]);
+
+    useEffect(() => {
+        if(goalDescription || goalTitle || emails.length > 0){
+            onSetDraftDataAvailable(true);
+        } else {
+            onSetDraftDataAvailable(false);
+        }
+    }, [goalTitle, goalDescription, emails])
 
     return (
         <>
@@ -91,15 +97,15 @@ const CreateGoalScreen = ({ navigation }) => {
                     isMultiLine
                     onChangeInputField={setGoalDescription}
                 />
-                <Label label='Reminder' />
+                {/* <Label label='Reminder' />
                 <ReminderDropDown
                     reminder={reminder}
                     setReminder={setReminder}
                     labelTextStyle={styles.labelTextStyle}
                     borderStyle={styles.dropDownBorderStyle}
                     containerStyle={styles.dropDownPickerStyle}
-                />
-                <SeparatorItem />
+                /> */}
+                {/* <SeparatorItem /> */}
                 <Label label='Share with' />
                 <EmailChipTextInput emails={emails} setEmails={setEmails} />
                 <Button label='Upload' buttonContainerStyle={styles.uploadButtonContainerStyle} />

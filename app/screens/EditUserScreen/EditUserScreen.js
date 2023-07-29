@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import { View, TouchableOpacity } from 'react-native';
 import { launchImageLibrary } from 'react-native-image-picker';
@@ -16,19 +16,25 @@ import ErrorModal from '../../components/ErrorModal/ErrorModal';
 const EditUserScreen = ({ route }) => {
     const { user, onGoBack } = route.params;
     const navigation = useNavigation();
+
+    const { error } = useStore((state) => state.user);
     const editUser = useStore((state) => state.editUser);
     const clearUserError = useStore((state) => state.clearUserError);
-    const { error } = useStore((state) => state.user);
+    const editImage = useStore((state) => state.editImage);
 
     const [firstName, setFirstName] = useState(user.firstName || null);
     const [lastName, setLastName] = useState(user.lastName || null);
     const [email, setEmail] = useState(user.email || null);
     const [password, setPassword] = useState(null);
+    const prevImage = useRef(user.image);
     const [imageUrl, setImageUrl] = useState(user.image || null);
     const [isEditPressed, setIsEditPressed] = useState(false);
 
     const openImagesGallery = async () => {
-        const response = await launchImageLibrary();
+        const response = await launchImageLibrary({
+            maxWidth: 50,
+            maxHeight: 50,
+        });
 
         if (response?.assets) {
             setImageUrl(response.assets[0]);
@@ -41,11 +47,12 @@ const EditUserScreen = ({ route }) => {
             lastName,
             email,
             password,
-            image: imageUrl,
         });
+        if (imageUrl) {
+            editImage(imageUrl);
+        }
         setIsEditPressed(true);
     };
-
     useEffect(() => {
         if (isEditPressed) {
             setIsEditPressed(false);
@@ -58,12 +65,9 @@ const EditUserScreen = ({ route }) => {
 
     return (
         <View style={styles.mainContainer}>
-            <ErrorModal 
-                error={error}
-                onErrorClear={clearUserError}
-            />
+            <ErrorModal error={error} onErrorClear={clearUserError} />
             <View style={styles.avatarAndEditButtonContainerStyle}>
-                <AvatarImage size={67} imageUrl={imageUrl} />
+                <AvatarImage size={67} imageUrl={imageUrl?.uri} />
                 <TouchableOpacity style={styles.editPhotoButtonStyle} onPress={openImagesGallery}>
                     <EditPhotoSvg />
                 </TouchableOpacity>

@@ -1,3 +1,4 @@
+import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { ASYNC_STORAGE_KEYS, isAndroid } from '../constants';
@@ -19,12 +20,25 @@ export const protectedFetch = async (url, method, headers = null, body = null) =
     });
 };
 
+export const createAxiosInstance = async () => {
+    const session = await getSession();
+    const { token } = session;
+
+    const instance = axios.create({
+        baseURL: HOSTNAME,
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+    });
+    return instance;
+};
+
 export const saveDraft = async (draft) => {
     await AsyncStorage.setItem(ASYNC_STORAGE_KEYS.CREATE_GOAL_DRAFT, JSON.stringify(draft));
-}
+};
 
 export const getDraft = async () => {
     const draft = await AsyncStorage.getItem(ASYNC_STORAGE_KEYS.CREATE_GOAL_DRAFT);
 
     return JSON.parse(draft);
-}
+};

@@ -1,4 +1,4 @@
-import { protectedFetch } from '../project/api/helpers';
+import { createAxiosInstance } from '../project/api/helpers';
 
 export const createSearchUsersSlice = (set) => ({
     searchResults: {
@@ -6,7 +6,8 @@ export const createSearchUsersSlice = (set) => ({
         error: null,
         isSearchResultsLoading: false,
     },
-    searchUsers: async (queryString) => {
+    searchUsers: async (name) => {
+        const instance = await createAxiosInstance();
         try {
             set((state) => ({
                 searchResults: {
@@ -14,21 +15,20 @@ export const createSearchUsersSlice = (set) => ({
                     isSearchResultsLoading: true,
                 },
             }));
-            const response = await protectedFetch(
-                `/user/search?${new URLSearchParams({
-                    name: queryString,
-                })}`,
-                'GET'
-            );
+            const response = await instance.get('/user/search', {
+                params: {
+                    name,
+                },
+            });
 
-            const data = await response.json();
+            const { data } = response;
             if (response.status === 200) {
-                set((state) => ({ 
-                    searchResults: { 
+                set((state) => ({
+                    searchResults: {
                         ...state.searchResults,
                         isSearchResultsLoading: false,
-                        data
-                    } 
+                        data,
+                    },
                 }));
             } else {
                 set((state) => ({

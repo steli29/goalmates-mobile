@@ -118,7 +118,11 @@ const ProfileScreen = ({ navigation, route }) => {
                         </TouchableOpacity>
                     )}
                 </View>
-                <Button label={buttonLabelText} onButtonPress={buttonPressHandler} />
+                <Button 
+                    label={buttonLabelText} 
+                    onButtonPress={buttonPressHandler} 
+                    buttonContainerStyle={buttonLabelText === 'Unfollow' ? styles.unfollowButtonStyle : null}
+                />
                 <View style={styles.labelBoxContainer}>
                     <LabelWithNumberBox label='Goals' number={20} />
                     <View style={styles.divider} />

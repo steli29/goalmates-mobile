@@ -1,4 +1,4 @@
-import { protectedFetch } from '../project/api/helpers';
+import { createAxiosInstance } from '../project/api/helpers';
 
 export const createFollowersSlice = (set) => ({
     connections: {
@@ -7,103 +7,108 @@ export const createFollowersSlice = (set) => ({
         error: null,
     },
     followUser: async (followerId, followeeId) => {
+        const instance = await createAxiosInstance();
         try {
-            await protectedFetch(
+            await instance.post(
                 '/follow',
-                'POST',
-                {
-                    'Content-Type': 'application/json',
-                },
                 JSON.stringify({
                     followerId,
                     followeeId,
-                })
+                }),
+                {
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                }
             );
         } catch (err) {
             console.log(err);
         }
     },
     unfollowUser: async (followerId, followeeId) => {
+        const instance = await createAxiosInstance();
         try {
-            await protectedFetch(
+            await instance.post(
                 '/follow/unfollow',
-                'POST',
-                {
-                    'Content-Type': 'application/json',
-                },
                 JSON.stringify({
                     followerId,
                     followeeId,
-                })
+                }),
+                {
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                }
             );
         } catch (err) {
             console.log(err);
         }
     },
     getAllFollowing: async (followerId) => {
+        const instance = await createAxiosInstance();
         try {
-            const response = await protectedFetch(
-                `/follow/following?${new URLSearchParams({
+            const response = await instance.get('/follow/following', {
+                params: {
                     followerId,
-                })}`,
-                'GET',
-            );
-            const data = await response.json();
-            if(response.status === 200) {
+                },
+            });
+            const { data } = response;
+            if (response.status === 200) {
                 set((state) => ({
                     connections: {
                         ...state.connections,
                         following: data,
-                    }
-                }))
+                    },
+                }));
             } else {
                 set((state) => ({
                     connections: {
                         ...state.connections,
                         error: data.message,
-                    }
+                    },
                 }));
             }
-        } catch(err) {
+        } catch (err) {
             set((state) => ({
                 connections: {
                     ...state.connections,
                     error: err.message,
-                }
-            }))
+                },
+            }));
         }
     },
     getAllFollowers: async (followeeId) => {
+        const instance = await createAxiosInstance();
         try {
-            const response = await protectedFetch(
-                `/follow/followed?${new URLSearchParams({
+            const response = await instance.get('/follow/followed', {
+                params: {
                     followeeId,
-                })}`,
-                'GET',
-            );
-            const data = await response.json();
-            if(response.status === 200) {
+                },
+            });
+
+            const { data } = response;
+            if (response.status === 200) {
                 set((state) => ({
                     connections: {
                         ...state.connections,
                         followers: data,
-                    }
-                }))
+                    },
+                }));
             } else {
                 set((state) => ({
                     connections: {
                         ...state.connections,
                         error: data.message,
-                    }
+                    },
                 }));
             }
-        } catch(err) {
+        } catch (err) {
             set((state) => ({
                 connections: {
                     ...state.connections,
                     error: err.message,
-                }
-            }))
+                },
+            }));
         }
     },
     clearConnectionsError: () => {
@@ -111,7 +116,7 @@ export const createFollowersSlice = (set) => ({
             connections: {
                 ...state.connections,
                 error: null,
-            }
-        }))
-    }
+            },
+        }));
+    },
 });

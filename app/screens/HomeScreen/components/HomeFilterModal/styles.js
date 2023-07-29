@@ -12,7 +12,7 @@ export default StyleSheet.create({
     },
     mainContainer: {
         justifyContent: 'center',
-        height: bp(250),
+        height: bp(230),
 
         paddingHorizontal: bp(25),
 
@@ -22,7 +22,7 @@ export default StyleSheet.create({
         backgroundColor: '#EBEBF0',
     },
     headerContainer: {
-        marginBottom: bp(40),
+        marginBottom: bp(30),
     },
     closeIconsStyle: {
         alignSelf: 'flex-end',

@@ -1,4 +1,4 @@
-import { protectedFetch } from '../project/api/helpers';
+import { createAxiosInstance } from '../project/api/helpers';
 import { setSession } from '../project/api/sessionUtils';
 
 import { createAuthenticationSlice } from './authenticationSlice';
@@ -11,6 +11,7 @@ export const createUserSlice = (set) => ({
         isUserLoading: false,
     },
     editUser: async ({ email, password, firstName, lastName }) => {
+        const instance = await createAxiosInstance();
         try {
             set((state) => ({
                 user: {
@@ -18,20 +19,21 @@ export const createUserSlice = (set) => ({
                     isUserLoading: true,
                 },
             }));
-            const response = await protectedFetch(
+            const response = await instance.post(
                 '/user/edit',
-                'POST',
-                {
-                    'Content-Type': 'application/json',
-                },
                 JSON.stringify({
                     email,
                     password,
                     firstName,
                     lastName,
-                })
+                }),
+                {
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                }
             );
-            const data = await response.json();
+            const { data } = response;
             if (response.status === 200) {
                 await setSession(data);
                 createAuthenticationSlice(set).setUser(data);
@@ -61,6 +63,7 @@ export const createUserSlice = (set) => ({
         }
     },
     getUserById: async (id) => {
+        const instance = await createAxiosInstance();
         try {
             set((state) => ({
                 user: {
@@ -68,13 +71,12 @@ export const createUserSlice = (set) => ({
                     isUserLoading: true,
                 },
             }));
-            const response = await protectedFetch(
-                `/user/?${new URLSearchParams({
+            const response = await instance.get('/user/', {
+                params: {
                     id,
-                })}`,
-                'GET'
-            );
-            const data = await response.json();
+                },
+            });
+            const { data } = response;
             if (response.status === 200) {
                 await createFollowersSlice(set).getAllFollowers(id);
                 await createFollowersSlice(set).getAllFollowing(id);

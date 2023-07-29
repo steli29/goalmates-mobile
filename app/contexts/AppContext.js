@@ -4,6 +4,8 @@ export const saveDraftModalInitialState = {
     isSaveDraftModalOpen: false,
     onSaveDraftModalOpen: () => undefined,
     onSaveDraftModalClose: () => undefined,
+    isDataForDraftAvailable: false,
+    onSetDraftDataAvailable: () => undefined,
 }
 
 const AppContext = createContext({

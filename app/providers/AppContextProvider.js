@@ -7,6 +7,7 @@ import AppContext from '../contexts/AppContext';
 
 const AppContextProvider = (props) => {
     const [isSaveDraftModalOpen, setIsSaveDraftModalVisible] = useState(false);
+    const [isDataForDraftAvailable, setIsDataForDraftAvailable] = useState(false);
 
     const onSaveDraftModalOpen = () => {
         setIsSaveDraftModalVisible(true);
@@ -16,10 +17,18 @@ const AppContextProvider = (props) => {
         setIsSaveDraftModalVisible(false);
     };
 
+    const onSetDraftDataAvailable = (value) => {
+        if (isDataForDraftAvailable !== value) {
+            setIsDataForDraftAvailable(value);
+        }
+    }
+
     const value = {
         isSaveDraftModalOpen,
         onSaveDraftModalClose,
         onSaveDraftModalOpen,
+        isDataForDraftAvailable,
+        onSetDraftDataAvailable,
     };
 
     return <AppContext.Provider value={value}>{props.children}</AppContext.Provider>;

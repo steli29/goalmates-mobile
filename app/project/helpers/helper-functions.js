@@ -45,3 +45,7 @@ export const convertJavaByteArrayToJS = (javaByteArray) => {
     );
     return byteArray;
 };
+
+export const convertBase64ToImage = (base64Str) => {
+    return `data:image/png;base64,${base64Str}`
+}

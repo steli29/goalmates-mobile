@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import PropTypes from 'prop-types';
+
+import { useStore } from '../../zustand/root-reducer';
+import { Screens } from '../../project/constants';
 
 import Button from '../../components/Button/Button';
 import BottomLink from '../../components/BottomLink/BottomLink';
@@ -9,12 +12,33 @@ import AuthHeadLine from '../../components/AuthHeadLine/AuthHeadLine';
 import CodeVerification from './components/CodeVerification/CodeVerification';
 
 import styles from './styles';
+import ErrorModal from '../../components/ErrorModal/ErrorModal';
 
-const VerifyScreen = ({ route }) => {
-    const { registerUser, email } = route.params;
+const VerifyScreen = ({ route, navigation }) => {
+    const verify = useStore((state) => state.verify);
+    const myUser = useStore((state) => state.myUser);
+    const clearError = useStore((state) => state.clearError);
+
+    const [code, setCode] = useState('');
+
+    const { email } = route.params;
+
+    const verifyUser = async () => {
+        await verify(email, code);
+    }
+
+    useEffect(() => {
+        if(myUser.data === 200) {
+            navigation.navigate(Screens.LOGIN);
+        }
+    }, [myUser]);
 
     return (
         <SafeAreaView style={styles.mainContainer}>
+            <ErrorModal 
+                error={myUser.error}
+                onErrorClear={clearError}
+            />
             <View>
                 <AuthHeadLine
                     headline='Check your Mail'
@@ -27,10 +51,13 @@ const VerifyScreen = ({ route }) => {
                         <Text>. Make sure you enter correct code.</Text>
                     </Text>
                 </View>
-                <CodeVerification />
+                <CodeVerification
+                    value={code}
+                    setValue={setCode}
+                />
                 <Button
                     label='Verify'
-                    onButtonPress={registerUser}
+                    onButtonPress={verifyUser}
                     buttonContainerStyle={styles.buttonContainerStyle}
                 />
             </View>

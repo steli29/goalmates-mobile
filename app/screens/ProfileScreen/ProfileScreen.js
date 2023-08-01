@@ -108,7 +108,7 @@ const ProfileScreen = ({ navigation, route }) => {
         return (
             <>
                 <View style={styles.topRowWithNamedContainer}>
-                    <AvatarImage size={67} />
+                    <AvatarImage size={67} imageUrl={data?.image} />
                     <Text style={styles.nameLabel}>
                         {data?.firstName} {data?.lastName}
                     </Text>

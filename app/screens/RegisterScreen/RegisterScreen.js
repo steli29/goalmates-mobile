@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View } from 'react-native';
 import PropTypes from 'prop-types';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -16,7 +16,7 @@ import styles from './styles';
 
 const RegisterScreen = ({ navigation }) => {
     const register = useStore((state) => state.register);
-    const { error } = useStore((state) => state.myUser);
+    const myUser = useStore((state) => state.myUser);
     const clearError = useStore((state) => state.clearError);
 
     const [email, setEmail] = useState('');
@@ -29,13 +29,7 @@ const RegisterScreen = ({ navigation }) => {
     };
 
     const onContinuePress = async () => {
-        registerUser();
-        // if(error !== null) {
-            navigation.navigate(Screens.VERIFY, {
-                // registerUser,
-                // email
-            })
-        // }
+        await registerUser();
     }
     
     const registerUser = async () => {
@@ -47,10 +41,18 @@ const RegisterScreen = ({ navigation }) => {
         });
     }
 
+    useEffect(() => {
+        if(myUser.data === 200) {
+            navigation.navigate(Screens.VERIFY, {
+                email
+            })
+        }
+    }, [myUser])
+
     return (
         <SafeAreaView style={styles.mainContainer}>
             <ErrorModal 
-                error={error}
+                error={myUser.error}
                 onErrorClear={clearError}
             />
             <View>

@@ -9,7 +9,7 @@ const AvatarImage = ({ imageUrl, size }) => {
 
     return (
         <Image
-            source={imageUrl ? { uri: imageUrl } : defaultImageUrl}
+            source={imageUrl ? { uri: imageUrl.uri } : defaultImageUrl}
             style={{
                 width: bp(size),
                 height: bp(size),

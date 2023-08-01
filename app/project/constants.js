@@ -13,6 +13,7 @@ export const Screens = {
     CREATE_GOAL: 'Create_Goal',
     SEARCH: 'Search',
     NOTIFICATIONS: 'Notifications',
+    GOAL_DETAILS: 'Goal_Details',
 };
 
 export const TabNames = {

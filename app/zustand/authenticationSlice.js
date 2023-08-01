@@ -22,11 +22,10 @@ export const createAuthenticationSlice = (set) => ({
             });
             const data = await response.json();
             if (response.status === 200) {
-                await setSession(data);
                 set((state) => ({ myUser: {
                     ...state.myUser,
-                    data,
-                } }));
+                    data: response.status,
+                }}));
             } else {
                 set((state) => ({ myUser: {
                     ...state.myUser,
@@ -71,6 +70,37 @@ export const createAuthenticationSlice = (set) => ({
                 error: err.message,
             }}));
         }
+    },
+    verify: async (email, code) => {
+        try {
+            const response = await fetch(`${HOSTNAME}/auth/verify`, {
+                method: 'POST',
+                body: JSON.stringify({
+                    email,
+                    code,
+                }),
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+            const data = await response.json();
+            if (response.status === 200) {
+                set((state) => ({ myUser: {
+                    ...state.myUser,
+                    data: response.status,
+                }}));
+            } else {
+                set((state) => ({ myUser: {
+                    ...state.myUser,
+                    error: data.message,
+                }}));
+            }
+        } catch(err){
+            set((state) => ({ myUser: {
+                ...state.myUser,
+                error: err.message,
+            }}));
+        } 
     },
     logout: async () => {
         await clearSession();

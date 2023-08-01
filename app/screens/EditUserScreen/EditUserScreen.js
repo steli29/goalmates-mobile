@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { View, TouchableOpacity } from 'react-native';
 import { launchImageLibrary } from 'react-native-image-picker';
@@ -26,14 +26,13 @@ const EditUserScreen = ({ route }) => {
     const [lastName, setLastName] = useState(user.lastName || null);
     const [email, setEmail] = useState(user.email || null);
     const [password, setPassword] = useState(null);
-    const prevImage = useRef(user.image);
     const [imageUrl, setImageUrl] = useState(user.image || null);
     const [isEditPressed, setIsEditPressed] = useState(false);
 
     const openImagesGallery = async () => {
         const response = await launchImageLibrary({
-            maxWidth: 50,
-            maxHeight: 50,
+            maxWidth: 100,
+            maxHeight: 100,
         });
 
         if (response?.assets) {
@@ -57,8 +56,10 @@ const EditUserScreen = ({ route }) => {
         if (isEditPressed) {
             setIsEditPressed(false);
             if (!error) {
-                onGoBack(user.id);
-                navigation.goBack();
+                setTimeout(() => {
+                    onGoBack(user.id);
+                    navigation.goBack();
+                }, 1000);
             }
         }
     }, [error, isEditPressed]);
@@ -67,7 +68,7 @@ const EditUserScreen = ({ route }) => {
         <View style={styles.mainContainer}>
             <ErrorModal error={error} onErrorClear={clearUserError} />
             <View style={styles.avatarAndEditButtonContainerStyle}>
-                <AvatarImage size={67} imageUrl={imageUrl?.uri} />
+                <AvatarImage size={67} imageUrl={imageUrl} />
                 <TouchableOpacity style={styles.editPhotoButtonStyle} onPress={openImagesGallery}>
                     <EditPhotoSvg />
                 </TouchableOpacity>

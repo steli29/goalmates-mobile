@@ -10,6 +10,7 @@ import EditUserScreen from '../../screens/EditUserScreen/EditUserScreen';
 import CreateGoalScreen from '../../screens/CreateGoalScreen/CreateGoalScreen';
 import NotificationsScreen from '../../screens/NotificationScreen/NotificationsScreen';
 import SearchScreen from '../../screens/SearchScreen/SearchScreen';
+import GoalDetailsScreen from '../../screens/GoalDetailsScreen/GoalDetailsScreen';
 
 const HomeScreenStack = createNativeStackNavigator();
 export const HomeStack = () => {
@@ -26,11 +27,8 @@ export const HomeStack = () => {
                 name={Screens.PROFILE}
                 component={ProfileScreen}
                 options={({ navigation, route }) => {
-                    const {
-                        isFromTabs = false,
-                        user: { firstName, lastName },
-                    } = route.params;
-                    const title = `${firstName} ${lastName}'s Profile`;
+                    const { isFromTabs = false, user } = route.params;
+                    const title = isFromTabs ? 'My Profile' : `${user.firstName} ${user.lastName}`;
                     return {
                         header: () =>
                             CustomAppHeader({
@@ -50,6 +48,21 @@ export const HomeStack = () => {
                         header: () =>
                             CustomAppHeader({
                                 title: 'Edit Profile',
+                                navigation,
+                                route,
+                                isBackButtonHidden: false,
+                            }),
+                    };
+                }}
+            />
+            <HomeScreenStack.Screen
+                name={Screens.GOAL_DETAILS}
+                component={GoalDetailsScreen}
+                options={({ navigation, route }) => {
+                    return {
+                        header: () =>
+                            CustomAppHeader({
+                                title: 'Goal Details',
                                 navigation,
                                 route,
                                 isBackButtonHidden: false,
@@ -97,6 +110,21 @@ export const ProfileStack = () => {
                     };
                 }}
             />
+            <ProfileScreenStack.Screen
+                name={Screens.GOAL_DETAILS}
+                component={GoalDetailsScreen}
+                options={({ navigation, route }) => {
+                    return {
+                        header: () =>
+                            CustomAppHeader({
+                                title: 'Goal Details',
+                                navigation,
+                                route,
+                                isBackButtonHidden: false,
+                            }),
+                    };
+                }}
+            />
         </ProfileScreenStack.Navigator>
     );
 };
@@ -116,11 +144,8 @@ export const SearchStack = () => {
                 name={Screens.PROFILE}
                 component={ProfileScreen}
                 options={({ navigation, route }) => {
-                    const {
-                        isFromTabs = false,
-                        user: { firstName, lastName },
-                    } = route.params;
-                    const title = isFromTabs ? 'My Profile' : `${firstName} ${lastName}`;
+                    const { isFromTabs = false, user } = route.params;
+                    const title = isFromTabs ? 'My Profile' : `${user.firstName} ${user.lastName}`;
                     return {
                         header: () =>
                             CustomAppHeader({
@@ -140,6 +165,21 @@ export const SearchStack = () => {
                         header: () =>
                             CustomAppHeader({
                                 title: 'Edit Profile',
+                                navigation,
+                                route,
+                                isBackButtonHidden: false,
+                            }),
+                    };
+                }}
+            />
+            <SearchScreenStack.Screen
+                name={Screens.GOAL_DETAILS}
+                component={GoalDetailsScreen}
+                options={({ navigation, route }) => {
+                    return {
+                        header: () =>
+                            CustomAppHeader({
+                                title: 'Goal Details',
                                 navigation,
                                 route,
                                 isBackButtonHidden: false,

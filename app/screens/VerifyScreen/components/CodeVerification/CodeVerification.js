@@ -1,16 +1,16 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
     CodeField,
     Cursor,
     useBlurOnFulfill,
     useClearByFocusCell,
 } from 'react-native-confirmation-code-field';
+import PropTypes from 'prop-types';
 
 import CodeDigitBox from '../CodeDigitBox/CodeDigitBox';
 
-const CodeVerification = () => {
+const CodeVerification = ({ value, setValue}) => {
     const CELL_COUNT = 6;
-    const [value, setValue] = useState('');
     const ref = useBlurOnFulfill({ value, cellCount: CELL_COUNT });
     const [props, getCellOnLayoutHandler] = useClearByFocusCell({
         value,
@@ -36,6 +36,11 @@ const CodeVerification = () => {
             )}
         />
     );
+};
+
+CodeVerification.propTypes = {
+    value: PropTypes.string,
+    setValue: PropTypes.func,
 };
 
 export default CodeVerification;

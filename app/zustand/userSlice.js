@@ -1,5 +1,6 @@
 import { createAxiosInstance } from '../project/api/helpers';
 import { setSession } from '../project/api/sessionUtils';
+import { convertBase64ToImage } from '../project/helpers/helper-functions';
 
 import { createAuthenticationSlice } from './authenticationSlice';
 import { createFollowersSlice } from './followersSlice';
@@ -80,11 +81,17 @@ export const createUserSlice = (set) => ({
             if (response.status === 200) {
                 await createFollowersSlice(set).getAllFollowers(id);
                 await createFollowersSlice(set).getAllFollowing(id);
+                const image = {
+                    uri: convertBase64ToImage(data.image),
+                }
                 set((state) => ({
                     user: {
                         ...state.user,
                         isUserLoading: false,
-                        data,
+                        data: {
+                            ...data,
+                            image,
+                        }
                     },
                 }));
             } else {

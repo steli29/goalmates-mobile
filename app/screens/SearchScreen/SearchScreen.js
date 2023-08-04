@@ -42,6 +42,7 @@ const SearchScreen = ({ navigation }) => {
             <SearchItem 
                 firstName={item.firstName}
                 lastName={item.lastName}
+                image={item.image}
                 onUserPress={onPress}
             />
         );

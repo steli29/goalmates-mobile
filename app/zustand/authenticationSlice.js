@@ -1,9 +1,11 @@
 import { HOSTNAME } from '../project/api/helpers';
 import { setSession, clearSession } from '../project/api/sessionUtils';
+import { convertBase64ToImage } from '../project/helpers/helper-functions';
 
 export const createAuthenticationSlice = (set) => ({
     myUser: {
         data: null,
+        status: null,
         error: null,
     },
     register: async ({ email, password, firstName, lastName }) => {
@@ -24,7 +26,7 @@ export const createAuthenticationSlice = (set) => ({
             if (response.status === 200) {
                 set((state) => ({ myUser: {
                     ...state.myUser,
-                    data: response.status,
+                    status: 'ok from register',
                 }}));
             } else {
                 set((state) => ({ myUser: {
@@ -54,9 +56,18 @@ export const createAuthenticationSlice = (set) => ({
             const data = await response.json();
             if (response.status === 200) {
                 await setSession(data);
+                let image = null;
+                if(data.image) {
+                    image = {
+                        uri: convertBase64ToImage(data.image),
+                    }
+                };
                 set((state) => ({ myUser: {
                     ...state.myUser,
-                    data,
+                    data: {
+                        ...data,
+                        image,
+                    },
                 } }));
             } else {
                 set((state) => ({ myUser: {
@@ -87,7 +98,7 @@ export const createAuthenticationSlice = (set) => ({
             if (response.status === 200) {
                 set((state) => ({ myUser: {
                     ...state.myUser,
-                    data: response.status,
+                    status: 'ok from verify',
                 }}));
             } else {
                 set((state) => ({ myUser: {

@@ -85,6 +85,7 @@ const HomeScreen = () => {
                 ListHeaderComponent={HomeHeader}
                 ItemSeparatorComponent={ItemSeparator}
                 showsVerticalScrollIndicator={false}
+                contentContainerStyle={styles.contentContainerStyle}
             />
         </SafeAreaView>
     );

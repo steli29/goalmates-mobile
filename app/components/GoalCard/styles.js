@@ -7,7 +7,7 @@ import { FONT_FAMILY, FONT_WEIGHT } from '../../project/constants';
 export default StyleSheet.create({
     mainContainer: {
         width: bp(335),
-        
+
         paddingHorizontal: bp(19),
 
         borderRadius: bp(10),
@@ -56,5 +56,9 @@ export default StyleSheet.create({
         ...fontStylePicker(FONT_FAMILY.POPPINS, FONT_WEIGHT.NORMAL),
         fontSize: bp(14),
         color: 'rgba(0, 0, 0, 0.5)',
-    }
+    },
+    dotsStyle: {
+        position: 'absolute',
+        right: 0,
+    },
 });

@@ -42,7 +42,7 @@ const RegisterScreen = ({ navigation }) => {
     }
 
     useEffect(() => {
-        if(myUser.data === 200) {
+        if(myUser.status === 'ok from register') {
             navigation.navigate(Screens.VERIFY, {
                 email
             })

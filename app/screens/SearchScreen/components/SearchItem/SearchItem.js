@@ -6,10 +6,11 @@ import AvatarImage from '../../../../components/AvatarImage/AvatarImage';
 
 import styles from '../../styles';
 
-const SearchItem = ({ onUserPress, firstName, lastName }) => {
+const SearchItem = ({ onUserPress, firstName, lastName, image }) => {
+
     return (
         <TouchableOpacity style={styles.profileContainer} onPress={onUserPress}>
-            <AvatarImage size={50} />
+            <AvatarImage size={50} imageUrl={image}/>
             <Text style={styles.nameLabel}>
                 {firstName} {lastName}
             </Text>
@@ -21,6 +22,7 @@ SearchItem.propTypes = {
     onUserPress: PropTypes.func,
     firstName: PropTypes.string,
     lastName: PropTypes.string,
+    image: PropTypes.object,
 }
 
 export default SearchItem;

@@ -16,5 +16,8 @@ export default StyleSheet.create({
     },
     separatorStyle: {
         height: bp(25),
+    },
+    contentContainerStyle: {
+        paddingBottom: bp(20),
     }
 })

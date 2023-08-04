@@ -28,7 +28,7 @@ const VerifyScreen = ({ route, navigation }) => {
     }
 
     useEffect(() => {
-        if(myUser.data === 200) {
+        if(myUser.status === 'ok from verify') {
             navigation.navigate(Screens.LOGIN);
         }
     }, [myUser]);

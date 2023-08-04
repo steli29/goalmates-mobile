@@ -1,9 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { View } from 'react-native';
 
 import LabelWithTextInput from '../../components/LabelWithTextInput/LabelWithTextInput';
 import Label from '../../components/Label/Label';
-// import ReminderDropDown from './components/ReminderDropDown/ReminderDropDown';
 import EmailChipTextInput from './components/EmailChipTextInput/EmailChipTextInput';
 import Button from '../../components/Button/Button';
 
@@ -17,19 +16,9 @@ const CreateGoalScreen = ({ navigation }) => {
     const [goalTitle, setGoalTitle] = useState('');
     const [goalDescription, setGoalDescription] = useState('');
     const [emails, setEmails] = useState([]);
-    // const [reminder, setReminder] = useState(null);
 
-    const { isSaveDraftModalOpen, onSaveDraftModalClose, onSetDraftDataAvailable } = useContext(AppContext);
-
-    // const SeparatorItem = () => {
-    //     return (
-    //         <View
-    //             style={{
-    //                 height: 16,
-    //             }}
-    //         />
-    //     );
-    // };
+    const { isSaveDraftModalOpen, onSaveDraftModalClose, onSetDraftDataAvailable } =
+        useContext(AppContext);
 
     const onFocus = async () => {
         const result = await getDraft();
@@ -56,7 +45,7 @@ const CreateGoalScreen = ({ navigation }) => {
         setGoalTitle('');
         setGoalDescription('');
         setEmails([]);
-    }
+    };
 
     useEffect(() => {
         const unsubscribe = navigation.addListener('focus', () => {
@@ -70,12 +59,12 @@ const CreateGoalScreen = ({ navigation }) => {
     }, [navigation]);
 
     useEffect(() => {
-        if(goalDescription || goalTitle || emails.length > 0){
+        if (goalDescription || goalTitle || emails.length > 0) {
             onSetDraftDataAvailable(true);
         } else {
             onSetDraftDataAvailable(false);
         }
-    }, [goalTitle, goalDescription, emails])
+    }, [goalTitle, goalDescription, emails]);
 
     return (
         <>
@@ -85,7 +74,7 @@ const CreateGoalScreen = ({ navigation }) => {
                 onSaveDraft={onSaveDraft}
                 onDiscardDraft={onDiscardDraft}
             />
-            <SafeAreaView style={styles.mainContainer}>
+            <View style={styles.mainContainer}>
                 <LabelWithTextInput
                     label='Goal Title'
                     inputField={goalTitle}
@@ -109,7 +98,7 @@ const CreateGoalScreen = ({ navigation }) => {
                 <Label label='Share with' />
                 <EmailChipTextInput emails={emails} setEmails={setEmails} />
                 <Button label='Upload' buttonContainerStyle={styles.uploadButtonContainerStyle} />
-            </SafeAreaView>
+            </View>
         </>
     );
 };

@@ -1,4 +1,5 @@
 import { createAxiosInstance } from '../project/api/helpers';
+import { convertBase64ToImage } from '../project/helpers/helper-functions';
 
 export const createSearchUsersSlice = (set) => ({
     searchResults: {
@@ -23,11 +24,19 @@ export const createSearchUsersSlice = (set) => ({
 
             const { data } = response;
             if (response.status === 200) {
+                const mappedData = data.map((user) => {
+                    if(user.image) {
+                        user.image = {
+                            uri: convertBase64ToImage(user.image),
+                        }
+                    }
+                    return user;
+                });
                 set((state) => ({
                     searchResults: {
                         ...state.searchResults,
                         isSearchResultsLoading: false,
-                        data,
+                        data: mappedData,
                     },
                 }));
             } else {

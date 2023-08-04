@@ -11,6 +11,7 @@ import CreateGoalScreen from '../../screens/CreateGoalScreen/CreateGoalScreen';
 import NotificationsScreen from '../../screens/NotificationScreen/NotificationsScreen';
 import SearchScreen from '../../screens/SearchScreen/SearchScreen';
 import GoalDetailsScreen from '../../screens/GoalDetailsScreen/GoalDetailsScreen';
+import EditGoalScreen from '../../screens/EditGoalScreen/EditGoalScreen';
 
 const HomeScreenStack = createNativeStackNavigator();
 export const HomeStack = () => {
@@ -63,6 +64,21 @@ export const HomeStack = () => {
                         header: () =>
                             CustomAppHeader({
                                 title: 'Goal Details',
+                                navigation,
+                                route,
+                                isBackButtonHidden: false,
+                            }),
+                    };
+                }}
+            />
+            <HomeScreenStack.Screen
+                name={Screens.EDIT_GOAL}
+                component={EditGoalScreen}
+                options={({ navigation, route }) => {
+                    return {
+                        header: () =>
+                            CustomAppHeader({
+                                title: 'Edit Goal',
                                 navigation,
                                 route,
                                 isBackButtonHidden: false,
@@ -125,6 +141,21 @@ export const ProfileStack = () => {
                     };
                 }}
             />
+            <ProfileScreenStack.Screen
+                name={Screens.EDIT_GOAL}
+                component={EditGoalScreen}
+                options={({ navigation, route }) => {
+                    return {
+                        header: () =>
+                            CustomAppHeader({
+                                title: 'Edit Goal',
+                                navigation,
+                                route,
+                                isBackButtonHidden: false,
+                            }),
+                    };
+                }}
+            />
         </ProfileScreenStack.Navigator>
     );
 };
@@ -180,6 +211,21 @@ export const SearchStack = () => {
                         header: () =>
                             CustomAppHeader({
                                 title: 'Goal Details',
+                                navigation,
+                                route,
+                                isBackButtonHidden: false,
+                            }),
+                    };
+                }}
+            />
+            <SearchScreenStack.Screen
+                name={Screens.EDIT_GOAL}
+                component={EditGoalScreen}
+                options={({ navigation, route }) => {
+                    return {
+                        header: () =>
+                            CustomAppHeader({
+                                title: 'Edit Goal',
                                 navigation,
                                 route,
                                 isBackButtonHidden: false,

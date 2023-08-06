@@ -38,8 +38,8 @@ const CreateGoalScreen = ({ navigation }) => {
     };
 
     const onUploadPress = async () => {
-        onDiscardDraft();
         await createPost(goalTitle, goalDescription, emails);
+        onDiscardDraft();
         navigation.goBack();
     };
 

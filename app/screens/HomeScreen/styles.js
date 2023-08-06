@@ -8,11 +8,14 @@ export default StyleSheet.create({
         backgroundColor: '#FFFFFF',
     },
     headerContainer: {
+        width: '100%',
         flexDirection: 'row',
+        alignItems: 'center',
         justifyContent: 'space-between',
 
         marginTop: bp(20),
         marginBottom: bp(25),
+        paddingHorizontal: bp(20),
     },
     separatorStyle: {
         height: bp(25),

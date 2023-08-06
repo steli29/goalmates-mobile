@@ -3,30 +3,31 @@ import { View, Text, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import PropTypes from 'prop-types';
 
+import { Screens } from '../../project/constants';
+import { useStore } from '../../zustand/root-reducer';
+
 import GoalPreview from '../GoalPreview/GoalPreview';
 import AvatarImage from '../AvatarImage/AvatarImage';
 import ChatSvg from '../../assets/svgs/ChatSvg';
-
-import styles from './styles';
-import { Screens } from '../../project/constants';
 import ThreeDotsSvg from '../../assets/svgs/ThreeDotsSvg';
 import GoalOptionsModal from '../GoalOptionsModal/GoalOptionsModal';
 
+import styles from './styles';
+
 const GoalCard = ({
-    avatarUrl,
-    name,
     datePosted,
     commentsLength,
     title,
     description,
     progress,
-    isCurrentUser,
+    user,
+    goalId,
     isFromGoalDetails = false,
 }) => {
     const navigation = useNavigation();
-    const firstName = name.split(' ')[0];
-    const lastName = name.split(' ')[1];
-
+    const myUser = useStore((state) => state.myUser)
+    const { firstName, lastName, image, id } = user || {};
+    const isCurrentUser = id === myUser?.data?.id;
     const [isOptionsModalVisible, setIsOptionsModalVisible] = useState(false);
 
     const closeModal = () => {
@@ -38,18 +39,15 @@ const GoalCard = ({
     };
 
     const onNameItemPress = () => {
-        const params = {
-            user: {
-                userId: 3,
-                firstName,
-                lastName,
-            },
-        };
-        navigation.push(Screens.PROFILE, params);
+        navigation.push(Screens.PROFILE, {
+            user
+        });
     };
 
     const onViewPostDetailsPress = () => {
-        navigation.navigate(Screens.GOAL_DETAILS);
+        navigation.navigate(Screens.GOAL_DETAILS, {
+           goalId, 
+        });
     };
 
     const onDotsPress = () => {
@@ -61,22 +59,18 @@ const GoalCard = ({
             <GoalOptionsModal
                 isVisible={isOptionsModalVisible}
                 onClose={closeModal}
-                isCurrentUser={!isCurrentUser}
+                isCurrentUser={isCurrentUser}
                 data={{
-                    avatarUrl,
-                    name,
-                    datePosted,
-                    commentsLength,
+                    goalId,
                     title,
                     description,
-                    progress,
                 }}
             />
             <View style={[styles.rowContainer, styles.cardHeaderContainer]}>
-                <AvatarImage size={46} imageUrl={avatarUrl} />
+                <AvatarImage size={46} imageUrl={image} />
                 <View style={styles.nameAndDateContainer}>
                     <TouchableOpacity onPress={onNameItemPress}>
-                        <Text style={styles.nameText}>{name}</Text>
+                        <Text style={styles.nameText}>{`${firstName} ${lastName}`}</Text>
                     </TouchableOpacity>
                     <Text style={styles.datePostedText}>{datePosted}</Text>
                 </View>
@@ -105,14 +99,13 @@ const GoalCard = ({
 };
 
 GoalCard.propTypes = {
-    avatarUrl: PropTypes.string,
-    name: PropTypes.string,
+    user: PropTypes.object,
     datePosted: PropTypes.string,
     commentsLength: PropTypes.number,
     title: PropTypes.string,
     description: PropTypes.string,
     progress: PropTypes.number,
-    isCurrentUser: PropTypes.bool,
+    goalId: PropTypes.number,
     isFromGoalDetails: PropTypes.bool,
 };
 

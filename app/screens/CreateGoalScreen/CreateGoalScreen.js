@@ -1,21 +1,25 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { View } from 'react-native';
 
+import AppContext from '../../contexts/AppContext';
+import { getDraft, saveDraft } from '../../project/api/helpers';
+import { isEmptyObj } from '../../project/helpers/helper-functions';
+import { useStore } from '../../zustand/root-reducer';
+
 import LabelWithTextInput from '../../components/LabelWithTextInput/LabelWithTextInput';
 import Label from '../../components/Label/Label';
 import EmailChipTextInput from './components/EmailChipTextInput/EmailChipTextInput';
 import Button from '../../components/Button/Button';
+import SaveDraftModal from '../../components/SaveDraftModal/SaveDraftModal';
 
 import styles from './styles';
-import SaveDraftModal from '../../components/SaveDraftModal/SaveDraftModal';
-import AppContext from '../../contexts/AppContext';
-import { getDraft, saveDraft } from '../../project/api/helpers';
-import { isEmptyObj } from '../../project/helpers/helper-functions';
 
 const CreateGoalScreen = ({ navigation }) => {
     const [goalTitle, setGoalTitle] = useState('');
     const [goalDescription, setGoalDescription] = useState('');
     const [emails, setEmails] = useState([]);
+
+    const createPost = useStore((state) => state.createPost);
 
     const { isSaveDraftModalOpen, onSaveDraftModalClose, onSetDraftDataAvailable } =
         useContext(AppContext);
@@ -31,6 +35,12 @@ const CreateGoalScreen = ({ navigation }) => {
             saveDraft({});
             onSetDraftDataAvailable(true);
         }
+    };
+
+    const onUploadPress = async () => {
+        onDiscardDraft();
+        await createPost(goalTitle, goalDescription, emails);
+        navigation.goBack();
     };
 
     const onSaveDraft = () => {
@@ -97,7 +107,11 @@ const CreateGoalScreen = ({ navigation }) => {
                 {/* <SeparatorItem /> */}
                 <Label label='Share with' />
                 <EmailChipTextInput emails={emails} setEmails={setEmails} />
-                <Button label='Upload' buttonContainerStyle={styles.uploadButtonContainerStyle} />
+                <Button
+                    label='Upload'
+                    buttonContainerStyle={styles.uploadButtonContainerStyle}
+                    onButtonPress={onUploadPress}
+                />
             </View>
         </>
     );

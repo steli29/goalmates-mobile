@@ -15,18 +15,22 @@ import SettingsModal from './components/SettingsModal/SettingsModal';
 import styles from './styles';
 
 const ProfileScreen = ({ navigation, route }) => {
-    const { data, isUserLoading } = useStore((state) => state.user);
     const { data: myUserData } = useStore((state) => state.myUser);
+
+    const { data, isUserLoading } = useStore((state) => state.user);
     const getUserById = useStore((state) => state.getUserById);
 
     const followUser = useStore((state) => state.followUser);
     const unfollowUser = useStore((state) => state.unfollowUser);
     const connections = useStore((state) => state.connections);
 
+    const posts = useStore((state) => state.posts);
+    const getPostsByUser = useStore((state) => state.getPostsByUser);
+
     const [buttonLabelText, setButtonLabelText] = useState('');
 
     const isMyUser =
-        (route.params?.isFromTabs || myUserData.id === route.params?.user?.id) ?? false;
+        (route.params?.isFromTabs || myUserData?.id === route.params?.user?.id) ?? false;
 
     useEffect(() => {
         const unsubscribe = navigation.addListener('focus', () => {
@@ -51,27 +55,6 @@ const ProfileScreen = ({ navigation, route }) => {
             }
         }
     }, [data]);
-
-    const dataPosts = [
-        {
-            avatarUrl: null,
-            datePosted: '1hr ago',
-            name: 'Oyin Dolapo',
-            commentsLength: 57,
-            title: 'Learn new skill',
-            description: 'Complete  prototyping course',
-            progress: 0.4,
-        },
-        {
-            avatarUrl: null,
-            datePosted: '1hr ago',
-            name: 'Oyin Dolapo',
-            commentsLength: 57,
-            title: 'Learn new skill',
-            description: 'Complete  prototyping course',
-            progress: 0.9,
-        },
-    ];
 
     const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -102,6 +85,8 @@ const ProfileScreen = ({ navigation, route }) => {
 
     const refreshParent = (id) => {
         getUserById(id);
+        getPostsByUser(id);
+
     };
 
     const ProfileScreenHeader = () => {
@@ -124,7 +109,7 @@ const ProfileScreen = ({ navigation, route }) => {
                     buttonContainerStyle={buttonLabelText === 'Unfollow' ? styles.unfollowButtonStyle : null}
                 />
                 <View style={styles.labelBoxContainer}>
-                    <LabelWithNumberBox label='Goals' number={20} />
+                    <LabelWithNumberBox label='Goals' number={posts.data?.length} />
                     <View style={styles.divider} />
                     <LabelWithNumberBox label='Following' number={connections.following.length} />
                     <View style={styles.divider} />
@@ -136,23 +121,25 @@ const ProfileScreen = ({ navigation, route }) => {
     };
 
     const renderItem = ({ item, index }) => {
+        const { createdBy, title, content, id } = item;
         return (
             <View key={index} style={styles.goalCardStyle}>
                 <GoalCard
-                    avatarUrl={item.avatarUrl}
-                    datePosted={item.datePosted}
-                    name={item.name}
-                    commentsLength={item.commentsLength}
-                    title={item.title}
-                    description={item.description}
-                    progress={item.progress}
+                    datePosted='NOW'
+                    user={createdBy}
+                    commentsLength={50}
+                    title={title}
+                    description={content}
+                    goalId={id}
+                    progress={0.5}
                 />
             </View>
         );
     };
 
     const ItemSeparator = () => <View style={styles.separatorStyle} />;
-    if (isUserLoading) {
+
+    if (isUserLoading || posts.isLoading) {
         return (
             <View style={styles.loadingSpinnerContainer}>
                 <ActivityIndicator size='large' color='#B5B5B5' />
@@ -164,7 +151,7 @@ const ProfileScreen = ({ navigation, route }) => {
         <>
             <SettingsModal isVisible={isModalOpen} onClose={closeModal} />
             <FlatList
-                data={dataPosts}
+                data={posts.data}
                 renderItem={renderItem}
                 ListHeaderComponent={ProfileScreenHeader}
                 contentContainerStyle={styles.mainContainer}

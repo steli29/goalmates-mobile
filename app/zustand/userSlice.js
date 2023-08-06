@@ -83,9 +83,8 @@ export const createUserSlice = (set) => ({
                 await createFollowersSlice(set).getAllFollowing(id);
                 let image = null;
                 if(data.image) {
-                    image = {
-                        uri: convertBase64ToImage(data.image),
-                    }
+                    image = convertBase64ToImage(data.image);
+
                 }
     
                 set((state) => ({

@@ -4,16 +4,23 @@ import { Text, View, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import PropTypes from 'prop-types';
 
-import styles from './styles';
 import { Screens, currentUserOptions, otherUsersOptions } from '../../project/constants';
+import { useStore } from '../../zustand/root-reducer';
+
+import styles from './styles';
 
 const GoalOptionsModal = ({ isVisible, onClose, isCurrentUser, data }) => {
     const navigation = useNavigation();
+
+    const deletePost = useStore((state) => state.deletePost);
+    const myUser = useStore((state) => state.myUser)
 
     const optionPressMethodPicker = (option) => {
         switch (option) {
             case 'Edit':
                 return onEditPress;
+            case 'Delete': 
+                return onDeletePress;
             default:
                 return () => undefined;
         }
@@ -23,8 +30,16 @@ const GoalOptionsModal = ({ isVisible, onClose, isCurrentUser, data }) => {
         navigation.navigate(Screens.EDIT_GOAL, {
             title: data.title,
             description: data.description,
+            id: data.goalId
         });
     };
+
+    const onDeletePress = async () => {
+        await deletePost(data.goalId);
+        navigation.navigate(Screens.PROFILE, {
+            user: myUser.data,
+        })
+    }
 
     const options = isCurrentUser ? currentUserOptions : otherUsersOptions;
     return (
@@ -52,6 +67,7 @@ const GoalOptionsModal = ({ isVisible, onClose, isCurrentUser, data }) => {
                             <TouchableOpacity
                                 style={[styles.optionBoxStyle, borderStyle]}
                                 onPress={onPressHandler}
+                                key={`${option}`}
                             >
                                 <Text style={[styles.optionTextStyle, textStyle]}>{option}</Text>
                             </TouchableOpacity>

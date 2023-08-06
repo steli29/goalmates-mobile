@@ -20,7 +20,7 @@ const AvatarImage = ({ imageUrl, size }) => {
 };
 
 AvatarImage.propTypes = {
-    imageUrl: PropTypes.string,
+    imageUrl: PropTypes.object,
     size: PropTypes.number,
 };
 

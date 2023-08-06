@@ -6,6 +6,8 @@ import AvatarImage from '../../../../components/AvatarImage/AvatarImage';
 
 import styles from './styles';
 import PaperPlaneSvg from '../../../../assets/svgs/PaperPlaneSvg';
+import AttachSvg from '../../../../assets/svgs/AttachSvg';
+import CameraSvg from '../../../../assets/svgs/CameraSvg';
 
 const AddCommentInput = ({ avatarImage }) => {
     const [isSendButtonVisible, setIsSendButtonVisible] = useState(false);
@@ -24,16 +26,24 @@ const AddCommentInput = ({ avatarImage }) => {
     return (
         <View style={styles.mainContainer}>
             <AvatarImage size={44} imageUrl={avatarImage} />
-            <TextInput
-                value={comment}
-                onChangeText={setComment}
-                autoCapitalize='none'
-                autoCorrect={false}
-                multiline
-                textAlignVertical='center'
-                placeholder='Add a comment'
-                style={styles.commentInputContainer}
-            />
+            <View style={styles.commentInputContainer}>
+                <TextInput
+                    value={comment}
+                    onChangeText={setComment}
+                    autoCapitalize='none'
+                    autoCorrect={false}
+                    multiline
+                    textAlignVertical='center'
+                    placeholder='Add a comment'
+                    style={styles.commentInput}
+                />
+                <TouchableOpacity style={styles.cameraIcon}>
+                    <CameraSvg />
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.fileIcon}>
+                    <AttachSvg />
+                </TouchableOpacity>
+            </View>
             {isSendButtonVisible && (
                 <TouchableOpacity style={styles.sendCommentContainer}>
                     <PaperPlaneSvg />

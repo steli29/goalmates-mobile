@@ -44,6 +44,7 @@ export default StyleSheet.create({
     },
     postsLabelText: {
         marginTop: bp(20),
+        marginBottom: bp(20),
 
         ...fontStylePicker(FONT_FAMILY.POPPINS, FONT_WEIGHT.SEMI_BOLD),
         fontSize: bp(14),

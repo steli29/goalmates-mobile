@@ -19,23 +19,34 @@ export default StyleSheet.create({
 
 		marginLeft: bp(10),
     },
-    commentInputContainer: {
+	commentInputContainer: {
 		flex: 1,
+		flexDirection: 'row',
 		justifyContent: "center",
 		alignItems: "center",
 
 		marginLeft: bp(10),
 		paddingTop: bp(13),
 		paddingHorizontal: bp(17),
-		paddingBottom: bp(11),
+		paddingBottom: bp(13),
 
 		borderRadius: bp(30),
         borderColor: 'rgba(196, 196, 196, 0.5)',
 		borderWidth: bp(1),
-
+	},
+    commentInput: {
+		flex: 1,
         ...fontStylePicker(FONT_FAMILY.NUNITO, FONT_WEIGHT.NORMAL),
 		fontSize: bp(15),
 		lineHeight: bp(20),
 		letterSpacing: bp(-0.23),
+		paddingTop: bp(-2),
 	},
+	cameraIcon: {
+		marginLeft: bp(10),
+		marginBottom: 0,
+	},
+	fileIcon: {
+		marginLeft: bp(3),
+	}
 })

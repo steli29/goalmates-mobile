@@ -22,9 +22,9 @@ const EmailChipTextInput = ({ emails, setEmails }) => {
 
         const lastTyped = text.charAt(text.length - 1);
         const parseWhen = [',', ' ', ';', '\n'];
-
         if (parseWhen.indexOf(lastTyped) > -1) {
-            setEmails([...emails, text]);
+            const parsedMail = text.substring(0, text.length - 1);
+            setEmails([...emails, parsedMail]);
             setEmailsText('');
         }
     };

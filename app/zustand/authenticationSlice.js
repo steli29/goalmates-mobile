@@ -58,9 +58,7 @@ export const createAuthenticationSlice = (set) => ({
                 await setSession(data);
                 let image = null;
                 if(data.image) {
-                    image = {
-                        uri: convertBase64ToImage(data.image),
-                    }
+                    image = convertBase64ToImage(data.image)
                 };
                 set((state) => ({ myUser: {
                     ...state.myUser,

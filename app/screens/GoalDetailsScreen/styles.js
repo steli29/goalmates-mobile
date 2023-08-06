@@ -9,4 +9,9 @@ export default StyleSheet.create({
 
         backgroundColor: '#fff',
     },
+    loadingSpinnerContainer: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
 })

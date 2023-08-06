@@ -26,9 +26,7 @@ export const createSearchUsersSlice = (set) => ({
             if (response.status === 200) {
                 const mappedData = data.map((user) => {
                     if(user.image) {
-                        user.image = {
-                            uri: convertBase64ToImage(user.image),
-                        }
+                        user.image = convertBase64ToImage(user.image);
                     }
                     return user;
                 });

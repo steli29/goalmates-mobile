@@ -1,44 +1,20 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { FlatList, Image, TouchableOpacity, View } from 'react-native';
 
-import GoalCard from '../../components/GoalCard/GoalCard';
+import { useStore } from '../../zustand/root-reducer';
 
-import styles from './styles';
+import GoalCard from '../../components/GoalCard/GoalCard';
 import CategorySvg from '../../assets/svgs/CategorySvg';
 import HomeFilterModal from './components/HomeFilterModal/HomeFilterModal';
 
-const HomeScreen = () => {
+import styles from './styles';
+
+const HomeScreen = ({ navigation }) => {
     const [isModalVisible, setIsModalVisible] = useState(false);
-    const data = [
-        {
-            avatarUrl: null,
-            datePosted: '1hr ago',
-            name: 'Oyin Dolapo',
-            commentsLength: 57,
-            title: 'Learn new skill',
-            description: 'Complete  prototyping course',
-            progress: 0.4,
-        },
-        {
-            avatarUrl: null,
-            datePosted: '1hr ago',
-            name: 'Oyin Dolapo',
-            commentsLength: 57,
-            title: 'Learn new skill',
-            description: 'Complete  prototyping course',
-            progress: 0.9,
-        },
-        {
-            avatarUrl: null,
-            datePosted: '1hr ago',
-            name: 'Oyin Dolapo',
-            commentsLength: 57,
-            title: 'Learn new skill',
-            description: 'Complete  prototyping course',
-            progress: 0.4,
-        },
-    ];
+    const myUser = useStore((state) => state.myUser);
+    const getFeedPosts = useStore((state) => state.getFeedPosts);
+    const feed = useStore((state) => state.feed);
 
     const showModal = () => {
         setIsModalVisible(true);
@@ -48,17 +24,31 @@ const HomeScreen = () => {
         setIsModalVisible(false);
     };
 
+    const onFocus = async () => {
+        const { id } = myUser.data;
+        await getFeedPosts(id);
+    }
+
+    useEffect(() => {
+        const unsubscribe = navigation.addListener('focus', onFocus);
+
+        return () => {
+            unsubscribe();
+        };
+    }, [navigation]);
+
     const renderItem = ({ item, index }) => {
+        const { createdBy, id, title, content } = item;
         return (
             <View key={index} style={styles.goalCardStyle}>
                 <GoalCard
-                    avatarUrl={item.avatarUrl}
-                    datePosted={item.datePosted}
-                    name={item.name}
-                    commentsLength={item.commentsLength}
-                    title={item.title}
-                    description={item.description}
-                    progress={item.progress}
+                    datePosted="now"
+                    goalId={id}
+                    user={createdBy}
+                    commentsLength={50}
+                    title={title}
+                    description={content}
+                    progress={0.6}
                 />
             </View>
         );
@@ -79,10 +69,10 @@ const HomeScreen = () => {
     return (
         <SafeAreaView style={styles.mainContainer} edges={['top']}>
             <HomeFilterModal isVisible={isModalVisible} onClose={hideModal} />
+            <HomeHeader />
             <FlatList
-                data={data}
+                data={feed?.data}
                 renderItem={renderItem}
-                ListHeaderComponent={HomeHeader}
                 ItemSeparatorComponent={ItemSeparator}
                 showsVerticalScrollIndicator={false}
                 contentContainerStyle={styles.contentContainerStyle}

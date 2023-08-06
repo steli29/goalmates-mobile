@@ -32,6 +32,37 @@ export const formatDate = (date) => {
     return formattedDate;
 };
 
+export const timeAgo = (date) => {
+    const seconds = Math.floor((new Date() - date) / 1000);
+    let interval = Math.floor(seconds / 31536000);
+
+    if (interval >= 1) {
+        return interval === 1 ? `${interval  } year ago` : `${interval  } years ago`;
+    }
+
+    interval = Math.floor(seconds / 2592000);
+    if (interval >= 1) {
+        return interval === 1 ? `${interval  } month ago` : `${interval  } months ago`;
+    }
+
+    interval = Math.floor(seconds / 86400);
+    if (interval >= 1) {
+        return interval === 1 ? `${interval  } day ago` : `${interval  } days ago`;
+    }
+
+    interval = Math.floor(seconds / 3600);
+    if (interval >= 1) {
+        return interval === 1 ? `${interval  } hour ago` : `${interval  } hours ago`;
+    }
+
+    interval = Math.floor(seconds / 60);
+    if (interval >= 1) {
+        return interval === 1 ? `${interval  } minute ago` : `${interval  } minutes ago`;
+    }
+
+    return 'Just now';
+}
+
 export const isEmptyObj = (obj) => {
     return Object.keys(obj).length === 0;
 };
@@ -48,7 +79,7 @@ export const convertJavaByteArrayToJS = (javaByteArray) => {
 
 export const convertBase64ToImage = (base64Str) => {
     const obj = {
-        uri: `data:image/png;base64,${base64Str}`
-    }
+        uri: `data:image/png;base64,${base64Str}`,
+    };
     return obj;
-}
+};

@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 
 import { Screens } from '../../project/constants';
 import { useStore } from '../../zustand/root-reducer';
+import { timeAgo } from '../../project/helpers/helper-functions';
 
 import GoalPreview from '../GoalPreview/GoalPreview';
 import AvatarImage from '../AvatarImage/AvatarImage';
@@ -25,9 +26,14 @@ const GoalCard = ({
     isFromGoalDetails = false,
 }) => {
     const navigation = useNavigation();
+
     const myUser = useStore((state) => state.myUser)
+
     const { firstName, lastName, image, id } = user || {};
     const isCurrentUser = id === myUser?.data?.id;
+
+    const parsedDate = timeAgo(new Date(datePosted));
+
     const [isOptionsModalVisible, setIsOptionsModalVisible] = useState(false);
 
     const closeModal = () => {
@@ -72,7 +78,7 @@ const GoalCard = ({
                     <TouchableOpacity onPress={onNameItemPress}>
                         <Text style={styles.nameText}>{`${firstName} ${lastName}`}</Text>
                     </TouchableOpacity>
-                    <Text style={styles.datePostedText}>{datePosted}</Text>
+                    <Text style={styles.datePostedText}>{parsedDate}</Text>
                 </View>
                 <TouchableOpacity
                     onPress={onDotsPress}

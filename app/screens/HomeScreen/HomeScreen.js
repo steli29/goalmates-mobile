@@ -38,11 +38,11 @@ const HomeScreen = ({ navigation }) => {
     }, [navigation]);
 
     const renderItem = ({ item, index }) => {
-        const { createdBy, id, title, content } = item;
+        const { createdBy, id, title, content, dateCreated } = item;
         return (
             <View key={index} style={styles.goalCardStyle}>
                 <GoalCard
-                    datePosted="now"
+                    datePosted={dateCreated}
                     goalId={id}
                     user={createdBy}
                     commentsLength={50}

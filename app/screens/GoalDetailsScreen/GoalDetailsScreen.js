@@ -64,7 +64,7 @@ const GoalDetailsScreen = ({ route, navigation }) => {
             automaticallyAdjustKeyboardInsets
         >
             <GoalCard
-                datePosted='now'
+                datePosted={data?.dateCreated}
                 user={data?.createdBy}
                 commentsLength={50}
                 title={data?.title}

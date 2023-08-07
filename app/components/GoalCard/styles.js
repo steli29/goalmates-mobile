@@ -18,7 +18,7 @@ export default StyleSheet.create({
         flexDirection: 'row',
     },
     nameAndDateContainer: {
-        marginLeft: bp(7),
+        marginLeft: bp(15),
     },
     cardHeaderContainer: {
         marginTop: bp(10),

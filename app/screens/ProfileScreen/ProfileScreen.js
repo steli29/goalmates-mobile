@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Text, TouchableOpacity, View, FlatList, ActivityIndicator } from 'react-native';
+import { Text, TouchableOpacity, View, FlatList, ActivityIndicator, RefreshControl } from 'react-native';
 import PropTypes from 'prop-types';
 
 import { Screens } from '../../project/constants';
@@ -156,8 +156,13 @@ const ProfileScreen = ({ navigation, route }) => {
                 ListHeaderComponent={ProfileScreenHeader}
                 contentContainerStyle={styles.mainContainer}
                 ItemSeparatorComponent={ItemSeparator}
-                activ
                 showsVerticalScrollIndicator={false}
+                refreshControl={(
+                    <RefreshControl 
+                        onRefresh={() => refreshParent(route.params?.user?.id)}
+                        refreshing={isUserLoading || posts.isLoading}
+                    />
+                )}
             />
         </>
     );

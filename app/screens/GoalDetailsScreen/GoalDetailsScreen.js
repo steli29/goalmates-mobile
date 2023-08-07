@@ -9,6 +9,7 @@ import SectionHeader from './components/SectionHeader/SectionHeader';
 import AddCommentInput from './components/AddCommentInput/AddCommentInput';
 
 import styles from './styles';
+import Comment from '../../components/Comment/Comment';
 
 const GoalDetailsScreen = ({ route, navigation }) => {
     const [selected, setSelected] = useState('Comments');
@@ -16,6 +17,9 @@ const GoalDetailsScreen = ({ route, navigation }) => {
     const myUserData = useStore((state) => state.myUser.data);
     const getPostById = useStore((state) => state.getPostById);
     const { data, isPostLoading } = useStore((state) => state.post);
+
+    const comments = [1, 2, 3, 4, 5];
+    const updates = [1, 2, 3, 4, 5];
 
     const changeSelectedOption = (option) => {
         setSelected(option);
@@ -26,7 +30,12 @@ const GoalDetailsScreen = ({ route, navigation }) => {
             return <Text>Progress</Text>;
         }
         if (selected === 'Comments') {
-            return <Text>Comments</Text>;
+            return comments.map((comment) => (
+                <Comment
+                    comment='This is a very long text I want to be on a separate line hahahahha  fdsfhsdf ssdfh lsdjffsd'
+                    userName='Test Testov'
+                />
+            ));
         }
 
         return null;
@@ -45,8 +54,7 @@ const GoalDetailsScreen = ({ route, navigation }) => {
         };
     }, [navigation]);
 
-    useEffect(() => {
-    }, [isPostLoading]);
+    useEffect(() => {}, [isPostLoading]);
 
     if (isPostLoading) {
         return (
@@ -61,7 +69,6 @@ const GoalDetailsScreen = ({ route, navigation }) => {
             contentContainerStyle={styles.mainContainer}
             scrollEnabled
             showsVerticalScrollIndicator={false}
-            automaticallyAdjustKeyboardInsets
         >
             <GoalCard
                 datePosted={data?.dateCreated}

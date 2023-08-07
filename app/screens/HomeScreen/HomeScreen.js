@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { FlatList, Image, TouchableOpacity, View } from 'react-native';
+import { FlatList, Image, RefreshControl, TouchableOpacity, View } from 'react-native';
 
 import { useStore } from '../../zustand/root-reducer';
 
@@ -24,9 +24,13 @@ const HomeScreen = ({ navigation }) => {
         setIsModalVisible(false);
     };
 
-    const onFocus = async () => {
+    const onRefresh = async () => {
         const { id } = myUser.data;
         await getFeedPosts(id);
+    }
+
+    const onFocus = async () => {
+        await onRefresh();
     }
 
     useEffect(() => {
@@ -76,6 +80,12 @@ const HomeScreen = ({ navigation }) => {
                 ItemSeparatorComponent={ItemSeparator}
                 showsVerticalScrollIndicator={false}
                 contentContainerStyle={styles.contentContainerStyle}
+                refreshControl={(
+                    <RefreshControl
+                        onRefresh={onRefresh}
+                        refreshing={feed.isLoading}
+                    />
+                )}
             />
         </SafeAreaView>
     );

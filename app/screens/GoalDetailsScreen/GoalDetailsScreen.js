@@ -1,5 +1,6 @@
+/* eslint-disable no-nested-ternary */
 import React, { useEffect, useState } from 'react';
-import { ActivityIndicator, ScrollView, Text, View } from 'react-native';
+import { ActivityIndicator, ScrollView, View } from 'react-native';
 import PropTypes from 'prop-types';
 
 import { useStore } from '../../zustand/root-reducer';
@@ -7,9 +8,9 @@ import { useStore } from '../../zustand/root-reducer';
 import GoalCard from '../../components/GoalCard/GoalCard';
 import SectionHeader from './components/SectionHeader/SectionHeader';
 import AddCommentInput from './components/AddCommentInput/AddCommentInput';
+import Comment from '../../components/Comment/Comment';
 
 import styles from './styles';
-import Comment from '../../components/Comment/Comment';
 
 const GoalDetailsScreen = ({ route, navigation }) => {
     const myUserData = useStore((state) => state.myUser.data);
@@ -17,6 +18,8 @@ const GoalDetailsScreen = ({ route, navigation }) => {
     const { data, isPostLoading } = useStore((state) => state.post);
 
     const [selected, setSelected] = useState('Comments');
+    const isSelectedUpdates = selected === 'Progress';
+    const isCreatedByCurrentUser = myUserData?.id === data?.createdBy?.id;
 
     const comments = [1, 2, 3, 4, 5];
     const updates = [1, 2, 3, 4, 5];
@@ -27,10 +30,15 @@ const GoalDetailsScreen = ({ route, navigation }) => {
 
     const RenderSections = () => {
         if (selected === 'Progress') {
-            return <Text>Progress</Text>;
+            return updates.map(() => (
+                <Comment
+                    comment='This is a very long text I want to be on a separate line hahahahha  fdsfhsdf ssdfh lsdjffsd'
+                    userName='Test Testov'
+                />
+            ));
         }
         if (selected === 'Comments') {
-            return comments.map((comment) => (
+            return comments.map(() => (
                 <Comment
                     comment='This is a very long text I want to be on a separate line hahahahha  fdsfhsdf ssdfh lsdjffsd'
                     userName='Test Testov'
@@ -84,7 +92,13 @@ const GoalDetailsScreen = ({ route, navigation }) => {
                 <SectionHeader selected={selected} changeOption={changeSelectedOption} />
                 <RenderSections />
             </ScrollView>
-            <AddCommentInput avatarImage={myUserData?.image} />
+            {isSelectedUpdates ? (
+                isCreatedByCurrentUser ? (
+                    <AddCommentInput avatarImage={myUserData?.image} />
+                ) : null
+            ) : (
+                <AddCommentInput avatarImage={myUserData?.image} />
+            )}
         </>
     );
 };

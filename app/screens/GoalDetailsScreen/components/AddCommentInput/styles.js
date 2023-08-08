@@ -9,7 +9,8 @@ export default StyleSheet.create({
         alignItems: 'flex-end',
         width: '100%',
         paddingHorizontal: bp(15),
-        backgroundColor: 'red',
+        paddingVertical: bp(10),
+        backgroundColor: '#fff',
     },
     sendCommentContainer: {
         justifyContent: 'center',

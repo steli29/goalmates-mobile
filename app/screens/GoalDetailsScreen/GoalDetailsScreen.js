@@ -12,11 +12,11 @@ import styles from './styles';
 import Comment from '../../components/Comment/Comment';
 
 const GoalDetailsScreen = ({ route, navigation }) => {
-    const [selected, setSelected] = useState('Comments');
-
     const myUserData = useStore((state) => state.myUser.data);
     const getPostById = useStore((state) => state.getPostById);
     const { data, isPostLoading } = useStore((state) => state.post);
+
+    const [selected, setSelected] = useState('Comments');
 
     const comments = [1, 2, 3, 4, 5];
     const updates = [1, 2, 3, 4, 5];
@@ -65,25 +65,27 @@ const GoalDetailsScreen = ({ route, navigation }) => {
     }
 
     return (
-        <ScrollView
-            contentContainerStyle={styles.mainContainer}
-            scrollEnabled
-            showsVerticalScrollIndicator={false}
-        >
-            <GoalCard
-                datePosted={data?.dateCreated}
-                user={data?.createdBy}
-                commentsLength={50}
-                title={data?.title}
-                description={data?.content}
-                goalId={data?.id}
-                progress={0.6}
-                isFromGoalDetails
-            />
-            <SectionHeader selected={selected} changeOption={changeSelectedOption} />
-            <RenderSections />
+        <>
+            <ScrollView
+                contentContainerStyle={styles.mainContainer}
+                scrollEnabled
+                showsVerticalScrollIndicator={false}
+            >
+                <GoalCard
+                    datePosted={data?.dateCreated}
+                    user={data?.createdBy}
+                    commentsLength={50}
+                    title={data?.title}
+                    description={data?.content}
+                    goalId={data?.id}
+                    progress={0.6}
+                    isFromGoalDetails
+                />
+                <SectionHeader selected={selected} changeOption={changeSelectedOption} />
+                <RenderSections />
+            </ScrollView>
             <AddCommentInput avatarImage={myUserData?.image} />
-        </ScrollView>
+        </>
     );
 };
 

@@ -7,6 +7,7 @@ export default StyleSheet.create({
         flexDirection: 'row',
         
         marginVertical: bp(15),
+        marginHorizontal: bp(10),
         
         borderRadius: bp(11),
         borderWidth: bp(1),

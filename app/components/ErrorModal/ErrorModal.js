@@ -20,11 +20,7 @@ const ErrorModal = ({ error, onErrorClear }) => {
     }, [error]);
 
     return (
-        <Modal 
-            isVisible={isModalVisible} 
-            useNativeDriver 
-            hideModalContentWhileAnimating
-            >
+        <Modal isVisible={isModalVisible} useNativeDriver hideModalContentWhileAnimating>
             <View style={styles.mainContainer}>
                 <Text style={styles.errorHeaderText}>Error</Text>
                 <Text style={styles.errorDetailsText}>{error}</Text>
@@ -42,6 +38,6 @@ const ErrorModal = ({ error, onErrorClear }) => {
 ErrorModal.propTypes = {
     error: PropTypes.string,
     onErrorClear: PropTypes.func,
-}
+};
 
 export default ErrorModal;

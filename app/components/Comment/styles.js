@@ -38,4 +38,15 @@ export default StyleSheet.create({
         resizeMode: 'cover',
         borderRadius: bp(10),
     },
+    likeCountText: {
+        marginRight: bp(5),
+
+        ...fontStylePicker(FONT_FAMILY.POPPINS, FONT_WEIGHT.NORMAL),
+        fontSize: bp(12),
+    },
+    likeContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+    }
 });

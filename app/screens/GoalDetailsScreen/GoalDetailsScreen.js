@@ -4,6 +4,7 @@ import { ActivityIndicator, ScrollView, View } from 'react-native';
 import PropTypes from 'prop-types';
 
 import { useStore } from '../../zustand/root-reducer';
+import { commentSection } from '../../project/constants';
 
 import GoalCard from '../../components/GoalCard/GoalCard';
 import SectionHeader from './components/SectionHeader/SectionHeader';
@@ -17,7 +18,7 @@ const GoalDetailsScreen = ({ route, navigation }) => {
     const getPostById = useStore((state) => state.getPostById);
     const { data, isPostLoading } = useStore((state) => state.post);
 
-    const [selected, setSelected] = useState('Comments');
+    const [selected, setSelected] = useState(commentSection.COMMENTS);
     const isSelectedUpdates = selected === 'Progress';
     const isCreatedByCurrentUser = myUserData?.id === data?.createdBy?.id;
 
@@ -29,19 +30,22 @@ const GoalDetailsScreen = ({ route, navigation }) => {
     };
 
     const RenderSections = () => {
-        if (selected === 'Progress') {
+        if (selected === commentSection.PROGRESS) {
             return updates.map(() => (
                 <Comment
-                    comment='This is a very long text I want to be on a separate line hahahahha  fdsfhsdf ssdfh lsdjffsd'
+                    comment='This is a very long text for update on a new line'
                     userName='Test Testov'
+                    selected={selected}
+                    isCreatedByCurrentUser={isCreatedByCurrentUser}
                 />
             ));
         }
-        if (selected === 'Comments') {
+        if (selected === commentSection.COMMENTS) {
             return comments.map(() => (
                 <Comment
                     comment='This is a very long text I want to be on a separate line hahahahha  fdsfhsdf ssdfh lsdjffsd'
                     userName='Test Testov'
+                    selected={selected}
                 />
             ));
         }
@@ -86,7 +90,7 @@ const GoalDetailsScreen = ({ route, navigation }) => {
                     title={data?.title}
                     description={data?.content}
                     goalId={data?.id}
-                    progress={0.6}
+                    progress={0.99}
                     isFromGoalDetails
                 />
                 <SectionHeader selected={selected} changeOption={changeSelectedOption} />

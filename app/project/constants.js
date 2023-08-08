@@ -55,16 +55,18 @@ export const ASYNC_STORAGE_KEYS = {
     CREATE_GOAL_DRAFT: 'create-goal-draft',
 };
 
-export const currentUserOptions = [
-    'Turn off commenting',
-    'Update Goal',
-    'Edit',
-    'Delete'
-];
+export const currentUserOptions = ['Turn off commenting', 'Resolve Goal', 'Edit', 'Delete'];
 
 export const otherUsersOptions = [
     'Unfollow',
     'Turn off notifications for this Goal',
     'Hide',
     'Report',
-]
+];
+
+export const commentSection = {
+    COMMENTS: 'Comments',
+    PROGRESS: 'Progress',
+};
+
+export const sectionsInComment = [commentSection.COMMENTS, commentSection.PROGRESS];

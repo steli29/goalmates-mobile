@@ -27,7 +27,7 @@ const GoalCard = ({
 }) => {
     const navigation = useNavigation();
 
-    const myUser = useStore((state) => state.myUser)
+    const myUser = useStore((state) => state.myUser);
 
     const { firstName, lastName, image, id } = user || {};
     const isCurrentUser = id === myUser?.data?.id;
@@ -46,13 +46,13 @@ const GoalCard = ({
 
     const onNameItemPress = () => {
         navigation.push(Screens.PROFILE, {
-            user
+            user,
         });
     };
 
     const onViewPostDetailsPress = () => {
         navigation.navigate(Screens.GOAL_DETAILS, {
-           goalId, 
+            goalId,
         });
     };
 
@@ -99,6 +99,7 @@ const GoalCard = ({
                     <ChatSvg />
                     <Text style={styles.commentsLengthText}>{commentsLength}</Text>
                 </View>
+                {isFromGoalDetails && <Text style={styles.commentsLengthText}>{progress * 100}%</Text>}
             </View>
         </View>
     );

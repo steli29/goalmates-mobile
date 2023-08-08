@@ -2,16 +2,17 @@ import React from 'react';
 import { View } from 'react-native';
 import PropTypes from 'prop-types';
 
+import { sectionsInComment } from '../../../../project/constants';
+
 import SectionHeaderButton from '../SectionHeaderButton/SectionHeaderButton';
 
 import styles from './styles';
 
 const SectionHeader = ({ selected, changeOption }) => {
-    const options = ['Comments', 'Progress'];
 
     return (
         <View style={styles.mainContainer}>
-            {options.map((option) => {
+            {sectionsInComment.map((option) => {
                 const onPressButton = () => {
                     changeOption(option);
                 };

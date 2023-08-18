@@ -10,19 +10,27 @@ const SliderWidget = ({ disabled }) => {
     const minValue = 0;
     const maxValue = 5;
     const [value, setValue] = useState(0);
+    const [isSliderUsed, setIsSliderUsed] = useState(false);
+
+    const onSlidingComplete = () => {
+        setIsSliderUsed(true);
+    }
 
     return (
         <>
-            <Slider
-                minimumValue={minValue}
-                maximumValue={maxValue}
-                step={step}
-                value={value}
-                onValueChange={setValue}
-                disabled={disabled}
-            />
+            {!disabled && (
+                <Slider
+                    minimumValue={minValue}
+                    maximumValue={maxValue}
+                    step={step}
+                    value={value}
+                    onValueChange={setValue}
+                    disabled={isSliderUsed}
+                    onSlidingComplete={onSlidingComplete}
+                />
+            )}
             <View style={styles.ratingContainer}>
-                <Text style={styles.countText}>Rating: {value}</Text>
+                {!disabled && <Text style={styles.countText}>Rating: {value}</Text>}
                 <Text style={styles.countText}>Total Rating: {value}</Text>
             </View>
         </>

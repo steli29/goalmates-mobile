@@ -132,6 +132,7 @@ const ProfileScreen = ({ navigation, route }) => {
                     description={content}
                     goalId={id}
                     progress={0.5}
+                    refreshScreen={() => refreshParent(data.id)}
                 />
             </View>
         );

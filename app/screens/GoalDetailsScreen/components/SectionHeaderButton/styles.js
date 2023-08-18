@@ -6,7 +6,6 @@ import { bp } from '../../../../project/utils/relativeUnitUtils';
 export default StyleSheet.create({
     mainContainer: {
         height: bp(30),
-        // width: bp(150),
         width: '50%',
 
         justifyContent: 'center',

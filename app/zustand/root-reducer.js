@@ -7,6 +7,8 @@ import { createImageSlice } from './imageSlice';
 import { createPostSlice } from './postSlice';
 import { createFeedSlice } from './feedSlice';
 import { createUserFeedSlice } from './userFeedSlice';
+import { createCommentsSlice } from './commentsSlice';
+import { createLikesSlice } from './likesSlice';
 
 export const useStore = create((...a) => ({
     ...createAuthenticationSlice(...a),
@@ -17,4 +19,6 @@ export const useStore = create((...a) => ({
     ...createPostSlice(...a),
     ...createFeedSlice(...a),
     ...createUserFeedSlice(...a),
+    ...createCommentsSlice(...a),
+    ...createLikesSlice(...a),
 }));

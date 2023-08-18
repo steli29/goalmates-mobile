@@ -22,7 +22,12 @@ export const createFollowersSlice = (set) => ({
                 }
             );
         } catch (err) {
-            console.log(err);
+            set((state) => ({
+                connections: {
+                    ...state.connections,
+                    error: err.message,
+                },
+            }));
         }
     },
     unfollowUser: async (followerId, followeeId) => {
@@ -41,7 +46,12 @@ export const createFollowersSlice = (set) => ({
                 }
             );
         } catch (err) {
-            console.log(err);
+            set((state) => ({
+                connections: {
+                    ...state.connections,
+                    error: err.message,
+                },
+            }));
         }
     },
     getAllFollowing: async (followerId) => {

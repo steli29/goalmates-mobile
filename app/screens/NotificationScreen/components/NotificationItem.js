@@ -17,7 +17,7 @@ const NotificationItem = ({ userName, notificationText, avatarImage, date }) => 
                 <Text style={styles.dateText}>{date}</Text>
             </View>
             <TouchableOpacity>
-                <TrashbinSvg />
+                <TrashbinSvg size={18}/>
             </TouchableOpacity>
         </View>
     );

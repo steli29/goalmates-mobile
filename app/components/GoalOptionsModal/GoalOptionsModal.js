@@ -4,12 +4,12 @@ import { Text, View, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import PropTypes from 'prop-types';
 
-import { Screens, currentUserOptions, otherUsersOptions } from '../../project/constants';
+import { Screens, goalOptions } from '../../project/constants';
 import { useStore } from '../../zustand/root-reducer';
 
 import styles from './styles';
 
-const GoalOptionsModal = ({ isVisible, onClose, isCurrentUser, data }) => {
+const GoalOptionsModal = ({ isVisible, onClose, isCurrentUser, data, refreshScreen }) => {
     const navigation = useNavigation();
 
     const deletePost = useStore((state) => state.deletePost);
@@ -36,12 +36,13 @@ const GoalOptionsModal = ({ isVisible, onClose, isCurrentUser, data }) => {
 
     const onDeletePress = async () => {
         await deletePost(data.goalId);
+        refreshScreen();
         navigation.navigate(Screens.PROFILE, {
             user: myUser.data,
-        })
+        });
     }
 
-    const options = isCurrentUser ? currentUserOptions : otherUsersOptions;
+    const options = isCurrentUser ? goalOptions : null;
     return (
         <Modal
             isVisible={isVisible}
@@ -52,7 +53,7 @@ const GoalOptionsModal = ({ isVisible, onClose, isCurrentUser, data }) => {
         >
             <View style={styles.mainContainer}>
                 <View style={styles.optionsContainer}>
-                    {options.map((option, index) => {
+                    {options?.map((option, index) => {
                         const isLast = index === options.length - 1;
 
                         const borderStyle = !isLast ? styles.borderBoxStyle : null;
@@ -83,6 +84,7 @@ GoalOptionsModal.propTypes = {
     isVisible: PropTypes.bool,
     onClose: PropTypes.func,
     isCurrentUser: PropTypes.bool,
+    refreshScreen: PropTypes.func,
     data: PropTypes.object,
 };
 

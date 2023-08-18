@@ -238,10 +238,9 @@ export const SearchStack = () => {
 };
 
 const CreateGoalScreenStack = createNativeStackNavigator();
-export const CreateGoalStack = (props) => {
+export const CreateGoalStack = ({ navigation: stackNavigation }) => {
     useLayoutEffect(() => {
-        // eslint-disable-next-line react/destructuring-assignment
-        props.navigation.setOptions({
+        stackNavigation.setOptions({
             tabBarVisible: false,
         });
     }, []);

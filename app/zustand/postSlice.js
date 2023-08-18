@@ -9,13 +9,13 @@ export const createPostSlice = (set) => ({
     },
     getPostById: async (id) => {
         const axiosInstance = await createAxiosInstance();
-        try {         
+        try {
             set((state) => ({
                 post: {
                     ...state.post,
                     isPostLoading: true,
                 },
-            }));   
+            }));
             const response = await axiosInstance.get('/post/', {
                 params: {
                     id,

@@ -3,8 +3,6 @@ import { bp } from '../../project/utils/relativeUnitUtils';
 
 export default StyleSheet.create({
     mainContainer: {
-        // flex: 1,
-        
         paddingVertical: bp(20),
         paddingHorizontal: bp(27),
 

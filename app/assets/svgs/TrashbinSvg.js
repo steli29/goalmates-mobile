@@ -1,11 +1,12 @@
 import React from 'react';
 import Svg, { Path } from 'react-native-svg';
+import PropTypes from 'prop-types';
 
-const TrashbinSvg = () => {
+const TrashbinSvg = ({ size }) => {
     return (
         <Svg
-            width='18'
-            height='18'
+            width={size}
+            height={size}
             viewBox='0 0 18 18'
             fill='none'
             xmlns='http://www.w3.org/2000/svg'
@@ -17,5 +18,9 @@ const TrashbinSvg = () => {
         </Svg>
     );
 };
+
+TrashbinSvg.propTypes = {
+    size: PropTypes.number
+}
 
 export default TrashbinSvg;

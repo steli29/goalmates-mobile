@@ -3,13 +3,16 @@ import Modal from 'react-native-modal';
 import { Text, TouchableOpacity, View } from "react-native";
 import PropTypes from 'prop-types';
 
-import styles from "./styles";
 import FilterOption from '../FilterOption/FilterOption';
 import CloseSvg from '../../../../assets/svgs/CloseSvg';
 
+import styles from "./styles";
+
 const HomeFilterModal = ({ isVisible, onClose }) => {
+    // TODO
+    // Option for Newest activity sorting
     const [selectedOption, setSelectedOption] = useState('Most Recent');
-    const options = ['Most Recent', 'Most Commented', 'Newest Activity'];
+    const options = ['Most Recent', 'Most Commented'];
 
     const onOptionPress = (optionValue) => {
         setSelectedOption(optionValue);

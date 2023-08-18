@@ -23,8 +23,11 @@ const GoalCard = ({
     progress,
     user,
     goalId,
+    refreshScreen,
     isFromGoalDetails = false,
 }) => {
+    // TODO
+    // Possibility to have options in modal for goal for different users
     const navigation = useNavigation();
 
     const myUser = useStore((state) => state.myUser);
@@ -66,6 +69,7 @@ const GoalCard = ({
                 isVisible={isOptionsModalVisible}
                 onClose={closeModal}
                 isCurrentUser={isCurrentUser}
+                refreshScreen={refreshScreen}
                 data={{
                     goalId,
                     title,
@@ -80,13 +84,15 @@ const GoalCard = ({
                     </TouchableOpacity>
                     <Text style={styles.datePostedText}>{parsedDate}</Text>
                 </View>
-                <TouchableOpacity
-                    onPress={onDotsPress}
-                    style={styles.dotsStyle}
-                    hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
-                >
-                    <ThreeDotsSvg />
-                </TouchableOpacity>
+                {isCurrentUser && !isFromGoalDetails ? (
+                    <TouchableOpacity
+                        onPress={onDotsPress}
+                        style={styles.dotsStyle}
+                        hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+                    >
+                        <ThreeDotsSvg />
+                    </TouchableOpacity>
+                ) : null}
             </View>
             <GoalPreview title={title} description={description} progress={progress} />
             <View style={styles.goalCardFooter}>
@@ -99,7 +105,9 @@ const GoalCard = ({
                     <ChatSvg />
                     <Text style={styles.commentsLengthText}>{commentsLength}</Text>
                 </View>
-                {isFromGoalDetails && <Text style={styles.commentsLengthText}>{progress * 100}%</Text>}
+                {isFromGoalDetails && (
+                    <Text style={styles.commentsLengthText}>{progress * 100}%</Text>
+                )}
             </View>
         </View>
     );
@@ -113,6 +121,7 @@ GoalCard.propTypes = {
     description: PropTypes.string,
     progress: PropTypes.number,
     goalId: PropTypes.number,
+    refreshScreen: PropTypes.func,
     isFromGoalDetails: PropTypes.bool,
 };
 

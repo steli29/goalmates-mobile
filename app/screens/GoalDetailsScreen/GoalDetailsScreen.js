@@ -1,6 +1,6 @@
 /* eslint-disable no-nested-ternary */
 import React, { useEffect, useState } from 'react';
-import { ActivityIndicator, ScrollView, View } from 'react-native';
+import { ScrollView } from 'react-native';
 import PropTypes from 'prop-types';
 
 import { useStore } from '../../zustand/root-reducer';
@@ -16,13 +16,13 @@ import styles from './styles';
 const GoalDetailsScreen = ({ route, navigation }) => {
     const myUserData = useStore((state) => state.myUser.data);
     const getPostById = useStore((state) => state.getPostById);
-    const { data, isPostLoading } = useStore((state) => state.post);
+    const getComments = useStore((state) => state.getComments);
+    const { data } = useStore((state) => state.post);
+    const comments = useStore((state) => state.comments);
 
     const [selected, setSelected] = useState(commentSection.COMMENTS);
-    const isSelectedUpdates = selected === 'Progress';
-    const isCreatedByCurrentUser = myUserData?.id === data?.createdBy?.id;
-
-    const comments = [1, 2, 3, 4, 5];
+    const isSelectedUpdates = selected === commentSection.PROGRESS;
+    const isPostCreatedByCurrentUser = myUserData?.id === data?.createdBy?.id;
     const updates = [1, 2, 3, 4, 5];
 
     const changeSelectedOption = (option) => {
@@ -31,31 +31,44 @@ const GoalDetailsScreen = ({ route, navigation }) => {
 
     const RenderSections = () => {
         if (selected === commentSection.PROGRESS) {
-            return updates.map(() => (
+            return updates.map((update) => (
                 <Comment
                     comment='This is a very long text for update on a new line'
                     userName='Test Testov'
                     selected={selected}
-                    isCreatedByCurrentUser={isCreatedByCurrentUser}
+                    isPostCreatedByCurrentUser={isPostCreatedByCurrentUser}
+                    key={`${update}`}
                 />
             ));
         }
         if (selected === commentSection.COMMENTS) {
-            return comments.map(() => (
-                <Comment
-                    comment='This is a very long text I want to be on a separate line hahahahha  fdsfhsdf ssdfh lsdjffsd'
-                    userName='Test Testov'
-                    selected={selected}
-                />
-            ));
+            return comments?.data?.map((comment) => {
+                return (
+                    <Comment
+                        comment={comment?.text}
+                        commentId={comment.id}
+                        likes={comment?.likes}
+                        user={comment?.user}
+                        selected={selected}
+                        refreshScreen={refreshScreen}
+                        key={`${comment.id}`}
+                        isPostCreatedByCurrentUser={isPostCreatedByCurrentUser}
+                    />
+                );
+            });
         }
 
         return null;
     };
 
-    const onFocus = () => {
+    const refreshScreen = () => {
         const { goalId } = route.params;
         getPostById(goalId);
+        getComments(goalId);
+    };
+
+    const onFocus = () => {
+        refreshScreen();
     };
 
     useEffect(() => {
@@ -65,16 +78,6 @@ const GoalDetailsScreen = ({ route, navigation }) => {
             unsubscirbe();
         };
     }, [navigation]);
-
-    useEffect(() => {}, [isPostLoading]);
-
-    if (isPostLoading) {
-        return (
-            <View style={styles.loadingSpinnerContainer}>
-                <ActivityIndicator size='large' color='#B5B5B5' />
-            </View>
-        );
-    }
 
     return (
         <>
@@ -86,22 +89,34 @@ const GoalDetailsScreen = ({ route, navigation }) => {
                 <GoalCard
                     datePosted={data?.dateCreated}
                     user={data?.createdBy}
-                    commentsLength={50}
+                    commentsLength={comments?.data?.length}
                     title={data?.title}
                     description={data?.content}
                     goalId={data?.id}
                     progress={0.99}
+                    refreshScreen={refreshScreen}
                     isFromGoalDetails
                 />
                 <SectionHeader selected={selected} changeOption={changeSelectedOption} />
                 <RenderSections />
             </ScrollView>
             {isSelectedUpdates ? (
-                isCreatedByCurrentUser ? (
-                    <AddCommentInput avatarImage={myUserData?.image} />
+                isPostCreatedByCurrentUser ? (
+                    <AddCommentInput
+                        avatarImage={myUserData?.image}
+                        postId={data?.id}
+                        isFromUpdates
+                        refreshScreen={refreshScreen}
+                        label='Add an update'
+                    />
                 ) : null
             ) : (
-                <AddCommentInput avatarImage={myUserData?.image} />
+                <AddCommentInput
+                    avatarImage={myUserData?.image}
+                    postId={data?.id}
+                    refreshScreen={refreshScreen}
+                    label='Add a comment'
+                />
             )}
         </>
     );

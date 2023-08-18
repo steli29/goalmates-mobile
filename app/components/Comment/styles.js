@@ -48,5 +48,10 @@ export default StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
+    },
+    deleteContainer: {
+        position: 'absolute',
+        right: 10,
+        top: 10,
     }
 });

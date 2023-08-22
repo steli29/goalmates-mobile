@@ -9,6 +9,7 @@ import { createFeedSlice } from './feedSlice';
 import { createUserFeedSlice } from './userFeedSlice';
 import { createCommentsSlice } from './commentsSlice';
 import { createLikesSlice } from './likesSlice';
+import { createUpdatesSlice } from './updatesSlice';
 
 export const useStore = create((...a) => ({
     ...createAuthenticationSlice(...a),
@@ -21,4 +22,5 @@ export const useStore = create((...a) => ({
     ...createUserFeedSlice(...a),
     ...createCommentsSlice(...a),
     ...createLikesSlice(...a),
+    ...createUpdatesSlice(...a),
 }));

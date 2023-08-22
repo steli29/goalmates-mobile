@@ -15,15 +15,18 @@ import styles from './styles';
 
 const GoalDetailsScreen = ({ route, navigation }) => {
     const myUserData = useStore((state) => state.myUser.data);
+
     const getPostById = useStore((state) => state.getPostById);
     const getComments = useStore((state) => state.getComments);
+    const getAllUpdates = useStore((state) => state.getAllUpdates);
+
     const { data } = useStore((state) => state.post);
     const comments = useStore((state) => state.comments);
+    const updates = useStore((state) => state.updates);
 
     const [selected, setSelected] = useState(commentSection.COMMENTS);
     const isSelectedUpdates = selected === commentSection.PROGRESS;
     const isPostCreatedByCurrentUser = myUserData?.id === data?.createdBy?.id;
-    const updates = [1, 2, 3, 4, 5];
 
     const changeSelectedOption = (option) => {
         setSelected(option);
@@ -31,27 +34,32 @@ const GoalDetailsScreen = ({ route, navigation }) => {
 
     const RenderSections = () => {
         if (selected === commentSection.PROGRESS) {
-            return updates.map((update) => (
-                <Comment
-                    comment='This is a very long text for update on a new line'
-                    userName='Test Testov'
-                    selected={selected}
-                    isPostCreatedByCurrentUser={isPostCreatedByCurrentUser}
-                    key={`${update}`}
-                />
-            ));
+            return updates?.data?.map((update) => {
+                return (
+                    <Comment
+                        key={`${update.id}`}
+                        comment={update?.text}
+                        commentId={update?.id}
+                        title={update?.title}
+                        imageSource={update?.image}
+                        user={myUserData}
+                        isPostCreatedByCurrentUser={isPostCreatedByCurrentUser}
+                        selected={selected}
+                    />
+                );
+            });
         }
         if (selected === commentSection.COMMENTS) {
             return comments?.data?.map((comment) => {
                 return (
                     <Comment
+                        key={`${comment.id}`}
                         comment={comment?.text}
                         commentId={comment.id}
                         likes={comment?.likes}
                         user={comment?.user}
                         selected={selected}
                         refreshScreen={refreshScreen}
-                        key={`${comment.id}`}
                         isPostCreatedByCurrentUser={isPostCreatedByCurrentUser}
                     />
                 );
@@ -65,6 +73,7 @@ const GoalDetailsScreen = ({ route, navigation }) => {
         const { goalId } = route.params;
         getPostById(goalId);
         getComments(goalId);
+        getAllUpdates(goalId);
     };
 
     const onFocus = () => {

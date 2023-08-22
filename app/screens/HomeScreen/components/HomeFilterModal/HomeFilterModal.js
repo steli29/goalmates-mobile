@@ -10,7 +10,7 @@ import styles from "./styles";
 
 const HomeFilterModal = ({ isVisible, onClose }) => {
     // TODO
-    // Option for Newest activity sorting
+    // Option for Newest Activity sorting
     const [selectedOption, setSelectedOption] = useState('Most Recent');
     const options = ['Most Recent', 'Most Commented'];
 

@@ -35,7 +35,11 @@ export default StyleSheet.create({
     commentImage: {
         width: '100%',
         height: bp(200),
-        resizeMode: 'cover',
+
+        marginBottom: bp(5),
+
+        resizeMode: 'contain',
+
         borderRadius: bp(10),
     },
     likeCountText: {

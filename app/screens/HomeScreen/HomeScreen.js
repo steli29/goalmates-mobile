@@ -42,14 +42,14 @@ const HomeScreen = ({ navigation }) => {
     }, [navigation]);
 
     const renderItem = ({ item, index }) => {
-        const { createdBy, id, title, content, dateCreated } = item;
+        const { createdBy, id, title, content, dateCreated, commentsCount } = item;
         return (
             <View key={index} style={styles.goalCardStyle}>
                 <GoalCard
                     datePosted={dateCreated}
                     goalId={id}
                     user={createdBy}
-                    commentsLength={50}
+                    commentsLength={commentsCount}
                     title={title}
                     description={content}
                     progress={0.6}

@@ -16,6 +16,7 @@ import { useStore } from '../../zustand/root-reducer';
 const Comment = ({
     user,
     likes,
+    title,
     commentId,
     comment,
     refreshScreen,
@@ -26,15 +27,16 @@ const Comment = ({
     const deleteComment = useStore((state) => state.deleteComment);
     const myUserData = useStore((state) => state.myUser.data);
 
-    const name = `${user?.firstName} ${user?.lastName}`;
-    const userImage = user ? convertBase64ToImage(user?.image) : null;
-
     const isCommentSection = selected === commentSection.COMMENTS;
     const isCommentCreatedByCurrentUser = user?.id === myUserData?.id;
+
+    const name = isCommentSection ? `${user?.firstName} ${user?.lastName}` : title;
+    const userImage = user ? convertBase64ToImage(user?.image) : null;
+
     const onDeleteCommentPress = () => {
         deleteComment(commentId);
-        refreshScreen()
-    }
+        refreshScreen();
+    };
 
     const RenderCommentFooter = () => {
         if (isCommentSection) {
@@ -57,11 +59,9 @@ const Comment = ({
         <View style={styles.container}>
             <AvatarImage imageUrl={userImage} size={40} />
             <View style={styles.commentContainer}>
-                {isCommentSection && (isPostCreatedByCurrentUser || isCommentCreatedByCurrentUser) ? (
-                    <TouchableOpacity 
-                        style={styles.deleteContainer}
-                        onPress={onDeleteCommentPress}
-                    >
+                {isCommentSection &&
+                (isPostCreatedByCurrentUser || isCommentCreatedByCurrentUser) ? (
+                    <TouchableOpacity style={styles.deleteContainer} onPress={onDeleteCommentPress}>
                         <TrashbinSvg size={13} />
                     </TouchableOpacity>
                 ) : null}
@@ -71,7 +71,10 @@ const Comment = ({
                 <View style={styles.commentContent}>
                     {comment && <Text style={styles.commentText}>{comment}</Text>}
                     {imageSource && (
-                        <Image source={{ uri: imageSource }} style={styles.commentImage} />
+                        <Image
+                            source={{ uri: convertBase64ToImage(imageSource).uri }}
+                            style={styles.commentImage}
+                        />
                     )}
                 </View>
                 <RenderCommentFooter />
@@ -88,6 +91,7 @@ Comment.propTypes = {
     refreshScreen: PropTypes.func,
     imageSource: PropTypes.string,
     selected: PropTypes.string,
+    title: PropTypes.string,
     isPostCreatedByCurrentUser: PropTypes.bool,
 };
 

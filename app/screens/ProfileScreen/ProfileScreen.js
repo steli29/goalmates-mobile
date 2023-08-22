@@ -121,13 +121,13 @@ const ProfileScreen = ({ navigation, route }) => {
     };
 
     const renderItem = ({ item, index }) => {
-        const { createdBy, title, content, id, dateCreated } = item;
+        const { createdBy, title, content, id, dateCreated, commentsCount } = item;
         return (
             <View key={index} style={styles.goalCardStyle}>
                 <GoalCard
                     datePosted={dateCreated}
                     user={createdBy}
-                    commentsLength={50}
+                    commentsLength={commentsCount}
                     title={title}
                     description={content}
                     goalId={id}

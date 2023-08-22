@@ -42,3 +42,21 @@ export const getDraft = async () => {
 
     return JSON.parse(draft);
 };
+
+export const sortPostsByDateCreated = (posts) => {
+    const sortedPosts = posts.sort((a, b) => {
+        const dateA = new Date(a.dateCreated);
+        const dateB = new Date(b.dateCreated);
+
+        return dateB - dateA;
+    })
+    return sortedPosts;
+};
+
+export const sortPostsByCommenstCount = (posts) => {
+    const sortedPosts = posts.sort((a, b) => {
+        return b.commentsCount - a.commentsCount;
+    });
+
+    return sortedPosts;
+}

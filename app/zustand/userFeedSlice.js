@@ -1,4 +1,4 @@
-import { createAxiosInstance } from '../project/api/helpers';
+import { createAxiosInstance, sortPostsByDateCreated } from '../project/api/helpers';
 import { convertBase64ToImage } from '../project/helpers/helper-functions';
 
 export const createUserFeedSlice = (set) => ({
@@ -36,7 +36,7 @@ export const createUserFeedSlice = (set) => ({
                 set((state) => ({
                     posts: {
                         ...state.post,
-                        data: transformedData,
+                        data: sortPostsByDateCreated(transformedData),
                         isLoading: false,
                     },
                 }));

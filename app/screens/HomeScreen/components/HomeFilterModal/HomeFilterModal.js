@@ -1,19 +1,18 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Modal from 'react-native-modal';
 import { Text, TouchableOpacity, View } from "react-native";
 import PropTypes from 'prop-types';
+
+import { filterByOptions } from '../../../../project/constants';
 
 import FilterOption from '../FilterOption/FilterOption';
 import CloseSvg from '../../../../assets/svgs/CloseSvg';
 
 import styles from "./styles";
 
-const HomeFilterModal = ({ isVisible, onClose }) => {
+const HomeFilterModal = ({ isVisible, onClose, selectedOption, setSelectedOption }) => {
     // TODO
     // Option for Newest Activity sorting
-    const [selectedOption, setSelectedOption] = useState('Most Recent');
-    const options = ['Most Recent', 'Most Commented'];
-
     const onOptionPress = (optionValue) => {
         setSelectedOption(optionValue);
     };
@@ -36,7 +35,7 @@ const HomeFilterModal = ({ isVisible, onClose }) => {
                     </TouchableOpacity>
                     <Text style={styles.headerTitleStyle}>Sort by:</Text>
                 </View>
-                {options.map((option) => {
+                {filterByOptions.map((option) => {
                     return (
                         <FilterOption 
                             label={option}
@@ -54,6 +53,8 @@ const HomeFilterModal = ({ isVisible, onClose }) => {
 HomeFilterModal.propTypes = {
     isVisible: PropTypes.bool,
     onClose: PropTypes.func,
+    selectedOption: PropTypes.string,
+    setSelectedOption: PropTypes.func,
 };
 
 export default HomeFilterModal;

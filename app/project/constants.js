@@ -72,3 +72,10 @@ export const commentSection = {
 };
 
 export const sectionsInComment = [commentSection.COMMENTS, commentSection.PROGRESS];
+
+export const filterModalOption = {
+    MOST_RECENT: 'Most Recent',
+    MOST_COMMENTED: 'Most Commented',
+};
+
+export const filterByOptions = [filterModalOption.MOST_RECENT, filterModalOption.MOST_COMMENTED];

@@ -3,6 +3,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { FlatList, Image, RefreshControl, TouchableOpacity, View } from 'react-native';
 
 import { useStore } from '../../zustand/root-reducer';
+import { filterModalOption } from '../../project/constants';
 
 import GoalCard from '../../components/GoalCard/GoalCard';
 import CategorySvg from '../../assets/svgs/CategorySvg';
@@ -12,6 +13,8 @@ import styles from './styles';
 
 const HomeScreen = ({ navigation }) => {
     const [isModalVisible, setIsModalVisible] = useState(false);
+    const [selectedOption, setSelectedOption] = useState(filterModalOption.MOST_RECENT);
+
     const myUser = useStore((state) => state.myUser);
     const getFeedPosts = useStore((state) => state.getFeedPosts);
     const feed = useStore((state) => state.feed);
@@ -21,17 +24,18 @@ const HomeScreen = ({ navigation }) => {
     };
 
     const hideModal = () => {
+        onRefresh();
         setIsModalVisible(false);
     };
 
     const onRefresh = async () => {
         const { id } = myUser.data;
-        await getFeedPosts(id);
-    }
+        await getFeedPosts(id, selectedOption);
+    };
 
     const onFocus = async () => {
         await onRefresh();
-    }
+    };
 
     useEffect(() => {
         const unsubscribe = navigation.addListener('focus', onFocus);
@@ -72,7 +76,12 @@ const HomeScreen = ({ navigation }) => {
 
     return (
         <SafeAreaView style={styles.mainContainer} edges={['top']}>
-            <HomeFilterModal isVisible={isModalVisible} onClose={hideModal} />
+            <HomeFilterModal
+                isVisible={isModalVisible}
+                onClose={hideModal}
+                selectedOption={selectedOption}
+                setSelectedOption={setSelectedOption}
+            />
             <HomeHeader />
             <FlatList
                 data={feed?.data}
@@ -80,12 +89,9 @@ const HomeScreen = ({ navigation }) => {
                 ItemSeparatorComponent={ItemSeparator}
                 showsVerticalScrollIndicator={false}
                 contentContainerStyle={styles.contentContainerStyle}
-                refreshControl={(
-                    <RefreshControl
-                        onRefresh={onRefresh}
-                        refreshing={feed.isLoading}
-                    />
-                )}
+                refreshControl={
+                    <RefreshControl onRefresh={onRefresh} refreshing={feed.isLoading} />
+                }
             />
         </SafeAreaView>
     );

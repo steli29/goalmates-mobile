@@ -1,4 +1,9 @@
-import { createAxiosInstance } from '../project/api/helpers';
+import {
+    createAxiosInstance,
+    sortPostsByCommenstCount,
+    sortPostsByDateCreated,
+} from '../project/api/helpers';
+import { filterModalOption } from '../project/constants';
 import { convertBase64ToImage } from '../project/helpers/helper-functions';
 
 export const createFeedSlice = (set) => ({
@@ -7,7 +12,7 @@ export const createFeedSlice = (set) => ({
         isLoading: false,
         error: null,
     },
-    getFeedPosts: async (id) => {
+    getFeedPosts: async (id, sortByOption) => {
         const axiosInstance = await createAxiosInstance();
         try {
             set((state) => ({
@@ -19,7 +24,7 @@ export const createFeedSlice = (set) => ({
             const response = await axiosInstance.get('/post/feed/', {
                 params: {
                     id,
-                }
+                },
             });
 
             const { data } = response;
@@ -30,13 +35,20 @@ export const createFeedSlice = (set) => ({
                         createdBy: {
                             ...post.createdBy,
                             image: convertBase64ToImage(post.createdBy.image),
-                        }
-                    }
-                })
+                        },
+                    };
+                });
+                let sorted = null;
+                if (sortByOption === filterModalOption.MOST_COMMENTED) {
+                    sorted = sortPostsByCommenstCount(transformedData);
+                } else if (sortByOption === filterModalOption.MOST_RECENT) {
+                    sorted = sortPostsByDateCreated(transformedData);
+                }
+
                 set((state) => ({
                     feed: {
                         ...state.post,
-                        data: transformedData,
+                        data: sorted,
                         isLoading: false,
                     },
                 }));

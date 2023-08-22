@@ -4,14 +4,15 @@ import { launchCamera, launchImageLibrary } from 'react-native-image-picker';
 import PropTypes from 'prop-types';
 
 import { useStore } from '../../../../zustand/root-reducer';
+import { convertBase64ToImage } from '../../../../project/helpers/helper-functions';
 
 import AvatarImage from '../../../../components/AvatarImage/AvatarImage';
 import PaperPlaneSvg from '../../../../assets/svgs/PaperPlaneSvg';
 import CameraSvg from '../../../../assets/svgs/CameraSvg';
 import PhotoSvg from '../../../../assets/svgs/PhotoSvg';
+import CommenInputHeader from '../CommentInputHeader/CommentInputHeader';
 
 import styles from './styles';
-import CommenInputHeader from '../CommentInputHeader/CommentInputHeader';
 
 const AddCommentInput = ({ avatarImage, postId, isFromUpdates, refreshScreen, label }) => {
     const myUserData = useStore((state) => state.myUser.data);
@@ -22,6 +23,8 @@ const AddCommentInput = ({ avatarImage, postId, isFromUpdates, refreshScreen, la
     const [comment, setComment] = useState('');
     const [image, setImage] = useState(null);
     const [title, setTitle] = useState('');
+
+    const userAvatar = typeof avatarImage === 'string' ? convertBase64ToImage(avatarImage) : avatarImage;
 
     const onGalleryPress = async () => {
         const response = await launchImageLibrary({
@@ -85,7 +88,7 @@ const AddCommentInput = ({ avatarImage, postId, isFromUpdates, refreshScreen, la
             ) : null}
 
             <View style={styles.mainContainer}>
-                <AvatarImage size={44} imageUrl={avatarImage} />
+                <AvatarImage size={44} imageUrl={userAvatar} />
                 <View style={styles.commentInputContainer}>
                     <TextInput
                         value={comment}

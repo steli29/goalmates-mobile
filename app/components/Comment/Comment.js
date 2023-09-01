@@ -31,7 +31,7 @@ const Comment = ({
     const isCommentCreatedByCurrentUser = user?.id === myUserData?.id;
 
     const name = isCommentSection ? `${user?.firstName} ${user?.lastName}` : title;
-    const userImage = user ? convertBase64ToImage(user?.image) : null;
+    const userAvatar = convertBase64ToImage(user?.image);
 
     const onDeleteCommentPress = () => {
         deleteComment(commentId);
@@ -57,7 +57,7 @@ const Comment = ({
 
     return (
         <View style={styles.container}>
-            <AvatarImage imageUrl={userImage} size={40} />
+            <AvatarImage imageUrl={userAvatar} size={40} />
             <View style={styles.commentContainer}>
                 {isCommentSection &&
                 (isPostCreatedByCurrentUser || isCommentCreatedByCurrentUser) ? (

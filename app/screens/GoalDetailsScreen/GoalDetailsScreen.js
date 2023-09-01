@@ -42,7 +42,7 @@ const GoalDetailsScreen = ({ route, navigation }) => {
                         commentId={update?.id}
                         title={update?.title}
                         imageSource={update?.image}
-                        user={myUserData}
+                        user={data?.createdBy}
                         isPostCreatedByCurrentUser={isPostCreatedByCurrentUser}
                         selected={selected}
                     />

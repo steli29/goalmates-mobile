@@ -7,12 +7,14 @@ import { useStore } from '../../zustand/root-reducer';
 import { Screens } from '../../project/constants';
 
 import Button from '../../components/Button/Button';
-import BottomLink from '../../components/BottomLink/BottomLink';
+// import BottomLink from '../../components/BottomLink/BottomLink';
 import AuthHeadLine from '../../components/AuthHeadLine/AuthHeadLine';
 import CodeVerification from './components/CodeVerification/CodeVerification';
+import ErrorModal from '../../components/ErrorModal/ErrorModal';
 
 import styles from './styles';
-import ErrorModal from '../../components/ErrorModal/ErrorModal';
+
+// TODO Implement resend code
 
 const VerifyScreen = ({ route, navigation }) => {
     const verify = useStore((state) => state.verify);
@@ -61,11 +63,11 @@ const VerifyScreen = ({ route, navigation }) => {
                     buttonContainerStyle={styles.buttonContainerStyle}
                 />
             </View>
-            <BottomLink
+            {/* <BottomLink
                 headline="Didn't recieve code?"
                 buttonLabel='Resend Code'
                 onLabelPress={() => undefined}
-            />
+            /> */}
         </SafeAreaView>
     );
 };

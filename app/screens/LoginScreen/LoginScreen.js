@@ -11,9 +11,11 @@ import Button from '../../components/Button/Button';
 import BottomLink from '../../components/BottomLink/BottomLink';
 import AuthHeadLine from '../../components/AuthHeadLine/AuthHeadLine';
 import ErrorModal from '../../components/ErrorModal/ErrorModal';
-import LoginFormFooter from './components/LoginFormFooter/LoginFormFooter';
+// import LoginFormFooter from './components/LoginFormFooter/LoginFormFooter';
 
 import styles from './styles';
+
+// TODO Implement forgotten password
 
 const LoginScreen = ({ navigation }) => {
     const login = useStore((state) => state.login);
@@ -22,21 +24,21 @@ const LoginScreen = ({ navigation }) => {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [isCheckBoxPressed, setIsCheckboxPressed] = useState(false);
+    // const [isCheckBoxPressed, setIsCheckboxPressed] = useState(false);
 
     const onSignUpPress = () => {
         navigation.navigate(Screens.REGISTER);
     };
 
-    const onCheckBoxPress = () => {
-        setIsCheckboxPressed((prev) => !prev);
-    }
+    // const onCheckBoxPress = () => {
+    //     setIsCheckboxPressed((prev) => !prev);
+    // }
 
     const onLoginPress = async () => {
         await login({
             email,
             password,
-            isCheckBoxPressed,
+            // isCheckBoxPressed,
         });
     };
 
@@ -59,11 +61,11 @@ const LoginScreen = ({ navigation }) => {
                     onChangeInputField={setPassword}
                     isPassword
                 />
-                <LoginFormFooter 
+                {/* <LoginFormFooter 
                     isCheckBoxPressed={isCheckBoxPressed}
                     onCheckBoxPress={onCheckBoxPress}
                     navigation={navigation}
-                />
+                /> */}
                 <Button
                     label='Login'
                     onButtonPress={onLoginPress}

@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 
 import { commentSection } from '../../project/constants';
 import { convertBase64ToImage } from '../../project/helpers/helper-functions';
+import { useStore } from '../../zustand/root-reducer';
 
 import AvatarImage from '../AvatarImage/AvatarImage';
 import LikeButton from '../LikeButton/LikeButton';
@@ -11,7 +12,6 @@ import SliderWidget from '../SliderWidget/SliderWidget';
 import TrashbinSvg from '../../assets/svgs/TrashbinSvg';
 
 import styles from './styles';
-import { useStore } from '../../zustand/root-reducer';
 
 const Comment = ({
     user,
@@ -50,7 +50,10 @@ const Comment = ({
 
         return (
             <View>
-                <SliderWidget disabled={isPostCreatedByCurrentUser} />
+                <SliderWidget
+                    disabled={isPostCreatedByCurrentUser}
+                    updateId={commentId}
+                />
             </View>
         );
     };

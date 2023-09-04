@@ -3,18 +3,30 @@ import React, { useState } from 'react';
 import { Text, View } from 'react-native';
 import PropTypes from 'prop-types';
 
+import { useStore } from '../../zustand/root-reducer';
+
 import styles from './styles';
 
-const SliderWidget = ({ disabled }) => {
+const SliderWidget = ({ disabled, updateId }) => {
     const step = 1;
     const minValue = 0;
     const maxValue = 5;
     const [value, setValue] = useState(0);
     const [isSliderUsed, setIsSliderUsed] = useState(false);
 
-    const onSlidingComplete = () => {
-        setIsSliderUsed(true);
-    }
+    const setProgress = useStore((state) => state.setProgress);
+    const myUserData = useStore((state) => state.myUser.data);
+
+    const setSliderToUsed = () => {
+        if (!isSliderUsed) {
+            setIsSliderUsed(true);
+        }
+    };
+
+    const onSlidingComplete = async () => {
+        setProgress(updateId, myUserData?.id, value);
+        setSliderToUsed();
+    };
 
     return (
         <>
@@ -39,6 +51,7 @@ const SliderWidget = ({ disabled }) => {
 
 SliderWidget.propTypes = {
     disabled: PropTypes.bool,
+    updateId: PropTypes.number,
 };
 
 export default SliderWidget;

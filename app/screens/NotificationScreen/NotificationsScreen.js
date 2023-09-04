@@ -4,6 +4,7 @@ import NotificationItem from './components/NotificationItem';
 import styles from './styles';
 
 const NotificationsScreen = () => {
+    // TODO - replace with real data
     const data = [
         {
             avatarImage: null,

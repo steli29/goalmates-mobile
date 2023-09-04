@@ -10,6 +10,7 @@ import { createUserFeedSlice } from './userFeedSlice';
 import { createCommentsSlice } from './commentsSlice';
 import { createLikesSlice } from './likesSlice';
 import { createUpdatesSlice } from './updatesSlice';
+import { createProgressSlice } from './progressSlice';
 
 export const useStore = create((...a) => ({
     ...createAuthenticationSlice(...a),
@@ -23,4 +24,5 @@ export const useStore = create((...a) => ({
     ...createCommentsSlice(...a),
     ...createLikesSlice(...a),
     ...createUpdatesSlice(...a),
+    ...createProgressSlice(...a),
 }));

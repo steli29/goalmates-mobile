@@ -1,5 +1,5 @@
 import Slider from '@react-native-community/slider';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Text, View } from 'react-native';
 import PropTypes from 'prop-types';
 
@@ -15,18 +15,27 @@ const SliderWidget = ({ disabled, updateId }) => {
     const [isSliderUsed, setIsSliderUsed] = useState(false);
 
     const setProgress = useStore((state) => state.setProgress);
+    const getProgress = useStore((state) => state.getProgress);
     const myUserData = useStore((state) => state.myUser.data);
 
-    const setSliderToUsed = () => {
-        if (!isSliderUsed) {
-            setIsSliderUsed(true);
-        }
+    const onSlidingComplete = async () => {
+        await setProgress(updateId, myUserData?.id, value);
+        setTimeout(() => {
+            onFocus();
+        }, 100);
     };
 
-    const onSlidingComplete = async () => {
-        setProgress(updateId, myUserData?.id, value);
-        setSliderToUsed();
-    };
+    const onFocus = async () => {
+        const data = await getProgress(myUserData?.id, updateId);
+        if(data) {
+            setValue(data?.progress);
+            setIsSliderUsed(data?.isRated);
+        }
+    }
+
+    useEffect(() => {
+        onFocus();
+    }, []);
 
     return (
         <>
@@ -43,7 +52,7 @@ const SliderWidget = ({ disabled, updateId }) => {
             )}
             <View style={styles.ratingContainer}>
                 {!disabled && <Text style={styles.countText}>Rating: {value}</Text>}
-                <Text style={styles.countText}>Total Rating: {value}</Text>
+                {/* <Text style={styles.countText}>Total Rating: {value}</Text> */}
             </View>
         </>
     );

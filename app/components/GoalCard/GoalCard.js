@@ -106,7 +106,7 @@ const GoalCard = ({
                     <Text style={styles.commentsLengthText}>{commentsLength}</Text>
                 </View>
                 {isFromGoalDetails && (
-                    <Text style={styles.commentsLengthText}>{progress}%</Text>
+                    <Text style={styles.commentsLengthText}>{progress ?? 0}%</Text>
                 )}
             </View>
         </View>

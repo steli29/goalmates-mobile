@@ -7,7 +7,7 @@ import { useStore } from '../../zustand/root-reducer';
 
 import styles from './styles';
 
-const SliderWidget = ({ disabled, updateId }) => {
+const SliderWidget = ({ updateId, refreshScreen }) => {
     const step = 1;
     const minValue = 0;
     const maxValue = 5;
@@ -27,11 +27,12 @@ const SliderWidget = ({ disabled, updateId }) => {
 
     const onFocus = async () => {
         const data = await getProgress(myUserData?.id, updateId);
-        if(data) {
+        if (data) {
             setValue(data?.progress);
             setIsSliderUsed(data?.isRated);
         }
-    }
+        refreshScreen();
+    };
 
     useEffect(() => {
         onFocus();
@@ -39,19 +40,17 @@ const SliderWidget = ({ disabled, updateId }) => {
 
     return (
         <>
-            {!disabled && (
-                <Slider
-                    minimumValue={minValue}
-                    maximumValue={maxValue}
-                    step={step}
-                    value={value}
-                    onValueChange={setValue}
-                    disabled={isSliderUsed}
-                    onSlidingComplete={onSlidingComplete}
-                />
-            )}
+            <Slider
+                minimumValue={minValue}
+                maximumValue={maxValue}
+                step={step}
+                value={value}
+                onValueChange={setValue}
+                disabled={isSliderUsed}
+                onSlidingComplete={onSlidingComplete}
+            />
             <View style={styles.ratingContainer}>
-                {!disabled && <Text style={styles.countText}>Rating: {value}</Text>}
+                <Text style={styles.countText}>Rating: {value}</Text>
                 {/* <Text style={styles.countText}>Total Rating: {value}</Text> */}
             </View>
         </>
@@ -59,8 +58,8 @@ const SliderWidget = ({ disabled, updateId }) => {
 };
 
 SliderWidget.propTypes = {
-    disabled: PropTypes.bool,
     updateId: PropTypes.number,
+    refreshScreen: PropTypes.func,
 };
 
 export default SliderWidget;

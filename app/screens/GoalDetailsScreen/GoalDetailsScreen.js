@@ -45,6 +45,7 @@ const GoalDetailsScreen = ({ route, navigation }) => {
                         user={data?.createdBy}
                         isPostCreatedByCurrentUser={isPostCreatedByCurrentUser}
                         selected={selected}
+                        refreshScreen={refreshScreen}
                     />
                 );
             });
@@ -102,6 +103,7 @@ const GoalDetailsScreen = ({ route, navigation }) => {
                     title={data?.title}
                     description={data?.content}
                     goalId={data?.id}
+                    // progress={data?.progress}
                     progress={data?.progress}
                     refreshScreen={refreshScreen}
                     isFromGoalDetails

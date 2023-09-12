@@ -28,6 +28,7 @@ const Comment = ({
     const myUserData = useStore((state) => state.myUser.data);
 
     const isCommentSection = selected === commentSection.COMMENTS;
+    const isUpdatesSection = selected === commentSection.PROGRESS;
     const isCommentCreatedByCurrentUser = user?.id === myUserData?.id;
 
     const name = isCommentSection ? `${user?.firstName} ${user?.lastName}` : title;
@@ -47,15 +48,10 @@ const Comment = ({
                 </View>
             );
         }
-
-        return (
-            <View>
-                <SliderWidget
-                    disabled={isPostCreatedByCurrentUser}
-                    updateId={commentId}
-                />
-            </View>
-        );
+        if (!isPostCreatedByCurrentUser && isUpdatesSection) {
+            return <SliderWidget refreshScreen={refreshScreen} updateId={commentId} />;
+        }
+        return null;
     };
 
     return (

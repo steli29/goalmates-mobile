@@ -121,7 +121,7 @@ const ProfileScreen = ({ navigation, route }) => {
     };
 
     const renderItem = ({ item, index }) => {
-        const { createdBy, title, content, id, dateCreated, commentsCount } = item;
+        const { createdBy, title, content, id, dateCreated, commentsCount, progress } = item;
         return (
             <View key={index} style={styles.goalCardStyle}>
                 <GoalCard
@@ -131,7 +131,7 @@ const ProfileScreen = ({ navigation, route }) => {
                     title={title}
                     description={content}
                     goalId={id}
-                    progress={0.5}
+                    progress={progress}
                     refreshScreen={() => refreshParent(data.id)}
                 />
             </View>

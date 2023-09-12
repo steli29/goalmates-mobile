@@ -46,7 +46,7 @@ const HomeScreen = ({ navigation }) => {
     }, [navigation]);
 
     const renderItem = ({ item, index }) => {
-        const { createdBy, id, title, content, dateCreated, commentsCount } = item;
+        const { createdBy, id, title, content, dateCreated, commentsCount, progress } = item;
         return (
             <View key={index} style={styles.goalCardStyle}>
                 <GoalCard
@@ -56,7 +56,7 @@ const HomeScreen = ({ navigation }) => {
                     commentsLength={commentsCount}
                     title={title}
                     description={content}
-                    progress={0.6}
+                    progress={progress}
                 />
             </View>
         );

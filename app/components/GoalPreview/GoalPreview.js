@@ -9,6 +9,7 @@ import styles from './styles';
 import { bp } from '../../project/utils/relativeUnitUtils';
 
 const GoalPreview = ({ title, description, progress }) => {
+    const progressPercent = progress ? progress / 100 : 0;
     return (
         <View style={[styles.mainContainer, styles.shadowEffect]}>
             <View style={styles.row}>
@@ -19,7 +20,7 @@ const GoalPreview = ({ title, description, progress }) => {
                 </View>
             </View>
             <View style={styles.progressBarContainer}>
-                <Progress.Bar progress={progress} width={bp(270)} />
+                <Progress.Bar progress={progressPercent} width={bp(270)} />
             </View>
         </View>
     );

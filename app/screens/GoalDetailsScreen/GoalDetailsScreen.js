@@ -103,7 +103,6 @@ const GoalDetailsScreen = ({ route, navigation }) => {
                     title={data?.title}
                     description={data?.content}
                     goalId={data?.id}
-                    // progress={data?.progress}
                     progress={data?.progress}
                     refreshScreen={refreshScreen}
                     isFromGoalDetails

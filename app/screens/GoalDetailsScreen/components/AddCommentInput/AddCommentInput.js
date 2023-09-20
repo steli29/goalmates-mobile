@@ -62,7 +62,7 @@ const AddCommentInput = ({ avatarImage, postId, isFromUpdates, refreshScreen, la
         }
 
         setComment('');
-        refreshScreen();
+        setTimeout(refreshScreen, 100);
     };
 
     useEffect(() => {

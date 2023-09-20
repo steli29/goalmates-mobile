@@ -22,7 +22,8 @@ const SliderWidget = ({ updateId, refreshScreen }) => {
         await setProgress(updateId, myUserData?.id, value);
         setTimeout(() => {
             onFocus();
-        }, 100);
+            refreshScreen();
+        }, 50);
     };
 
     const onFocus = async () => {
@@ -31,7 +32,6 @@ const SliderWidget = ({ updateId, refreshScreen }) => {
             setValue(data?.progress);
             setIsSliderUsed(data?.isRated);
         }
-        refreshScreen();
     };
 
     useEffect(() => {
